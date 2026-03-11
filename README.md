@@ -51,6 +51,8 @@
 
 **Resources:** [FAQ](#-faq) · [Roadmap](#-roadmap) · [Community](#-community) · [Contributing](#-contributing)
 
+**Developers:** [System Atlas](SYSTEM-ATLAS.md) · [Improvement Index](IMPROVEMENT-INDEX.md)
+
 <br/>
 
 [![PAI Overview Video](https://img.youtube.com/vi/Le0DLrn7ta0/maxresdefault.jpg)](https://youtu.be/Le0DLrn7ta0)
@@ -312,16 +314,6 @@ Keeps you informed without being intrusive. Push notifications via ntfy for mobi
 ---
 
 <p align="center">
-  <img src="./images/pai-component-9-voice-system.png" alt="Voice System" width="700">
-</p>
-
-### Notification System (Push & External)
-
-Mobile push via ntfy.sh, Discord webhook integration, and duration-aware routing that escalates for long-running tasks. Fire-and-forget design means notifications never block your workflow. Voice TTS was removed in v4.3.0.
-
----
-
-<p align="center">
   <img src="./images/pai-component-7-terminal-ui.png" alt="Terminal-Based UI" width="700">
 </p>
 
@@ -438,7 +430,6 @@ Recovery is straightforward:
 | **Local Model Support** | Run PAI with local models (Ollama, llama.cpp) for privacy and cost control |
 | **Granular Model Routing** | Route different tasks to different models based on complexity |
 | **Remote Access** | Access your PAI from anywhere—mobile, web, other devices |
-| **Outbound Phone Calling** | Voice capabilities for outbound calls |
 | **External Notifications** | Robust notification system for Email, Discord, Telegram, Slack |
 
 ---
@@ -490,7 +481,7 @@ MIT License - see [LICENSE](LICENSE) for details.
 
 ### Contributors
 
-**[fayerman-source](https://github.com/fayerman-source)** — Google Cloud TTS provider integration and Linux audio support for the voice system.
+**[fayerman-source](https://github.com/fayerman-source)** — Google Cloud TTS provider integration and Linux audio support.
 
 **Matt Espinoza** — Extensive testing, ideas, and feedback for the PAI 2.3 release, plus roadmap contributions.
 
