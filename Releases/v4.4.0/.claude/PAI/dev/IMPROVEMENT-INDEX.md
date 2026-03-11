@@ -80,32 +80,27 @@ These increase repo size, context consumption, and maintenance burden.
 
 Removed 11 old release directories (v2.3 through v4.3.1), saving ~314MB. Only v4.4.0 remains. All history preserved in git.
 
-## 3.2 Spinner Verb Bloat: 430+ Lines
+## 3.2 Spinner Verb Bloat: 430+ Lines — 📦 NEEDS CURATION
 
-`config/spinner-verbs.json` contains 430+ custom spinner verbs (lines 472-898 of settings.json). While fun/personalized, this is a huge chunk of config that gets loaded every session.
+`config/spinner-verbs.json` contains 426 custom spinner verbs grouped by theme (Kingkiller, gaming, cyberpunk, Dune, Star Trek, Foundation, etc.). These are highly personalized and loaded every session via BuildSettings.ts.
 
-**Fix:** Consider moving to a separate file that's loaded lazily, or trim to a curated 50-100. Group by theme for easier maintenance.
+**Options:** (a) Keep as-is — it's config, not code. (b) Trim to ~100 curated favorites. (c) Move to lazy-loaded file. Already separated into `config/spinner-verbs.json`, so bloat is contained.
 
-## 3.3 Spinner Tips: 200+ Lines
+## 3.3 Spinner Tips: 200+ Lines — 📦 NEEDS CURATION
 
-`config/spinner-tips.json` contains 200+ tips (settings.json lines 900-1103). Many reference specific skill counts and version numbers that go stale.
+`config/spinner-tips.json` contains 198 tips. Version/count references already fixed in P2. Remaining issue is bulk — all tips load every session.
 
-**Fix:** Move tips that contain version numbers to be dynamically generated. Trim stale/duplicate tips.
+**Options:** (a) Keep as-is. (b) Trim duplicates/stale tips. (c) Rotate a random subset per session.
 
 ## 3.4 Algorithm Version Accumulation — ✅ FIXED
 
 Removed v3.5.0.md, v3.7.0.md, v3.8.0.md (~64KB). Only v3.9.0.md + LATEST pointer + supporting docs remain.
 
-## 3.5 Banner Tool Proliferation
+## 3.5 Banner Tool Proliferation — 📦 NEEDS DESIGN
 
-6+ banner tools in PAI/Tools/:
-- Banner.ts (39KB), BannerMatrix.ts (22KB), BannerNeofetch.ts (26KB)
-- BannerPrototypes.ts (11KB), BannerRetro.ts (28KB), BannerTokyo.ts (12KB)
-- NeofetchBanner.ts (29KB) — possibly duplicate of BannerNeofetch.ts
+7 banner tools totaling ~167KB: Banner.ts (39KB), BannerMatrix.ts (22KB), BannerNeofetch.ts (26KB), BannerPrototypes.ts (11KB), BannerRetro.ts (28KB), BannerTokyo.ts (12KB), NeofetchBanner.ts (29KB).
 
-Total: ~167KB of banner code.
-
-**Fix:** Consolidate to one Banner.ts with theme selection. Move others to an archive or remove.
+**Options:** (a) Consolidate to Banner.ts with theme enum. (b) Move variants to `PAI/Tools/banners/` subdir. (c) Keep as-is — they're tools, not loaded automatically.
 
 ## 3.6 Duplicate Action Runner/Types Files — ⏳ DEFERRED
 
@@ -115,11 +110,11 @@ Both versions are actively imported: v1 by `pai.ts` (CLI entry), v2 by action fi
 
 Removed `Transcribe-bun.lock` and `Transcribe-package.json`. Not imported by any code.
 
-## 3.8 Pipeline Monitor UI Shipped in Repo
+## 3.8 Pipeline Monitor UI Shipped in Repo — 📦 NEEDS DECISION
 
-`PAI/Tools/pipeline-monitor-ui/` is a full React+Vite app with its own package.json, tsconfig, eslint config, etc. (~15 files).
+`PAI/Tools/pipeline-monitor-ui/` is a full React+Vite app (~15 files incl. bun.lock, eslint, tsconfig). It's a development tool, not a runtime dependency.
 
-**Fix:** Consider if this should be a separate repo/package, or at minimum add it to .gitignore for the public release.
+**Options:** (a) Move to separate repo. (b) Add `pipeline-monitor-ui/` to .gitignore. (c) Keep — it's small relative to now-deleted releases.
 
 ## 3.9 manifest.json is 204KB — ⏳ KEPT
 
@@ -152,11 +147,9 @@ No tests for: SecurityValidator, LoadContext, RatingCapture, SessionAutoName, Re
 
 **Fix:** Prioritize tests for security-critical hooks (SecurityValidator, AgentExecutionGuard) and the most-used Tools (algorithm.ts, Inference.ts, BuildCLAUDE.ts).
 
-## 4.3 Agent Template Consistency
+## 4.3 Agent Template Consistency — ✅ FIXED
 
-All 14 agents share an identical output format block (~25 lines). This is duplicated 14 times.
-
-**Fix:** Extract the output format into a shared partial (e.g., `agents/partials/output-format.md`) and include it via the agent composition system.
+Extracted shared output format block to `agents/partials/output-format.md`. Replaced inline copies in 11 agents with canonical reference. 3 agents (BrowserAgent, Pentester, UIReviewer) don't use this format.
 
 ## 4.4 Skills Category Inconsistency
 
@@ -164,32 +157,23 @@ Some categories are deeply nested (Security has Recon/Tools/, PromptInjection/Wo
 
 **Fix:** Standardize nesting depth. Consider separating agent system docs from the Agents skill.
 
-## 4.5 lib/migration/ Purpose Unclear
+## 4.5 lib/migration/ Purpose Unclear — ✅ FIXED
 
-5 files (extractor.ts, index.ts, merger.ts, scanner.ts, validator.ts) totaling 48KB. Purpose: apparently for migrating between PAI versions.
+Added `lib/migration/README.md` documenting: 4-module pipeline (scanner → extractor → merger → validator), usage by install.sh/upgrade.ts, and active status.
 
-**Fix:** Add a README.md explaining purpose, usage, and whether this is actively used.
+## 4.6 USER/ Directory in Public Release — ✅ AUDITED
 
-## 4.6 USER/ Directory in Public Release
+Scanned all USER/ template files for personal data (names, emails, phone, API keys, SSN patterns). Clean — no personal data found. All content is template-only.
 
-`PAI/USER/` contains template directories (PROJECTS, BUSINESS, TELOS, WORK, etc.) with placeholder README.md files. These are personal data directories that ship as templates.
+## 4.7 Settings.json Has Both Static and Dynamic Sections — ✅ DOCUMENTED
 
-**Fix:** Ensure all USER/ content is truly template-only (no personal data leaks). Consider a `.user-template/` pattern that gets copied on install.
+Updated `config/README.md` to accurately document the full-rebuild behavior: BuildSettings.ts does a complete spread-merge replacement, counts initialized to zeros (populated by UpdateCounts.hook.ts at runtime), manual edits overwritten on SessionStart.
 
-## 4.7 Settings.json Has Both Static and Dynamic Sections
+Future consideration: split runtime state into separate `state.json`.
 
-settings.json mixes:
-- Static config (env, permissions, hooks) that should come from config/*.jsonc
-- Dynamic runtime state (counts, feedbackSurveyState) written by hooks
-- Generated content (spinner verbs/tips) from separate JSON files
+## 4.8 extract-transcript.py is the Only Python File — ✅ DOCUMENTED
 
-**Fix:** Document the merge strategy clearly. Consider splitting the runtime state into a separate file (e.g., `state.json`) so settings.json stays clean.
-
-## 4.8 extract-transcript.py is the Only Python File
-
-`PAI/Tools/extract-transcript.py` is a Python script among ~40 TypeScript tools.
-
-**Fix:** Port to TypeScript for consistency, or document why Python is needed here.
+Added inline justification: `faster-whisper` is a Python-only library (CTranslate2 bindings for Whisper). No equivalent Bun/Node binding with comparable performance exists. Kept as Python with PEP 723 uv script.
 
 ---
 
@@ -240,9 +224,12 @@ Contains `BackupRestore.ts`, `validate-protected.ts`, `README.md`, and a PNG. Th
 - [ ] Pipeline monitor UI — consider separate repo or .gitignore
 
 **Backlog (P4/P5 — design improvements):**
+- [x] Extract shared agent output format (11 agents → partial)
+- [x] Add lib/migration/ README
+- [x] Document BuildSettings.ts merge strategy
+- [x] Audit USER/ templates (clean)
+- [x] Document extract-transcript.py Python justification
 - [ ] Migrate ACTIONS runner v1→v2 (both actively imported)
 - [ ] Expand test coverage
-- [ ] Extract shared agent output format
 - [ ] Standardize skill category nesting
-- [ ] Split settings.json static/dynamic sections
-- [ ] Port extract-transcript.py to TypeScript
+- [ ] Split settings.json runtime state to separate file

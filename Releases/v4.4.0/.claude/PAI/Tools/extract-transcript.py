@@ -6,8 +6,12 @@
 """
 extract-transcript.py
 
-CLI tool for extracting transcripts from audio/video files using faster-whisper
-Part of PAI's extracttranscript skill
+CLI tool for extracting transcripts from audio/video files using faster-whisper.
+Part of PAI's extracttranscript skill.
+
+Why Python (not TypeScript): faster-whisper is a Python-only library (CTranslate2
+bindings for OpenAI Whisper). No equivalent Bun/Node binding exists with comparable
+performance. This is the only Python file in PAI — kept for ML ecosystem access.
 
 Self-contained UV script with inline dependencies (PEP 723)
 
