@@ -223,6 +223,24 @@ Future consideration: split runtime state into separate `state.json`.
 
 Added inline justification: `faster-whisper` is a Python-only library (CTranslate2 bindings for Whisper). No equivalent Bun/Node binding with comparable performance exists. Kept as Python with PEP 723 uv script.
 
+## 4.9 CLAUDE.md Version String is Wrong
+
+`CLAUDE.md` line 1 says `# PAI 4.3.0` but we're on v4.4.0 release / v4.4.1-dev branch. The most important file in the system has a stale version. Note: version strings in config files were fixed in §2.1, but CLAUDE.md itself was missed because it's generated from `CLAUDE.md.template` by `BuildCLAUDE.ts`.
+
+**Fix:** Either update the template's version placeholder or make BuildCLAUDE.ts inject the version dynamically from `config/preferences.jsonc:pai.version`.
+
+## 4.10 BuildCLAUDE.ts Exists in Two Places
+
+The same tool exists at both `hooks/handlers/BuildCLAUDE.ts` and `PAI/Tools/BuildCLAUDE.ts`. Unclear if they're in sync.
+
+**Fix:** Audit both files. Keep one canonical version, make the other import from it or remove it.
+
+## 4.11 No Memory TTL or Archival Strategy
+
+`MEMORY/WISDOM/`, `MEMORY/LEARNING/`, and `MEMORY/RELATIONSHIP/` grow unbounded. No archival, pruning, or TTL system exists. Over time, `LoadContext.hook.ts` will inject increasingly large context, eventually hitting context window limits.
+
+**Fix:** Add archival strategy. On SessionEnd: if LEARNING file exceeds N entries, move old ones to `LEARNING/archive/`. Add `pai memory stats` command to show directory sizes and entry counts.
+
 ---
 
 # PRIORITY 5 — REPO-LEVEL (Outside .claude/)

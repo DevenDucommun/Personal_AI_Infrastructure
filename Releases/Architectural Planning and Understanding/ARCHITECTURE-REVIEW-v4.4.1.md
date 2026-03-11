@@ -259,6 +259,84 @@ Audit which banner files are actually invoked. Archive or delete unused variants
 
 ---
 
+## 7a. Decomposition Blueprints
+
+Detailed proposed file structures for the major splits in P2/P3. Source: ARCHITECTURAL-UNDERSTANDING.md §7.
+
+### algorithm.ts → algorithm/ (1,515 lines → 5 modules)
+```
+PAI/Tools/algorithm/
+├── index.ts          ← thin CLI router
+├── cli.ts            ← arg parsing, help, command dispatch
+├── loop.ts           ← loop execution engine (spawn, iterate, pause/resume/stop)
+├── prd.ts            ← PRD creation, frontmatter parsing, criteria extraction
+├── dashboard.ts      ← state sync to algorithms/, session-names.json
+└── notifications.ts  ← notification routing at key moments
+```
+
+### pai.ts → pai/ (808 lines → 4 modules)
+```
+PAI/Tools/pai/
+├── index.ts      ← thin CLI entry
+├── mcp.ts        ← MCP shortcuts, loading, profile management
+├── launch.ts     ← Claude launch, wallpaper, banner invocation
+└── commands.ts   ← update, version, profiles, mcp-list commands
+```
+
+### IntegrityMaintenance.ts → integrity/ (926 lines → 3 modules)
+```
+PAI/Tools/integrity/
+├── scan.ts       ← detect issues (file existence, cross-refs, checksums)
+├── report.ts     ← format and output integrity reports
+└── fix.ts        ← apply automated fixes
+```
+
+### Banner consolidation (7 files, ~4,400 lines → banners/ with theme system)
+```
+PAI/Tools/banners/
+├── index.ts      ← exports renderBanner(theme: BannerTheme)
+├── types.ts      ← BannerTheme enum, shared interfaces
+├── default.ts    ← main PAI banner (was: Banner.ts)
+├── matrix.ts     ← (was: BannerMatrix.ts)
+├── retro.ts      ← (was: BannerRetro.ts)
+├── neofetch.ts   ← merge BannerNeofetch.ts + NeofetchBanner.ts
+├── tokyo.ts      ← (was: BannerTokyo.ts)
+└── prototypes.ts ← (was: BannerPrototypes.ts)
+```
+
+### SecurityValidator extraction (618 lines → 3 files)
+```
+hooks/lib/security-patterns.ts  ← pattern definitions + loading
+hooks/lib/security-decision.ts  ← decision engine (continue/ask/block)
+hooks/SecurityValidator.hook.ts ← thin orchestrator (target: ~150 lines)
+```
+
+### RatingCapture extraction (553 lines → 2 files)
+```
+hooks/lib/rating-capture.ts   ← explicit + implicit + sentiment detection (testable)
+hooks/RatingCapture.hook.ts   ← thin orchestrator (~100 lines)
+```
+
+### LoadContext extraction (536 lines → composable loaders)
+```
+hooks/lib/context-loaders/
+├── wisdom.ts     ← load from MEMORY/WISDOM/
+├── work.ts       ← load from MEMORY/WORK/ (active PRD)
+├── state.ts      ← load from MEMORY/STATE/
+└── learning.ts   ← load from MEMORY/LEARNING/
+```
+
+### change-detection.ts (612 lines → 3 modules)
+```
+hooks/lib/change-detection/
+├── index.ts      ← re-exports (backward compatible)
+├── watcher.ts    ← file system watching utilities
+├── diff.ts       ← diff computation
+└── analyzer.ts   ← code change analysis
+```
+
+---
+
 ## 7. Key Technical Details for Future Sessions
 
 ### BuildSettings.ts Merge Behavior
@@ -279,3 +357,51 @@ AgentExecutionGuard, AlgorithmTracker, ConfigChange, DocIntegrity, GitHubWriteGu
 - **Stop:** 5 hooks (LastResponseCache, TerminalState, DocIntegrity, StopOrchestrator, AlgorithmTracker)
 - **SessionEnd:** 5 hooks (WorkCompletionLearning, SessionCleanup, RelationshipMemory, UpdateCounts, IntegrityCheck)
 - **ConfigChange:** 1 hook (ConfigChange)
+
+---
+
+## 8. Future Vision
+
+Architectural directions worth considering for v4.5.0+. Not tasks yet — possibilities. Source: ARCHITECTURAL-UNDERSTANDING.md §8.
+
+### 8.1 Structured Agent Orchestration
+Currently agents are standalone files with no composition framework. `algorithm.ts loop` mode could auto-select agents based on task type (Architect for design, Engineer for implementation, QATester for verification), creating a multi-agent pipeline rather than one agent doing all phases.
+
+### 8.2 Skill Composition Pipeline
+Skills are invoked individually. A "pipeline" primitive that chains skills (`research → synthesize → report`) would enable complex workflows. `PipelineOrchestrator.ts` already exists but isn't wired to the skill system.
+
+### 8.3 Memory with Relevance Scoring
+Currently LoadContext injects all active memory. Semantic relevance scoring would inject only memory relevant to the current task, preventing context pollution as MEMORY/ grows.
+
+### 8.4 Dashboard as First-Class Component
+`PipelineMonitor.ts` + `pipeline-monitor-ui/` exist but aren't integrated into the main session experience. A persistent dashboard (electron or tmux pane) showing algorithm state, ISC progress, and session stats in real-time.
+
+### 8.5 PAI Algorithm v4.0
+Current algorithm (v3.9.0) is spec-only — Claude reads it and follows it. Future: `algorithm.ts` could enforce phase transitions programmatically, validate ISC format before proceeding, and prevent phase-skipping at the execution level.
+
+### 8.6 Version Central Registry
+Single `PAI/version.ts` exports `PAI_VERSION`. BuildSettings.ts, BuildCLAUDE.ts, install.sh, manifest.json all import/read it. Eliminates version string sprawl.
+
+### 8.7 Typed Skill Manifests
+Standardized YAML frontmatter for every skill:
+```yaml
+---
+skill: research/multi-agent
+description: Multi-agent research synthesis
+effort: Standard+
+requires: [ClaudeResearcher, PerplexityResearcher]
+outputs: [markdown-report]
+---
+```
+Enables programmatic skill discovery, composition, and validation. Pairs with §8.2.
+
+### 8.8 Skill Discovery System
+Build a queryable skill registry: `PAI/Tools/SkillIndex.ts` scans `skills/` recursively, parses each SKILL.md for metadata, outputs to `MEMORY/STATE/skill-index.json`. Add `pai skills list [--category <cat>]` and `pai skills search <query>` CLI commands.
+
+### 8.9 Expanded Test Coverage
+Priority order for new tests:
+1. Security-critical: SecurityValidator, AgentExecutionGuard, GitHubWriteGuard
+2. Most complex: algorithm.ts (PRD parsing, loop state machine)
+3. After extraction: RatingCapture, LoadContext (once split to lib/)
+4. Infrastructure: Inference.ts (mock API), IntegrityMaintenance
+5. Integration: full SessionStart → SessionEnd lifecycle test

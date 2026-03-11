@@ -218,47 +218,71 @@ Runtime directories (created as needed):
 - `WORK/` — PRDs, transcripts, work context
 - `WISDOM/` — Domain knowledge frames (dual-loop: OBSERVE reads, LEARN writes)
 
+**PRD.md is the work system's single source of truth:**
+```yaml
+---
+prd: true
+id: PRD-20260207-auth
+status: active
+mode: ALGORITHM
+effort_level: Extended
+phase: Build
+progress: 45
+---
+# [Task Title]
+## Context
+## Criteria
+- [ ] ISC-1: Criterion description (8-12 words, binary, verifiable)
+## Decisions
+## Verification
+```
+PRDSync.hook.ts (PostToolUse) parses this frontmatter + criteria checkboxes on every Write/Edit and syncs to `MEMORY/WORK/{slug}/work.json`.
+
 ### 7. PAI Tools (PAI/Tools/)
 
-~40 TypeScript tools. Key categories:
+~42 TypeScript tools organized by importance tier:
 
-**Core infrastructure:**
-- `algorithm.ts` (61KB) — Algorithm CLI (loop, interactive, parallel modes)
-- `BuildCLAUDE.ts` (4KB) — Generate CLAUDE.md from template
-- `Inference.ts` (7KB) — AI inference wrapper (fast/standard/smart)
-- `pai.ts` (25KB) — Arbol CLI for actions/pipelines
-- `RebuildPAI.ts` (4KB) — Regenerate compiled SKILL.md
-- `GenerateManifest.ts` (4KB) — Generate manifest.json
-- `upgrade.ts` (14KB) — Version upgrade tool
+**Tier 1 — Core Runtime** (used every session or on demand):
+- `algorithm.ts` (1,515 lines) — Algorithm CLI: loop, interactive, parallel modes, PRD management
+- `pai.ts` (808 lines) — CLI entry point: launch, MCP management, version, profiles
+- `upgrade.ts` (439 lines) — Install/upgrade/rollback engine
+- `Inference.ts` — Anthropic API wrapper (haiku for speed, sonnet for quality)
+- `BuildCLAUDE.ts` — Generate CLAUDE.md from template
+- `GenerateManifest.ts` — SHA-256 integrity manifest builder
+- `RebuildPAI.ts` — Regenerate compiled SKILL.md
 
-**Session/memory:**
-- `SessionHarvester.ts` (11KB) — Extract insights from transcripts
-- `SessionProgress.ts` (10KB) — Session progress tracking
-- `FailureCapture.ts` (16KB) — Capture and categorize failures
-- `LearningPatternSynthesis.ts` (11KB) — Synthesize learning patterns
-- `RelationshipReflect.ts` (15KB) — Relationship memory reflection
-- `OpinionTracker.ts` (12KB) — Track opinions/preferences
+**Tier 2 — Analysis & Memory** (session lifecycle, learning):
+- `SessionHarvester.ts`, `SessionProgress.ts` — Session insight extraction
+- `FailureCapture.ts` (554 lines) — Categorize and store failures
+- `LearningPatternSynthesis.ts` — Synthesize learning patterns
+- `RelationshipReflect.ts` (536 lines) — Relationship memory reflection
+- `OpinionTracker.ts` — Track opinions/preferences
+- `ActivityParser.ts` (688 lines), `TranscriptParser.ts` (418 lines) — Parse activity/transcripts
 
-**Wisdom system:**
-- `WisdomCrossFrameSynthesizer.ts` (12KB)
-- `WisdomDomainClassifier.ts` (6KB)
-- `WisdomFrameUpdater.ts` (10KB)
+**Tier 3 — Wisdom System:**
+- `WisdomCrossFrameSynthesizer.ts`, `WisdomDomainClassifier.ts`, `WisdomFrameUpdater.ts`
 
-**Content/media:**
-- `Banner.ts` (39KB), `BannerMatrix.ts`, `BannerNeofetch.ts`, `BannerRetro.ts`, `BannerTokyo.ts`, `BannerPrototypes.ts`, `NeofetchBanner.ts`
-- `SplitAndTranscribe.ts`, `TranscriptParser.ts`, `ExtractTranscript.ts`, `extract-transcript.py`
-- `PreviewMarkdown.ts`, `YouTubeApi.ts`
+**Tier 4 — Display/UI** (banners, previews):
+- `Banner.ts` (866 lines) — Primary banner (only one referenced by pai.ts)
+- `BannerMatrix.ts` (693), `BannerNeofetch.ts` (598), `BannerRetro.ts` (728), `BannerTokyo.ts`, `BannerPrototypes.ts`, `NeofetchBanner.ts` (727) — Variant designs, not auto-loaded
+- `PreviewMarkdown.ts`, `PAILogo.ts`
 
-**Utilities:**
-- `GetCounts.ts`, `LoadSkillConfig.ts`, `FeatureRegistry.ts`
-- `IntegrityMaintenance.ts` (32KB), `SecretScan.ts`
-- `ActivityParser.ts` (21KB), `AlgorithmPhaseReport.ts`
-- `AddBg.ts`, `RemoveBg.ts`, `PAILogo.ts`
+**Tier 5 — Utilities:**
+- `IntegrityMaintenance.ts` (926 lines) — Scan + report + fix integrity issues
+- `SecretScan.ts`, `GetCounts.ts`, `LoadSkillConfig.ts`, `FeatureRegistry.ts`
+- `AlgorithmPhaseReport.ts`, `AddBg.ts`, `RemoveBg.ts`
 
-**Pipeline system:**
-- `PipelineMonitor.ts` (18KB)
-- `PipelineOrchestrator.ts` (11KB)
+**Tier 6 — Media/Transcription:**
+- `SplitAndTranscribe.ts`, `ExtractTranscript.ts`, `GetTranscript.ts`, `YouTubeApi.ts`
+- `extract-transcript.py` (Python — justified: faster-whisper CTranslate2 bindings)
+
+**Tier 7 — Pipeline System:**
+- `PipelineMonitor.ts` (602 lines), `PipelineOrchestrator.ts`
 - `pipeline-monitor-ui/` — Full React+Vite monitoring app
+
+**Tier 8 — Duplicate/Legacy:**
+- `BuildCLAUDE.ts` — Also exists at `hooks/handlers/BuildCLAUDE.ts` (see IMPROVEMENT-INDEX §4.10)
+- `PAI/ACTIONS/` — v1 runner (used by pai.ts) + v2 runner (used by actions/pipelines) both active
 
 ### 8. PAI-Install (PAI-Install/)
 
