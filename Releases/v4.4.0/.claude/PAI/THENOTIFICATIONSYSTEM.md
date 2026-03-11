@@ -102,7 +102,7 @@ For skills that handle requests directly (no `Workflows/` directory), simply des
 
 ## External Notifications (Push, Discord)
 
-**Beyond voice notifications, PAI supports external notification channels:**
+**Beyond notifications, PAI supports external notification channels:**
 
 ### Available Channels
 

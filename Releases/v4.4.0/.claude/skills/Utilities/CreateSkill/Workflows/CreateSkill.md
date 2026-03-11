@@ -2,14 +2,6 @@
 
 Create a new skill following the canonical structure with proper TitleCase naming.
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running the **CreateSkill** workflow in the **CreateSkill** skill to create new skill...
-
 ## Step 1: Read the Authoritative Sources
 
 **REQUIRED FIRST:**
@@ -66,22 +58,6 @@ description: [What it does]. USE WHEN [intent triggers using OR]. [Additional ca
 # SkillName
 
 [Brief description]
-
-## Voice Notification
-
-**When executing a workflow, do BOTH:**
-
-1. **Send voice notification**:
-   ```bash
-        > /dev/null 2>&1 &
-   ```
-
-2. **Output text notification**:
-   ```
-   Running **WorkflowName** in **SkillName**...
-   ```
-
-**Full documentation:** `~/.claude/PAI/THENOTIFICATIONSYSTEM.md`
 
 ## Workflow Routing
 
@@ -201,7 +177,6 @@ Verify ALL files use TitleCase:
 - [ ] Description is under 1024 characters
 
 ### Markdown Body
-- [ ] `## Voice Notification` section present (for skills with workflows)
 - [ ] `## Workflow Routing` section with table format
 - [ ] All workflow files have routing entries
 - [ ] `## Examples` section with 2-3 concrete usage patterns

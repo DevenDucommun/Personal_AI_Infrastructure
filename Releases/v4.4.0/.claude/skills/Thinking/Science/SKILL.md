@@ -10,27 +10,6 @@ description: Hypothesis-test-analyze cycles for systematic problem-solving — t
 
 If this directory exists, load and apply any PREFERENCES.md, configurations, or resources found there. These override default behavior. If the directory does not exist, proceed with skill defaults.
 
-
-## 🚨 MANDATORY: Voice Notification (REQUIRED BEFORE ANY ACTION)
-
-**You MUST send this notification BEFORE doing anything else when this skill is invoked.**
-
-1. **Send voice notification**:
-   ```bash
-        > /dev/null 2>&1 &
-   ```
-
-2. **Output text notification**:
-   ```
-   Running the **WorkflowName** workflow in the **Science** skill to ACTION...
-   ```
-
-**This is not optional. Execute this curl command immediately upon skill invocation.**
-
-# Science - The Universal Algorithm
-
-**The scientific method applied to everything. The meta-skill that governs all other skills.**
-
 ## The Universal Cycle
 
 ```
@@ -54,7 +33,6 @@ ITERATE --> Adjust hypothesis and repeat
 **The goal is CRITICAL.** Without clear success criteria, you cannot judge results.
 
 ---
-
 
 ## Workflow Routing
 

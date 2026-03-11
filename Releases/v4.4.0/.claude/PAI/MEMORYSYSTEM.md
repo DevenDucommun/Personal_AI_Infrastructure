@@ -336,7 +336,6 @@ bun run ~/.claude/PAI/Tools/LearningPatternSynthesis.ts --week
 
 ---
 
-
 ## Change History
 
 See [MEMORY-CHANGELOG.md](MEMORY-CHANGELOG.md) for version history.

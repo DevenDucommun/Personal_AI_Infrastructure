@@ -1001,7 +1001,6 @@ PAI uses Handlebars notation for template variables:
 | Syntax | Purpose | Example |
 |--------|---------|---------|
 | `{{variable}}` | Simple interpolation | `Hello {{name}}` |
-| `{{object.property}}` | Nested access | `{{agent.voice_id}}` |
 | `{{#each items}}...{{/each}}` | Iteration | List generation |
 | `{{#if condition}}...{{/if}}` | Conditional | Optional sections |
 | `{{> partial}}` | Include partial | Reusable components |
@@ -1238,7 +1237,6 @@ const output = renderTemplate('Primitives/Briefing.hbs', {
 |--------|--------------|
 | **Agent Delegation** | BRIEFING templates standardize context handoff |
 | **Skill System** | ROSTER templates generate SKILL.md files |
-| **Voice Server** | VOICE templates configure agent personalities |
 | **Validation** | GATE templates standardize quality checks |
 | **Fabric Patterns** | Templates can generate pattern-specific prompts |
 

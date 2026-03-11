@@ -1,17 +1,5 @@
 # Find Sources
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running the **FindSources** workflow in the **PAIUpgrade** skill to discover sources...
-
-Discover and evaluate new sources to add to upgrade monitoring.
-
-**Trigger:** "find upgrade sources", "find new sources", "discover channels", "expand monitoring"
-
 ---
 
 ## Overview

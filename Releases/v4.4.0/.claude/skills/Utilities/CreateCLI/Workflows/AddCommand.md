@@ -7,14 +7,6 @@ purpose: Add new command to existing CLI
 
 **Extend existing CLI with new commands while maintaining code quality and consistency.**
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running the **AddCommand** workflow in the **CreateCLI** skill to add CLI command...
-
 ---
 
 ## 🎯 PURPOSE

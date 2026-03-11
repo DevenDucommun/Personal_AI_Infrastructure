@@ -2,14 +2,6 @@
 
 Full structured multi-agent debate with 3 rounds and visible transcript.
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running the **Debate** workflow in the **Council** skill to run multi-agent debate...
-
 ## Prerequisites
 
 - Topic or question to debate

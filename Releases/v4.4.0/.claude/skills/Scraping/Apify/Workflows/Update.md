@@ -2,14 +2,6 @@
 
 Check Apify API and actor ecosystem for updates.
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running **Update** in **Apify**...
-
 ---
 
 ## When to Use

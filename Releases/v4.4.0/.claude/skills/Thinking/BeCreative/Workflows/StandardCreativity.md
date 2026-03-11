@@ -1,13 +1,5 @@
 # StandardCreativity Workflow
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running **StandardCreativity** in **BeCreative**...
-
 ---
 
 **When to use:** Most creative tasks requiring depth and quality

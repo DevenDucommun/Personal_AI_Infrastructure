@@ -15,7 +15,7 @@
  *
  * Output:
  * - Creates PAISYSTEMUPDATES entry with AI-generated narrative
- * - Sends voice notification with summary
+ * - Sends notification with summary
  */
 
 import { spawn } from 'child_process';
@@ -779,7 +779,6 @@ function checkReferences(changes: FileChange[]): IntegrityResult {
     locations_checked: locations,
   };
 }
-
 
 // ============================================================================
 // Create Update Entry

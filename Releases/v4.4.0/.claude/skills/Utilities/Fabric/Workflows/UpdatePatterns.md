@@ -17,8 +17,6 @@ go install github.com/danielmiessler/fabric@latest
 
 ## Workflow Steps
 
-### Step 1: Send Voice Notification
-
 ```bash
   > /dev/null 2>&1 &
 ```

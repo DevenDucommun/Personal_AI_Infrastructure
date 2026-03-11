@@ -2,8 +2,6 @@
 
 **Canonical source of truth for all PAI agent personality definitions.**
 
-This file defines the character, voice settings, backstories, and personality traits for all agents in the PAI system. The voice server reads this configuration to deliver personality-driven voice communication.
-
 ## Hybrid Agent Model
 
 PAI uses a **hybrid agent system** that combines:
@@ -156,12 +154,10 @@ Task(prompt="You are Dr. Nova...", subagent_type="general-purpose")
 ## Named Agent Architecture
 
 - **Location**: Individual agent files in `~/.claude/agents/*.md`
-- **Voice Config**: Each agent file contains voice settings in YAML frontmatter (`voiceId`, `voice:` block)
 - **Character Identity**: Each agent file contains persona frontmatter and full character backstory in body
 - **Template**: See `skills/Agents/Templates/CUSTOMAGENTTEMPLATE.md` for canonical identity schema
 
 > **Note (2026-02-12):** Voice configuration was migrated from this file to individual agent files.
-> The voice server now reads settings from `settings.json` and accepts pass-through `voice_settings` from callers.
 > The JSON config block that was here is no longer used by any system component.
 
 ---
@@ -665,8 +661,6 @@ Higher stability (0.65) creates precise, measured delivery - each word chosen de
 ---
 
 ## Usage
-
-Voice server automatically loads this configuration at startup. To update personality settings:
 
 1. Edit JSON configuration above
 2. Update character descriptions and backstories as personalities evolve

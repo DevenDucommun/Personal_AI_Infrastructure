@@ -71,7 +71,7 @@ const MILESTONES = [
   },
   {
     id: 'voice-smile',
-    description: 'First voice notification that made {PRINCIPAL.NAME} smile',
+    description: 'First notification that made {PRINCIPAL.NAME} smile',
     pattern: /voice.*(?:worked|success)|notification.*(?:good|great|smile)/i,
     detected: false
   },

@@ -316,7 +316,6 @@ END EXAMPLE PAUL GRAHAM ESSAYS
 
 - Do not output warnings or notes—just the output requested.
 
-
 # INPUT:
 
 INPUT:

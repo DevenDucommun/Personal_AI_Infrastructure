@@ -1,19 +1,5 @@
 # Entity OSINT Lookup Workflow
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running the **EntityLookup** workflow in the **OSINT** skill to investigate entities...
-
-**Purpose:** Technical intelligence gathering on domains, IPs, infrastructure, and threat entities.
-
-**Authorization Required:** Explicit authorization, defined scope, legal compliance confirmed.
-
-**Note:** "Entity" refers to domains, IPs, infrastructure, threat actors - NOT individuals.
-
 ---
 
 ## Phase 1: Entity Classification

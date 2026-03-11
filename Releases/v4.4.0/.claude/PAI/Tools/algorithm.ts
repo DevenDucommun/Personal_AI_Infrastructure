@@ -16,7 +16,7 @@
  *   - Creates a persistent algorithm state entry in MEMORY/STATE/algorithms/
  *   - Syncs criteria status from PRD checkboxes after each iteration (loop mode)
  *   - Registers in session-names.json for dashboard display
- *   - Sends voice notifications at key moments
+ *   - Sends notifications at key moments
  *   - Same state store a web interface would read — unified mechanism
  *
  * USAGE:

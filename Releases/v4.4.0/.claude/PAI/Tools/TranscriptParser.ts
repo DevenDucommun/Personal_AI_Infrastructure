@@ -3,11 +3,11 @@
  * TranscriptParser.ts - Claude transcript parsing utilities
  *
  * Shared library for extracting content from Claude Code transcript files.
- * Used by Stop hooks for voice, tab state, and response capture.
+ * Used by Stop hooks for tab state and response capture.
  *
  * CLI Usage:
  *   bun TranscriptParser.ts <transcript_path>
- *   bun TranscriptParser.ts <transcript_path> --voice
+ *   bun TranscriptParser.ts <transcript_path> --completion
  *   bun TranscriptParser.ts <transcript_path> --plain
  *   bun TranscriptParser.ts <transcript_path> --structured
  *   bun TranscriptParser.ts <transcript_path> --state
@@ -45,7 +45,7 @@ export interface ParsedTranscript {
   lastMessage: string;
   /** Full text from current response turn (all assistant blocks combined) */
   currentResponseText: string;
-  /** Completion summary text (from 🗣️ line, used for tab title) */
+  /** Completion summary text (from 🗣️ COMPLETED line, used for tab title) */
   completionSummary: string;
   /** Plain completion text (for tab title) */
   plainCompletion: string;
@@ -108,7 +108,7 @@ export function parseLastAssistantMessage(transcriptContent: string): string {
 /**
  * Collect assistant text from the CURRENT response turn only.
  * A "turn" is everything after the last human message in the transcript.
- * This prevents voice/completion extraction from picking up stale lines
+ * This prevents completion extraction from picking up stale lines
  * from previous turns when the Stop hook fires.
  *
  * Within a single turn, there may be multiple assistant entries
@@ -188,11 +188,11 @@ export function getLastAssistantMessage(transcriptPath: string): string {
  * Extract completion summary from the 🗣️ line (used for tab title).
  * Uses LAST match to avoid capturing mentions in analysis text.
  */
-export function extractVoiceCompletion(text: string): string {
+export function extractCompletionSummary(text: string): string {
   // Remove system-reminder tags
   text = text.replace(/<system-reminder>[\s\S]*?<\/system-reminder>/g, '');
 
-  // Use global flag and find LAST match (voice line is at end of response)
+  // Use global flag and find LAST match (completion line is at end of response)
   const completedPatterns = [
     new RegExp(`🗣️\\s*\\*{0,2}${DA_IDENTITY.name}:?\\*{0,2}\\s*(.+?)(?:\\n|$)`, 'gi'),
     /🎯\s*\*{0,2}COMPLETED:?\*{0,2}\s*(.+?)(?:\n|$)/gi,
@@ -201,7 +201,7 @@ export function extractVoiceCompletion(text: string): string {
   for (const pattern of completedPatterns) {
     const matches = [...text.matchAll(pattern)];
     if (matches.length > 0) {
-      // Use LAST match - the actual voice line at end of response
+      // Use LAST match - the actual completion line at end of response
       const lastMatch = matches[matches.length - 1];
       if (lastMatch && lastMatch[1]) {
         let completed = lastMatch[1].trim();
@@ -213,7 +213,7 @@ export function extractVoiceCompletion(text: string): string {
     }
   }
 
-  // Don't say anything if no voice line found
+  // Return empty if no completion line found
   return '';
 }
 
@@ -224,7 +224,7 @@ export function extractVoiceCompletion(text: string): string {
 export function extractCompletionPlain(text: string): string {
   text = text.replace(/<system-reminder>[\s\S]*?<\/system-reminder>/g, '');
 
-  // Use global flag and find LAST match (voice line is at end of response)
+  // Use global flag and find LAST match (completion line is at end of response)
   const completedPatterns = [
     new RegExp(`🗣️\\s*\\*{0,2}${DA_IDENTITY.name}:?\\*{0,2}\\s*(.+?)(?:\\n|$)`, 'gi'),
     /🎯\s*\*{0,2}COMPLETED:?\*{0,2}\s*(.+?)(?:\n|$)/gi,
@@ -233,7 +233,7 @@ export function extractCompletionPlain(text: string): string {
   for (const pattern of completedPatterns) {
     const matches = [...text.matchAll(pattern)];
     if (matches.length > 0) {
-      // Use LAST match - the actual voice line at end of response
+      // Use LAST match - the actual completion line at end of response
       const lastMatch = matches[matches.length - 1];
       if (lastMatch && lastMatch[1]) {
         let completed = lastMatch[1].trim();
@@ -255,7 +255,7 @@ export function extractCompletionPlain(text: string): string {
     return summary.length > 27 ? summary.slice(0, 27) + '…' : summary;
   }
 
-  // No voice line found — return empty, let downstream handle fallback
+  // No completion line found — return empty, let downstream handle fallback
   return '';
 }
 
@@ -352,7 +352,7 @@ export function parseTranscript(transcriptPath: string): ParsedTranscript {
     const raw = readFileSync(transcriptPath, 'utf-8');
     const lastMessage = parseLastAssistantMessage(raw);
     // Collect assistant text from CURRENT response turn only.
-    // This prevents stale voice lines from previous turns being read
+    // This prevents stale completion lines from previous turns being read
     // when the Stop hook fires. Within the current turn, multiple
     // assistant entries exist (text → tool_use → tool_result → more text).
     const currentResponseText = collectCurrentResponseText(raw);
@@ -361,7 +361,7 @@ export function parseTranscript(transcriptPath: string): ParsedTranscript {
       raw,
       lastMessage,
       currentResponseText,
-      completionSummary: extractVoiceCompletion(currentResponseText),
+      completionSummary: extractCompletionSummary(currentResponseText),
       plainCompletion: extractCompletionPlain(currentResponseText),
       structured: extractStructuredSections(currentResponseText),
       responseState: detectResponseState(lastMessage, raw),
@@ -392,7 +392,7 @@ if (import.meta.main) {
     console.log(`Usage: bun TranscriptParser.ts <transcript_path> [options]
 
 Options:
-  --voice       Output voice completion (for TTS)
+  --completion  Output completion summary
   --plain       Output plain completion (for tab titles)
   --structured  Output structured sections as JSON
   --state       Output response state
@@ -403,7 +403,7 @@ Options:
 
   const parsed = parseTranscript(transcriptPath);
 
-  if (args.includes('--voice')) {
+  if (args.includes('--completion') || args.includes('--voice')) {
     console.log(parsed.completionSummary);
   } else if (args.includes('--plain')) {
     console.log(parsed.plainCompletion);

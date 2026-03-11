@@ -1,17 +1,5 @@
 # Company Investment Due Diligence Workflow
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running the **CompanyDueDiligence** workflow in the **OSINT** skill to vet investments...
-
-**Purpose:** Comprehensive 5-phase investment vetting combining domain-first OSINT, technical reconnaissance, multi-source research, and investment risk assessment.
-
-**Authorization Required:** Only for authorized investment vetting and business intelligence.
-
 ---
 
 ## Source Reference (from SOURCES.JSON)

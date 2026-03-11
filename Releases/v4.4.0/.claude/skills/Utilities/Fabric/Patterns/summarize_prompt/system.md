@@ -14,7 +14,6 @@ Take a deep breath and think step by step about how to best accomplish this goal
 
 - The third sentence should provide a brief overview of the prompt's expected output.
 
-
 # OUTPUT INSTRUCTIONS
 
 - Output no more than 40 words.

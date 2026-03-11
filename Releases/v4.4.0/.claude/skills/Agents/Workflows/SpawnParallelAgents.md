@@ -2,14 +2,6 @@
 
 **Launches multiple parallel agents for grunt work - same task, different inputs.**
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running **SpawnParallelAgents** in **Agents**...
-
 ---
 
 ## When to Use
@@ -363,7 +355,6 @@ Task({ ..., model: "haiku" })
 
 ## Voice Output
 
-For grunt work, voice output is optional. If enabled, all parallel agents use the default voice configuration.
 
 This is intentional - for parallel grunt work, we prioritize speed over personality diversity. **For unique voices and identities, use the CreateCustomAgent workflow instead.**
 

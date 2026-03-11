@@ -2,14 +2,6 @@
 
 **Purpose:** Add new aphorism to the database with proper metadata, theme tagging, and organization.
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running **AddAphorism** in **Aphorisms**...
-
 ---
 
 **When to Use:**

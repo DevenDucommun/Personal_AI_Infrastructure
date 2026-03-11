@@ -10,7 +10,6 @@ description: 2-8 scientific lens passes to surface hidden requirements single-pa
 
 If this directory exists, load and apply any PREFERENCES.md, configurations, or resources found there. These override default behavior. If the directory does not exist, proceed with skill defaults.
 
-
 # IterativeDepth
 
 **Structured multi-angle exploration of the same problem to extract deeper understanding and richer ISC criteria.**

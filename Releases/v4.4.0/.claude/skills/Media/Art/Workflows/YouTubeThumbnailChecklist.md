@@ -2,14 +2,6 @@
 
 **Two-phase validation: Before generation and after generation**
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running **YouTubeThumbnailChecklist** in **Art**...
-
 ---
 
 ## PRE-GENERATION CHECKLIST

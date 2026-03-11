@@ -1,13 +1,5 @@
 # DomainSpecific Workflow
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running **DomainSpecific** in **BeCreative**...
-
 ---
 
 **When to use:** Creativity within specific domains (artistic, business, technical)

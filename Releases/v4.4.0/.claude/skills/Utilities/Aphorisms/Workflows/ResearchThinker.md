@@ -2,14 +2,6 @@
 
 **Purpose:** Deep research on specific philosopher/thinker to discover relevant aphorisms aligned with TELOS philosophy, then add to database.
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running **ResearchThinker** in **Aphorisms**...
-
 ---
 
 **When to Use:**

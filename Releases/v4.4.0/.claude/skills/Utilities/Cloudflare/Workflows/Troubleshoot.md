@@ -2,14 +2,6 @@
 
 Diagnose and fix Cloudflare deployment issues using Code Mode MCP for API queries and Browser skill for visual verification.
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running the **Troubleshoot** workflow in the **Cloudflare** skill to debug deployment issues...
-
 ## When to Use
 
 - Deploying to Cloudflare and something goes wrong

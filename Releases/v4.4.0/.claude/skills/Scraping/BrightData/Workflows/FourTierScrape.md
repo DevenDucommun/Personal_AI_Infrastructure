@@ -1,13 +1,5 @@
 # Four-Tier URL Content Scraping
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running **FourTierScrape** in **BrightData**...
-
 ---
 
 **Purpose:** Progressive escalation strategy to retrieve URL content using four fallback tiers

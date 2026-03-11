@@ -2,14 +2,6 @@
 
 **Step-by-step visual recipes for processes and methodologies using brand aesthetic.**
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running **RecipeCards** in **Art**...
-
 ---
 
 Creates **PROCESS RECIPE CARDS** — numbered steps with small illustrations for each action, combining procedural clarity with editorial style.

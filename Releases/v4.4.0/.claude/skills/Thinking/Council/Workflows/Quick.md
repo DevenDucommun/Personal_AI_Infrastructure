@@ -2,14 +2,6 @@
 
 Fast single-round perspective check. Use for sanity checks and quick feedback.
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running the **Quick** workflow in the **Council** skill to get fast perspectives...
-
 ## Prerequisites
 
 - Topic or question to evaluate

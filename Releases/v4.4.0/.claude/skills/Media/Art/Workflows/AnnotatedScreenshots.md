@@ -2,14 +2,6 @@
 
 **Real screenshots with hand-drawn editorial annotations, arrows, and highlights using brand aesthetic.**
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running **AnnotatedScreenshots** in **Art**...
-
 ---
 
 Creates **ANNOTATED SCREENSHOTS** — actual UI screenshots or code snippets with hand-drawn purple/teal commentary overlays.

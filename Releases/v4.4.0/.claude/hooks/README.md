@@ -1,6 +1,6 @@
 # PAI Hook System
 
-> **Lifecycle event handlers that extend Claude Code with voice, memory, and security.**
+> **Lifecycle event handlers that extend Claude Code with memory, tab state, and security.**
 
 This document is the authoritative reference for PAI's hook system. When modifying any hook, update both the hook's inline documentation AND this README.
 
@@ -24,7 +24,6 @@ This document is the authoritative reference for PAI's hook system. When modifyi
 
 Hooks are TypeScript scripts that execute at specific lifecycle events in Claude Code. They enable:
 
-- **Voice Feedback**: Spoken announcements of tasks and completions
 - **Memory Capture**: Session summaries, work tracking, learnings
 - **Security Validation**: Command filtering, path protection, prompt injection defense
 - **Context Injection**: Identity, preferences, format specifications
@@ -47,7 +46,7 @@ Hooks are TypeScript scripts that execute at specific lifecycle events in Claude
 │                 └──► LoadContext (dynamic context injection)         │
 │                                                                     │
 │  UserPromptSubmit ──┬──► RatingCapture (explicit + implicit ratings) │
-│                     ├──► UpdateTabTitle (tab + voice announcement)  │
+│                     ├──► UpdateTabTitle (tab title + working state)  │
 │                     └──► SessionAutoName (session naming)           │
 │                                                                     │
 │  PreToolUse ──┬──► SecurityValidator (Bash/Edit/Write/Read)         │
@@ -60,7 +59,6 @@ Hooks are TypeScript scripts that execute at specific lifecycle events in Claude
 │                                                                     │
 │  Stop ──┬──► LastResponseCache (cache response for ratings)         │
 │         ├──► ResponseTabReset (tab title/color reset)              │
-│         ├──► VoiceCompletion (TTS voice line)                      │
 │         ├──► DocIntegrity (cross-ref checks)                       │
 │         └──► AlgorithmTab (phase + progress in tab)                │
 │                                                                     │
@@ -83,7 +81,7 @@ Hooks are TypeScript scripts that execute at specific lifecycle events in Claude
 | `UserPromptSubmit` | User sends a message | Format injection, work tracking, sentiment analysis |
 | `PreToolUse` | Before a tool executes | Security validation, UI state changes |
 | `PostToolUse` | After a tool executes | Phase tracking, tab state reset |
-| `Stop` | Claude responds | Voice feedback, tab updates, skill rebuild |
+| `Stop` | Claude responds | Tab updates, skill rebuild, integrity checks |
 | `SessionEnd` | Session terminates | Summary, learning, counts, integrity checks |
 
 ### Event Payload Structure
@@ -131,7 +129,7 @@ interface StopPayload extends BasePayload {
 | Hook | Purpose | Blocking | Dependencies |
 |------|---------|----------|--------------|
 | `RatingCapture.hook.ts` | Explicit/implicit rating capture + sentiment analysis | Yes (stdout) | Inference API, `ratings.jsonl` |
-| `UpdateTabTitle.hook.ts` | Set tab title + voice announcement | No | Inference API, Voice Server |
+| `UpdateTabTitle.hook.ts` | Set tab title + working state | No | Inference API |
 | `SessionAutoName.hook.ts` | Name session on first prompt | No | Inference API, `session-names.json` |
 
 ### PreToolUse Hooks
@@ -230,7 +228,7 @@ SecurityValidator ─► patterns.yaml
 All events logged to: MEMORY/SECURITY/security-events.jsonl
 ```
 
-### Voice + Tab State Flow
+### Tab State Flow
 
 ```
 UserPromptSubmit
@@ -241,9 +239,7 @@ UpdateTabTitle
     │
     ├─► Inference summarizes prompt
     │
-    ├─► Sets tab to ORANGE (#B35A00) ─► "Fixing auth..."
-    │
-    └─► Voice announces: "Fixing auth bug"
+    └─► Sets tab to ORANGE (#B35A00) ─► "Fixing auth..."
 
 PreToolUse (AskUserQuestion)
     │
@@ -254,8 +250,7 @@ Stop
     │
     ▼
 Stop hooks:
-    ├─► ResponseTabReset → DEFAULT (brand color)
-    └─► VoiceCompletion → Voice announces completion
+    └─► ResponseTabReset → DEFAULT (brand color)
 ```
 
 ---
@@ -302,7 +297,7 @@ Located in `hooks/lib/`:
 | `time.ts` | PST timestamps, ISO formatting | Rating hooks, work hooks |
 | `paths.ts` | Canonical path construction | Work hooks, security |
 | `notifications.ts` | ntfy push notifications | SessionEnd hooks, UpdateTabTitle |
-| `output-validators.ts` | Tab title + voice output validation | UpdateTabTitle, TabState, VoiceNotification, SetQuestionTab |
+| `output-validators.ts` | Tab title output validation | UpdateTabTitle, TabState, SetQuestionTab |
 | `hook-io.ts` | Shared stdin reader + transcript parser | All Stop hooks |
 | `learning-utils.ts` | Learning categorization | Rating hooks, WorkCompletion |
 | `change-detection.ts` | Detect file/code changes | IntegrityCheck |

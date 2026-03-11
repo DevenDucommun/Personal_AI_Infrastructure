@@ -136,8 +136,7 @@ The Algorithm CLI integrates with the PAI dashboard by writing state to `MEMORY/
 - Creates a persistent session entry for each loop run
 - Syncs criteria status (passing/failing) from PRD checkboxes after each iteration
 - Registers in `session-names.json` for display
-- Sends voice notifications at key moments (start, iteration complete, done)
-- Tracks parallel agent assignments and per-agent status
+- - Tracks parallel agent assignments and per-agent status
 
 ### Output
 

@@ -1,15 +1,5 @@
 # Netblock Reconnaissance Workflow
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running the **NetblockRecon** workflow in the **Recon** skill to scan network blocks...
-
-**CIDR range and IP block investigation**
-
 ## Purpose
 
 Perform reconnaissance on network blocks (CIDR ranges) to:

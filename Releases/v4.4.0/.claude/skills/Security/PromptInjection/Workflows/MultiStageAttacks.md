@@ -1,15 +1,5 @@
 # Multi-Stage Attacks - Complex Attack Chains
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running the **MultiStageAttacks** workflow in the **PromptInjection** skill to test attack chains...
-
-**Workflow for:** Sophisticated multi-turn attack sequences that build context progressively
-
 ## Purpose
 
 Test complex attack chains that unfold over multiple interactions, bypassing defenses through progressive escalation, trust building, and context manipulation.

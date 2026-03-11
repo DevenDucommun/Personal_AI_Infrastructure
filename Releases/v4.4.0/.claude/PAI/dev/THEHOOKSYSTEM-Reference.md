@@ -207,7 +207,6 @@ Each Stop hook is a self-contained `.hook.ts` file that reads stdin via shared `
 - Converts working gerund title to past tense
 
 **`VoiceCompletion.hook.ts`** — Send 🗣️ voice line to TTS server
-- Calls `handlers/VoiceNotification.ts` for voice delivery
 - Voice gate: only main sessions (checks `kitty-sessions/{sessionId}.json`)
 - Subagents have no kitty-sessions file → voice blocked
 
@@ -391,13 +390,11 @@ Hooks have access to all environment variables from `~/.claude/settings.json` `"
 import { getIdentity, getPrincipal, getDAName, getPrincipalName, getVoiceId } from './lib/identity';
 
 // Get full identity objects
-const identity = getIdentity();    // { name, fullName, displayName, voiceId, color }
 const principal = getPrincipal();  // { name, pronunciation, timezone }
 
 // Convenience functions
 const DA_NAME = getDAName();        // "PAI"
 const USER_NAME = getPrincipalName(); // "{YourName}"
-const VOICE_ID = getVoiceId();        // from settings.json daidentity.voiceId
 ```
 
 **Why settings.json?**
@@ -818,7 +815,7 @@ tail ~/.claude/MEMORY/RAW/$(date +%Y-%m)/$(date +%Y-%m-%d)_all-events.jsonl
 
 ### Stop Event Not Firing (RESOLVED)
 
-**Original Issue:** Stop events were not firing consistently in earlier Claude Code versions, causing voice notifications and work capture to fail silently.
+**Original Issue:** Stop events were not firing consistently in earlier Claude Code versions, causing notifications and work capture to fail silently.
 
 **Resolution:** Fixed in Claude Code updates. The Stop hooks now fires reliably. The unified orchestrator pattern (`Stop hooks.hook.ts` delegating to `handlers/`) was implemented in part to work around this — and remains the production architecture.
 
@@ -1138,11 +1135,8 @@ Identity and principal configuration from settings.json.
 ```typescript
 import { getIdentity, getPrincipal, getDAName, getPrincipalName, getVoiceId } from './lib/identity';
 
-const identity = getIdentity();    // { name, fullName, displayName, voiceId, color }
 const principal = getPrincipal();  // { name, pronunciation, timezone }
 ```
-
-**Used by:** handlers/VoiceNotification.ts, RatingCapture, handlers/TabState.ts
 
 ### `PAI/Tools/Inference.ts`
 Unified AI inference with three run levels.
@@ -1227,7 +1221,6 @@ Events use a dot-separated topic hierarchy for filtering. A `custom.*` escape ha
 | `session.*` | named, completed | SessionCleanup |
 | `rating.*` | captured | RatingCapture |
 | `learning.*` | captured | WorkCompletionLearning |
-| `voice.*` | sent | VoiceNotification |
 | `prd.*` | synced | PRDSync |
 | `doc.*` | integrity | DocIntegrity |
 | `build.*` | rebuild | BuildCLAUDE (SessionStart handler) |

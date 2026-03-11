@@ -159,11 +159,6 @@
       "size": 9137
     },
     {
-      "path": "hooks/handlers/VoiceNotification.ts",
-      "sha256": "830c07272d7cb6fbffeb6fafa48f6d6fcecb00f19684cc7d38f4117d630d3d76",
-      "size": 5383
-    },
-    {
       "path": "hooks/IntegrityCheck.hook.ts",
       "sha256": "2218948adfa71d095645bb7fe5067a6f3b56890779e0d029a34c37202f2c1b5a",
       "size": 1588
@@ -5439,11 +5434,6 @@
       "size": 7850
     },
     {
-      "path": "skills/Utilities/Prompting/Templates/Data/VoicePresets.yaml",
-      "sha256": "3a9add9c946b6d8059db9f51e50802c74237e569be67535ccd56c8fdc2a2711b",
-      "size": 4142
-    },
-    {
       "path": "skills/Utilities/Prompting/Templates/Evals/Comparison.hbs",
       "sha256": "a02b825ba87afc8f8bf1f2c10fae627ff32965f64858d2ec36ebed3aab1ae16b",
       "size": 3815
@@ -5487,11 +5477,6 @@
       "path": "skills/Utilities/Prompting/Templates/Primitives/Structure.hbs",
       "sha256": "1424a4344ebaabacc87edbba84e69c86d898d7cda63bd31444c08346c90e9ab4",
       "size": 1449
-    },
-    {
-      "path": "skills/Utilities/Prompting/Templates/Primitives/Voice.hbs",
-      "sha256": "54423b48560203f455708c926e04e215df62913138f00900c7cb7cbac46f8cb4",
-      "size": 1684
     },
     {
       "path": "skills/Utilities/Prompting/Templates/README.md",

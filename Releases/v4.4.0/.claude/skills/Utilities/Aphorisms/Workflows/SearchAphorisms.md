@@ -2,14 +2,6 @@
 
 **Purpose:** Search aphorism database by theme, keyword, author, or topic to discover relevant quotes.
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running **SearchAphorisms** in **Aphorisms**...
-
 ---
 
 **When to Use:**

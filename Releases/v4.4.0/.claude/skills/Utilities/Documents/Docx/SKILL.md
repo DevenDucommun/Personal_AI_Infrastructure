@@ -188,7 +188,6 @@ Example - Changing "30 days" to "60 days" in a sentence:
      ```
    - Check that no unintended changes were introduced
 
-
 ## Converting Documents to Images
 
 To visually analyze Word documents, convert them to images using a two-step process:

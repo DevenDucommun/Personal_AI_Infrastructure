@@ -1,17 +1,5 @@
 # MineReflections Workflow
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running the **MineReflections** workflow in the **PAIUpgrade** skill to mine internal algorithm reflections...
-
-**Mines internal algorithm reflections for recurring patterns that suggest Algorithm or system upgrades.**
-
-**Trigger:** "mine reflections", "check reflections", "what have we learned", "internal improvements", "reflection insights"
-
 ---
 
 ## Overview

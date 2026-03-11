@@ -1,15 +1,5 @@
 # Analyze Scan Results with Gemini 3 Pro
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running the **AnalyzeScanResultsGemini3** workflow in the **Recon** skill to analyze scan results...
-
-**Deep multi-step reasoning analysis of large-scale security scan results**
-
 ## Purpose
 
 Analyze complex security scan outputs (nmap, masscan, httpx, naabu) using Gemini 3 Pro's advanced reasoning capabilities to:

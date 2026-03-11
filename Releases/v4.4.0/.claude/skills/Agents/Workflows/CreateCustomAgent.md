@@ -2,14 +2,6 @@
 
 **Creates custom agents with unique personalities, colors, and voices using ComposeAgent.**
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running **CreateCustomAgent** in **Agents**...
-
 ---
 
 ## When to Use

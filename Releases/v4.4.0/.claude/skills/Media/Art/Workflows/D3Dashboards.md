@@ -2,14 +2,6 @@
 
 **Interactive data visualizations and dashboards using D3.js.**
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running **D3Dashboards** in **Art**...
-
 ---
 
 ## Purpose

@@ -7,14 +7,6 @@ purpose: Migrate CLI from Tier 1 (manual) to Tier 2 (Commander.js)
 
 **Migrate from manual parsing to Commander.js when CLI grows complex.**
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running the **UpgradeTier** workflow in the **CreateCLI** skill to upgrade CLI tier...
-
 ---
 
 ## 🎯 PURPOSE

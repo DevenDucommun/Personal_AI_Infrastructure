@@ -15,8 +15,6 @@ Read and display the current state of world threat models.
 
 ## Workflow Steps
 
-### Step 1: Voice Notification
-
 ```bash
 ```
 

@@ -1,13 +1,5 @@
 # Automate Workflow — Recipe Template Engine
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running **Automate** in **Browser**...
-
 ---
 
 Load a parameterized recipe template, resolve its parameters, and execute it through the appropriate browser tool.

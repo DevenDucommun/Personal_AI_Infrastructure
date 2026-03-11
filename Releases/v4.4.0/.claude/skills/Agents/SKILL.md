@@ -17,27 +17,6 @@ description: Compose CUSTOM agents from Base Traits + Voice + Specialization for
 
 ---
 
-## 🚨 MANDATORY: Voice Notification (REQUIRED BEFORE ANY ACTION)
-
-**You MUST send this notification BEFORE doing anything else when this skill is invoked.**
-
-1. **Send voice notification**:
-   ```bash
-        > /dev/null 2>&1 &
-   ```
-
-2. **Output text notification**:
-   ```
-   Running the **WorkflowName** workflow in the **Agents** skill to ACTION...
-   ```
-
-**This is not optional. Execute this curl command immediately upon skill invocation.**
-
-# Agents - Custom Agent Composition System
-
-**Auto-routes when user mentions custom agents, agent creation, or specialized personalities.**
-**Does NOT handle agent teams/swarms — that's Delegation skill → TeamCreate.**
-
 ## Configuration: Base + User Merge
 
 The Agents skill uses the standard PAI SYSTEM/USER two-tier pattern:
@@ -58,8 +37,6 @@ Create your customizations at:
 ├── NamedAgents.md    # Your named agent backstories (optional)
 └── Traits.yaml       # User trait overrides (optional)
 ```
-
-
 
 ## Overview
 

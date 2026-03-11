@@ -1,13 +1,5 @@
 # Entity Collision Detection Workflow
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running the **CollisionDetection** workflow in the **Parser** skill to prevent duplicates...
-
 ## Purpose
 Prevent duplicate entities across parsed content by maintaining a global entity index with GUIDs for people, companies, links, and sources.
 

@@ -1,15 +1,5 @@
 # Direct Injection Testing - Single-Stage Attacks
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running the **DirectInjectionTesting** workflow in the **PromptInjection** skill to test direct attacks...
-
-**Workflow for:** Testing direct prompt injection vulnerabilities through user-controlled inputs
-
 ## Purpose
 
 Systematically test single-stage direct prompt injection attacks where malicious instructions are injected directly into prompts through application inputs.

@@ -1,15 +1,5 @@
 # IP Address Reconnaissance Workflow
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running the **IpRecon** workflow in the **Recon** skill to investigate IP addresses...
-
-**Comprehensive investigation of individual IP addresses**
-
 ## Purpose
 
 Perform detailed reconnaissance on a specific IP address to gather:

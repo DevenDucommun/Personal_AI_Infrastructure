@@ -505,7 +505,7 @@ The System skill is the centralized mechanism for PAI self-management. It ensure
 
 ### Foreground Execution
 
-The System skill runs in the foreground so you can see all output, progress, and hear voice notifications as work happens. Documentation updates, integrity checks, and system operations are visible for transparency.
+The System skill runs in the foreground so you can see all output, progress, as work happens. Documentation updates, integrity checks, and system operations are visible for transparency.
 
 ### When to Use
 

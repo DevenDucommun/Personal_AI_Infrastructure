@@ -36,8 +36,6 @@ If any missing: "World models incomplete. Run 'update world models' first."
 If models older than 30 days: warn user but proceed.
 ```
 
-### Step 1: Voice Notification
-
 ```bash
 ```
 

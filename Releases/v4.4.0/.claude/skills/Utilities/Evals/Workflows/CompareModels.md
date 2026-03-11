@@ -2,14 +2,6 @@
 
 Compare multiple models on the same prompt to determine the best performer.
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running the **CompareModels** workflow in the **Evals** skill to compare model performance...
-
 ---
 
 ## Prerequisites

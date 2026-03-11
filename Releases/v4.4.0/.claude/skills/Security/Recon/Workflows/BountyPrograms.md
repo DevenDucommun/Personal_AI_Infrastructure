@@ -1,15 +1,5 @@
 # Bounty Programs Workflow
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running the **BountyPrograms** workflow in the **Recon** skill to find bounty programs...
-
-Discover and monitor public bug bounty programs from aggregated sources.
-
 ## Trigger Phrases
 
 - "check available bounty programs"

@@ -2,14 +2,6 @@
 
 Query and display evaluation results, generate reports, and track trends.
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running the **ViewResults** workflow in the **Evals** skill to display eval results...
-
 ---
 
 ## Prerequisites

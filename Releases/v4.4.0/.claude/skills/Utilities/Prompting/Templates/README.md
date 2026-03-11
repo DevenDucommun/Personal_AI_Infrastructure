@@ -41,7 +41,6 @@ PAI uses Handlebars notation for template variables:
 | Syntax | Purpose | Example |
 |--------|---------|---------|
 | `{{variable}}` | Simple interpolation | `Hello {{name}}` |
-| `{{object.property}}` | Nested access | `{{agent.voice_id}}` |
 | `{{#each items}}...{{/each}}` | Iteration | List generation |
 | `{{#if condition}}...{{/if}}` | Conditional | Optional sections |
 | `{{> partial}}` | Include partial | Reusable components |

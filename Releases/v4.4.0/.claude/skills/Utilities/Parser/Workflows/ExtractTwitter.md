@@ -1,17 +1,5 @@
 # Twitter/X Thread Extraction Workflow
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running the **ExtractTwitter** workflow in the **Parser** skill to parse tweets...
-
-**Purpose:** Extract tweets, threads, and metadata from Twitter/X
-
-**When to Use:** Content type detected as "tweet_thread" from twitter.com or x.com domains
-
 ---
 
 ## Extraction Steps

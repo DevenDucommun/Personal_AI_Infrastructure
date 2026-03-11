@@ -1,17 +1,5 @@
 # Domain OSINT Lookup Workflow
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running the **DomainLookup** workflow in the **OSINT** skill to investigate domains...
-
-**Purpose:** Dedicated domain and subdomain investigation — registration intel, DNS enumeration, subdomain discovery, technology fingerprinting, certificate transparency, and reputation assessment.
-
-**Authorization Required:** Explicit authorization, defined scope, legal compliance confirmed.
-
 ---
 
 ## Phase 1: Authorization & Scope

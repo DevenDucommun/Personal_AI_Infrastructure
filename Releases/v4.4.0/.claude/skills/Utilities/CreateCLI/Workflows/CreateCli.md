@@ -7,14 +7,6 @@ purpose: Generate complete, production-ready TypeScript CLI from requirements
 
 **Generate production-quality TypeScript command-line interfaces following llcli pattern and CLI-First Architecture.**
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running the **CreateCli** workflow in the **CreateCLI** skill to generate new CLI...
-
 ---
 
 ## 🎯 PURPOSE

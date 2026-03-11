@@ -2,14 +2,6 @@
 
 **Purpose:** Restructure an existing skill to match the canonical format with proper naming conventions.
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running the **CanonicalizeSkill** workflow in the **CreateSkill** skill to restructure skill...
-
 ---
 
 ## Step 1: Read the Authoritative Source

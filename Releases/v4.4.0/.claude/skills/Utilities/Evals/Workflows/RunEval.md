@@ -2,14 +2,6 @@
 
 Run evaluations for a specific use case.
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running the **RunEval** workflow in the **Evals** skill to execute evaluation...
-
 ---
 
 ## Prerequisites

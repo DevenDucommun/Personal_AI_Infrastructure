@@ -131,7 +131,7 @@ RULES:
 6. Ignore technical noise (IDs, paths, XML, hex codes). Name the TASK, not the artifacts.
 
 GOOD examples (headline-style, specific, verb-forward):
-"Fix Session Name Generation", "Deploy Voice Server Update", "Debug Surface Filter Bar", "Upgrade Browser Automation System", "Session Naming System Broken", "Voice Phase Announcement Fix", "Label Scoring Algorithm Update", "Surface Deploy Button Missing", "Feed Pipeline Processing Error", "Algorithm ISC Quality Gate"
+"Fix Session Name Generation", "Deploy Config Server Update", "Debug Surface Filter Bar", "Upgrade Browser Automation System", "Session Naming System Broken", "Phase Announcement Display Fix", "Label Scoring Algorithm Update", "Surface Deploy Button Missing", "Feed Pipeline Processing Error", "Algorithm ISC Quality Gate"
 
 BAD examples (too vague or word-salad):
 "Through Different Discussions Ones" (random words), "I'm Not Going" (fragment), "Else Session" (meaningless), "Things Need Fixing Now" (generic)

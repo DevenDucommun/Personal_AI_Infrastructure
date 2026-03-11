@@ -1,15 +1,5 @@
 # Update Tools Workflow
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running the **UpdateTools** workflow in the **Recon** skill to update recon tools...
-
-Updates all Project Discovery reconnaissance tools using pdtm.
-
 ## Trigger Phrases
 - "update recon tools"
 - "update project discovery tools"

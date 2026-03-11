@@ -76,7 +76,6 @@ function log(message: string, emoji = "") {
   console.log(emoji ? `${emoji} ${message}` : message);
 }
 
-
 function error(message: string) {
   console.error(`❌ ${message}`);
   process.exit(1);
@@ -349,7 +348,6 @@ function cmdWallpaper(args: string[]) {
     error("Failed to set wallpaper");
   }
 }
-
 
 // ============================================================================
 // Commands

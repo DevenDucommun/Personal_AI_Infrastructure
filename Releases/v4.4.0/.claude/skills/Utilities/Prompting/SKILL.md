@@ -10,27 +10,6 @@ description: Meta-prompting system that generates optimized prompts using templa
 
 If this directory exists, load and apply any PREFERENCES.md, configurations, or resources found there. These override default behavior. If the directory does not exist, proceed with skill defaults.
 
-
-## 🚨 MANDATORY: Voice Notification (REQUIRED BEFORE ANY ACTION)
-
-**You MUST send this notification BEFORE doing anything else when this skill is invoked.**
-
-1. **Send voice notification**:
-   ```bash
-        > /dev/null 2>&1 &
-   ```
-
-2. **Output text notification**:
-   ```
-   Running the **WorkflowName** workflow in the **Prompting** skill to ACTION...
-   ```
-
-**This is not optional. Execute this curl command immediately upon skill invocation.**
-
-# Prompting - Meta-Prompting & Template System
-
-**Invoke when:** meta-prompting, template generation, prompt optimization, programmatic prompt composition, creating dynamic agents, generating structured prompts from data.
-
 ## Overview
 
 The Prompting skill owns ALL prompt engineering concerns:
@@ -52,7 +31,6 @@ Complete prompt engineering documentation based on:
 
 **Key Topics:**
 - Markdown-first design (NO XML tags)
-
 
 ## Usage Examples
 
@@ -98,7 +76,6 @@ bun run RenderTemplate.ts \
 ```typescript
 // Generate specialized agent with appropriate voice
 const agent = composeAgent(['security', 'skeptical', 'thorough'], task, traits);
-// Returns: { name, traits, voice: 'default', voiceId: 'VOICE_ID...' }
 ```
 
 ## Integration with Other Skills

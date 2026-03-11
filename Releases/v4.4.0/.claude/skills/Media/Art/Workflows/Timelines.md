@@ -2,14 +2,6 @@
 
 **Hand-drawn timelines showing evolution, trends, and transformations using brand aesthetic.**
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running **Timelines** in **Art**...
-
 ---
 
 Creates **ILLUSTRATED TIMELINES** — chronological progressions with visual metaphors for each stage, combining narrative arc with temporal information.

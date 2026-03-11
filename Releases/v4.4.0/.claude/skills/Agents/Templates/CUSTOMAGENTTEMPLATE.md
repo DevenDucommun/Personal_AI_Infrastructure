@@ -1,7 +1,7 @@
 # Custom Agent Template
 
 > Canonical identity schema for all PAI agents — built-in and custom.
-> Every agent is a full entity with name, backstory, personality, voice, and visual identity.
+> Every agent is a full entity with name, backstory, personality, and visual identity.
 
 ## Template Usage
 
@@ -60,8 +60,6 @@ source: "ComposeAgent"      # Creation method
 
 **Real Name**: {persona.name}
 **Character Archetype**: "{persona.title}"
-**Voice Settings**: Stability {voice.stability}, Similarity Boost {voice.similarity_boost}, Speed {voice.speed}
-
 ## Backstory
 
 [Rich narrative backstory — 200-400 words. Cover: origin, formative experiences,
@@ -106,11 +104,6 @@ Preferences that color their work. Written as bullet points.]
 [Brief description of how they communicate — speed, formality, verbal tics,
 characteristic expressions, emotional range.]
 
-## Voice Profile Rationale
-
-[Why these specific voice parameters match this personality.
-Explain stability level, speed, similarity boost choices.
-How the voice embodies the character.]
 ```
 
 ### Section 2: Operational Context
@@ -122,46 +115,14 @@ How the voice embodies the character.]
 
 ## Startup Sequence
 
-1. Send voice notification:
-\`\`\`bash
-\`\`\`
-
-2. Load knowledge base:
+1. Load knowledge base:
    - Read: [relevant context files]
-
-## Voice Notification Format
-
-Every response must include a voice curl:
-\`\`\`bash
-\`\`\`
 
 ## Output Format
 
 [Standard PAI output format with sections:
 SUMMARY, ANALYSIS, ACTIONS, RESULTS, STATUS, CAPTURE, NEXT, STORY EXPLANATION, COMPLETED]
 ```
-
----
-
-## Voice Profile Guidelines
-
-### Personality-to-Prosody Mapping
-
-| Personality Type | Stability | Style | Speed | Rationale |
-|------------------|-----------|-------|-------|-----------|
-| Skeptical/Analytical | 0.55-0.70 | 0.05-0.15 | 0.90-1.00 | Measured, precise, deliberate |
-| Enthusiastic/Energetic | 0.25-0.40 | 0.30-0.45 | 1.05-1.15 | Expressive, animated, fast |
-| Professional/Steady | 0.50-0.65 | 0.08-0.20 | 0.95-1.05 | Reliable, consistent, engaged |
-| Creative/Artistic | 0.15-0.30 | 0.25-0.40 | 0.90-1.00 | Wandering, tangential, variable |
-| Authoritative/Wise | 0.65-0.80 | 0.05-0.12 | 0.85-0.95 | Measured, weighty, deliberate |
-| Bold/Confident | 0.40-0.55 | 0.25-0.40 | 1.00-1.10 | Dynamic, assertive, forward |
-
-### Voice Selection Principles
-
-1. **Match personality first** — voice parameters should embody the character
-2. **Unique per agent** — no two agents should share the same voiceId
-3. **Gender alignment** — voice should match character gender identity
-4. **Consistency** — same agent always sounds the same (high similarity_boost for authority, lower for creativity)
 
 ---
 

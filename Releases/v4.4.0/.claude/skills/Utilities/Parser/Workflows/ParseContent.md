@@ -1,17 +1,5 @@
 # Parse Content Workflow
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running the **ParseContent** workflow in the **Parser** skill to parse URLs...
-
-**Purpose:** Main orchestration workflow for parsing any URL into deterministic JSON schema
-
-**When to Use:** User provides one or more URLs for parsing into structured data
-
 ---
 
 ## Workflow Steps

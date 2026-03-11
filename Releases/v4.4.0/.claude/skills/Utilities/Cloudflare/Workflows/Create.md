@@ -2,14 +2,6 @@
 
 Deploy a new Cloudflare Worker or MCP server.
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running the **Create** workflow in the **Cloudflare** skill to deploy a new worker...
-
 ## Project Structure
 
 ```

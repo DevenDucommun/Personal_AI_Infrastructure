@@ -1,15 +1,5 @@
 # Passive Reconnaissance Workflow
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running the **PassiveRecon** workflow in the **Recon** skill to gather passive intelligence...
-
-**Safe, non-intrusive intelligence gathering using only public sources**
-
 ## Purpose
 
 Perform reconnaissance on targets (domains, IPs, netblocks) using exclusively passive techniques that:

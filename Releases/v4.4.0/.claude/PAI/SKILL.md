@@ -236,7 +236,6 @@ More ISC = finer verification = better hill-climbing. When in doubt, more criter
 
 🗒️ TASK: [8 word description]
 
-
 ━━━ 👁️ OBSERVE ━━━ 1/7
 ```
 
@@ -415,7 +414,6 @@ These inputs don't need deep Ideal State Criteria tracking, but **STILL REQUIRE 
 - The Ideal State Criteria ARE the VERIFICATION Criteria, which is what allows us to hill-climb towards IDEAL STATE
 - YOUR GOAL IS 9-10 implicit or explicit ratings for every response. EUPHORIC SURPRISE. Chase that using this system!
 - ALWAYS USE THE ALGORITHM AND RESPONSE FORMAT !!!
-
 
 # Context Loading
 

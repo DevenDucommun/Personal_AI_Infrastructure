@@ -155,7 +155,6 @@ export function printSummary(summary: InstallSummary): void {
   print(`${c.navy}║${c.reset}  Principal:    ${c.white}${summary.principalName}${c.reset}${" ".repeat(Math.max(0, 33 - summary.principalName.length))}${c.navy}║${c.reset}`);
   print(`${c.navy}║${c.reset}  AI Name:      ${c.white}${summary.aiName}${c.reset}${" ".repeat(Math.max(0, 33 - summary.aiName.length))}${c.navy}║${c.reset}`);
   print(`${c.navy}║${c.reset}  Timezone:     ${c.white}${summary.timezone}${c.reset}${" ".repeat(Math.max(0, 33 - summary.timezone.length))}${c.navy}║${c.reset}`);
-  print(`${c.navy}║${c.reset}  Voice:        ${c.white}${summary.voiceEnabled ? summary.voiceMode : "Disabled"}${c.reset}${" ".repeat(Math.max(0, 33 - (summary.voiceEnabled ? summary.voiceMode.length : 8)))}${c.navy}║${c.reset}`);
   print(`${c.navy}║${c.reset}  Install Type: ${c.white}${summary.installType}${c.reset}${" ".repeat(Math.max(0, 33 - summary.installType.length))}${c.navy}║${c.reset}`);
   print(`${c.navy}╠══════════════════════════════════════════════════╣${c.reset}`);
   print(`${c.navy}║${c.reset}                                                  ${c.navy}║${c.reset}`);

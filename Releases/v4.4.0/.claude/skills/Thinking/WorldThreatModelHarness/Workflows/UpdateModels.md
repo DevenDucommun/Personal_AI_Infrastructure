@@ -29,8 +29,6 @@ Inventory which models exist and their last_updated dates
 Determine: full creation vs. targeted update
 ```
 
-### Step 1: Voice Notification
-
 ```bash
 ```
 

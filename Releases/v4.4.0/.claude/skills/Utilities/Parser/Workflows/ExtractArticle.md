@@ -1,17 +1,5 @@
 # Article Extraction Workflow
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running the **ExtractArticle** workflow in the **Parser** skill to parse articles...
-
-**Purpose:** Extract content, metadata, and entities from web articles and generic web pages
-
-**When to Use:** Content type detected as "article" or "generic" web content
-
 ---
 
 ## Extraction Steps

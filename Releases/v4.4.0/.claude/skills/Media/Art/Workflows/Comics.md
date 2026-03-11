@@ -2,14 +2,6 @@
 
 **Comic strips in brand editorial illustration style, NOT cartoonish.**
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running **Comics** in **Art**...
-
 ---
 
 Creates **EDITORIAL COMICS** — 3-4 panel storytelling with sophisticated hand-drawn aesthetic, maintaining brand flat color and black linework.

@@ -1,17 +1,5 @@
 # Upgrade Workflow
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running the **Upgrade** workflow in the **PAIUpgrade** skill to check for upgrades...
-
-**Primary workflow for PAIUpgrade skill.** Generates prioritized upgrade recommendations by running two parallel agent threads: user context analysis and source collection.
-
-**Trigger:** "check for upgrades", "upgrade", "any updates", "check Anthropic", "check YouTube", "pai upgrade"
-
 ---
 
 ## Overview

@@ -20,7 +20,7 @@
  * - Non-blocking, typical execution: <100ms
  */
 
-import { parseTranscript, extractVoiceCompletion, extractCompletionPlain, extractStructuredSections } from '../skills/PAI/Tools/TranscriptParser';
+import { parseTranscript, extractCompletionPlain, extractStructuredSections } from '../skills/PAI/Tools/TranscriptParser';
 import type { ParsedTranscript } from '../skills/PAI/Tools/TranscriptParser';
 import { handleTabState } from './handlers/TabState';
 import { handleRebuildSkill } from './handlers/RebuildSkill';
@@ -83,7 +83,6 @@ async function main() {
       raw: '',
       lastMessage: text,
       currentResponseText: text,
-      voiceCompletion: extractVoiceCompletion(text),
       plainCompletion: extractCompletionPlain(text),
       structured: extractStructuredSections(text),
       responseState: 'completed', // AskUserQuestion state handled by SetQuestionTab PreToolUse hook
