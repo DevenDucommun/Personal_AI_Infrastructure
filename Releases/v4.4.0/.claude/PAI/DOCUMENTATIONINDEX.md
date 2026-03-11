@@ -17,16 +17,12 @@ extracted_from: SKILL.md (context loading section)
 
 **Core Architecture & Philosophy:**
 - `PAISYSTEMARCHITECTURE.md` - System architecture and philosophy, foundational principles (CLI-First, Deterministic Code, Prompts Wrap Code) | ⭐ PRIMARY REFERENCE | Triggers: "system architecture", "how does the system work", "system principles"
-- `FEEDSYSTEM.md` - Feed System: intelligence aggregation, multi-dimensional rating, rule-based routing, Arbol integration | ⭐ CRITICAL | Triggers: "feed system", "intelligence routing", "content monitoring", "feed architecture", "rating system", "routing rules"
 - `ACTIONS.md` - Actions: atomic units of work (LLM, shell, custom) deployed as Cloudflare Workers | Triggers: "actions", "arbol actions", "action workers"
 - `PIPELINES.md` - Pipelines: action chaining with verification gates | Triggers: "pipelines", "action chaining", "verification gates"
 - `FLOWS.md` - Flows: scheduled source → pipeline → destination orchestration via Cloudflare Cron | Triggers: "flows", "cron triggers", "scheduled pipelines", "arbol flows"
-- `ARBOLSYSTEM.md` - Arbol: unified overview of the Cloudflare Workers execution platform (Actions, Pipelines, Flows) | Triggers: "arbol", "arbol system", "cloud execution", "worker architecture"
-- `DEPLOYMENT.md` - End-to-end Cloudflare Workers deployment guide (Wrangler, secrets, service bindings, cron triggers) | Triggers: "deploy", "cloudflare deploy", "wrangler", "deploy action", "deploy worker"
 - `CLI.md` - PAI command-line tools: Algorithm CLI (loop/interactive mode) and Arbol CLI (actions/pipelines) | Triggers: "algorithm CLI", "pai CLI", "command line", "run algorithm", "run action"
 - `SYSTEM_USER_EXTENDABILITY.md` - Two-tier SYSTEM/USER architecture for extensibility | Triggers: "two tier", "system vs user", "how to extend", "customization pattern"
 - `CLIFIRSTARCHITECTURE.md` - CLI-First pattern details
-- `BROWSERAUTOMATION.md` - Browser automation and visual verification | Triggers: "browser automation", "playwright", "screenshot verification"
 - `SKILLSYSTEM.md` - Custom skill system with triggers and workflow routing | ⭐ CRITICAL | Triggers: "how to structure a skill", "skill routing", "create new skill"
 
 **Skill Execution:**
@@ -58,7 +54,7 @@ See `SKILLSYSTEM.md` for complete documentation.
 - Testing standards → Development Skill
 
 **Agent System:**
-- **Agents Skill** (`~/.claude/skills/Agents/`) - Complete agent composition system | See Agents skill for custom agent creation, traits, and voice mappings
+- **Agents Skill** (`~/.claude/skills/Agents/`) - Complete agent composition system | See Agents skill for custom agent creation, traits, and templates
 - Delegation patterns are documented inline in the "Delegation & Parallelization" section below
 
 **Response & Communication:**
@@ -68,7 +64,6 @@ See `SKILLSYSTEM.md` for complete documentation.
 **Configuration & Systems:**
 - `THEHOOKSYSTEM.md` - Hook configuration | Triggers: "hooks configuration", "create custom hooks"
 - `MEMORYSYSTEM.md` - Memory documentation | Triggers: "memory system", "capture system", "work tracking", "session history"
-- `TERMINALTABS.md` - Terminal tab state system (colors + suffixes for working/completed/awaiting/error states) | Triggers: "tab colors", "tab state", "kitty tabs"
 
 **Reference Data:**
 - `USER/ASSETMANAGEMENT.md` - Digital assets registry for instant recognition & vulnerability management | ⭐ CRITICAL | Triggers: "my site", "vulnerability", "what uses React", "upgrade path", "tech stack"

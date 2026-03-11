@@ -15,8 +15,8 @@ PAI is a general problem-solving system that magnifies human capabilities. It ru
   CLAUDE.md                    # Master config (generated from template)
   CLAUDE.md.template           # Source template with variables
   settings.json                # Single source of truth for all configuration
-  hooks/                       # Event lifecycle hooks (21+)
-  skills/                      # 12 categories, 49 skills — each with SKILL.md
+  hooks/                       # Event lifecycle hooks (23)
+  skills/                      # 11 categories, 47 skills — each with SKILL.md
   MEMORY/                      # Persistent memory (work, learning, relationship, state)
   PAI/                         # This directory — system docs + tools + user context
     Algorithm/                 # Versioned algorithm files + LATEST pointer
@@ -28,10 +28,10 @@ PAI is a general problem-solving system that magnifies human capabilities. It ru
 The 7-phase execution engine: Observe, Think, Plan, Build, Execute, Verify, Learn. Transitions from CURRENT STATE to IDEAL STATE via verifiable criteria (ISC). Current version: v3.9.0.
 
 ### Skills (`SKILLSYSTEM.md`)
-12 hierarchical categories with 49 total skills in `~/.claude/skills/`, each with a `SKILL.md` defining triggers, workflows, and tools. Skills are the primary capability unit.
+11 hierarchical categories with 47 total skills in `~/.claude/skills/`, each with a `SKILL.md` defining triggers, workflows, and tools. Skills are the primary capability unit.
 
 ### Hooks (`THEHOOKSYSTEM.md`)
-21+ event hooks across the session lifecycle: SessionStart, UserPromptSubmit, PreToolUse, PostToolUse, Stop, SessionEnd. Defined in `settings.json`, implemented in `~/.claude/hooks/`.
+23 event hooks across the session lifecycle: SessionStart, UserPromptSubmit, PreToolUse, PostToolUse, Stop, SessionEnd. Defined in `settings.json`, implemented in `~/.claude/hooks/`.
 
 ### Memory (`MEMORYSYSTEM.md`)
 Persistent storage across sessions:

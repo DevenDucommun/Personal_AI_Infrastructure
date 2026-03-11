@@ -163,15 +163,6 @@
         ]
       },
       {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "${HOME}/.claude/hooks/VoiceGate.hook.ts"
-          }
-        ]
-      },
-      {
         "matcher": "Edit",
         "hooks": [
           {
@@ -204,10 +195,6 @@
           {
             "type": "command",
             "command": "${HOME}/.claude/hooks/TerminalState.hook.ts"
-          },
-          {
-            "type": "command",
-            "command": "${HOME}/.claude/hooks/SetQuestionTab.hook.ts"
           }
         ]
       },
@@ -290,10 +277,6 @@
         "hooks": [
           {
             "type": "command",
-            "command": "${HOME}/.claude/hooks/PromptAnalysis.hook.ts"
-          },
-          {
-            "type": "command",
             "command": "${HOME}/.claude/hooks/ModeClassifier.hook.ts"
           },
           {
@@ -328,14 +311,6 @@
           },
           {
             "type": "command",
-            "command": "${HOME}/.claude/hooks/CheckVersion.hook.ts"
-          },
-          {
-            "type": "command",
-            "command": "${HOME}/.claude/hooks/StartupGreeting.hook.ts"
-          },
-          {
-            "type": "command",
             "command": "bun ${HOME}/.claude/hooks/handlers/BuildCLAUDE.ts"
           },
           {
@@ -354,62 +329,12 @@
         ]
       }
     ],
-    "PreCompact": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "${HOME}/.claude/hooks/PreCompact.hook.ts"
-          }
-        ]
-      }
-    ],
     "ConfigChange": [
       {
         "hooks": [
           {
             "type": "command",
             "command": "${HOME}/.claude/hooks/ConfigChange.hook.ts"
-          }
-        ]
-      }
-    ],
-    "WorktreeCreate": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "${HOME}/.claude/hooks/WorktreeSetup.hook.ts"
-          }
-        ]
-      }
-    ],
-    "WorktreeRemove": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "${HOME}/.claude/hooks/WorktreeRemove.hook.ts"
-          }
-        ]
-      }
-    ],
-    "TaskCompleted": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "${HOME}/.claude/hooks/TaskCompleted.hook.ts"
-          }
-        ]
-      }
-    ],
-    "TeammateIdle": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "${HOME}/.claude/hooks/TeammateIdle.hook.ts"
           }
         ]
       }
@@ -428,6 +353,14 @@
           {
             "type": "command",
             "command": "${HOME}/.claude/hooks/DocIntegrity.hook.ts"
+          },
+          {
+            "type": "command",
+            "command": "${HOME}/.claude/hooks/StopOrchestrator.hook.ts"
+          },
+          {
+            "type": "command",
+            "command": "${HOME}/.claude/hooks/AlgorithmTracker.hook.ts"
           }
         ]
       }

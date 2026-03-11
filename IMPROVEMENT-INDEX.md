@@ -11,9 +11,9 @@
 
 These issues will cause failures at runtime.
 
-## 1.1 Phantom Hook References in settings.json
+## 1.1 Phantom Hook References in settings.json — ✅ FIXED
 
-**10 hooks are registered in settings.json but have NO corresponding .ts file.** These will cause hook execution errors on every session.
+**10 hooks were registered in settings.json but had NO corresponding .ts file.** Removed all phantom entries.
 
 Missing hooks:
 - `VoiceGate.hook.ts` — voice cleanup leftover, still in PreToolUse/Bash matcher (settings.json:170)
@@ -29,19 +29,13 @@ Missing hooks:
 
 **Fix:** Remove phantom entries from settings.json AND from config/hooks.jsonc (since BuildSettings.ts generates settings.json from config/). Alternatively, create stub implementations for hooks that should exist.
 
-## 1.2 config/hooks.jsonc Out of Sync with settings.json
+## 1.2 config/hooks.jsonc Out of Sync with settings.json — ✅ FIXED
 
-The config/ system claims to be the source of truth for settings.json (via BuildSettings.ts), but `config/hooks.jsonc` only defines ~15 hooks while settings.json has 30+. This means either:
-- BuildSettings.ts doesn't actually regenerate the hooks section, OR
-- settings.json was manually edited after generation, breaking the config→build pipeline
+BuildSettings.ts does a full rebuild (not merge). hooks.jsonc was missing 5 real hooks (GitHubWriteGuard, UpdateTabTitle, AlgorithmTracker, StopOrchestrator, ConfigChange). Added them. Both files now reference exactly 23 hooks matching the 23 .ts files.
 
-**Fix:** Audit BuildSettings.ts to understand merge behavior. Then reconcile hooks.jsonc to match the actual desired hook set. Remove hooks that reference missing files.
+## 1.3 MEMORY/README.md Still References VOICE/ — ✅ FIXED
 
-## 1.3 MEMORY/README.md Still References VOICE/
-
-`MEMORY/README.md:10` lists `VOICE/ — Voice interaction logs` as a directory. This was a voice notification artifact that should have been removed in the v4.4.1 cleanup.
-
-**Fix:** Remove the VOICE/ line from MEMORY/README.md.
+Removed VOICE/ line, replaced with WISDOM/ directory listing.
 
 ---
 
@@ -49,27 +43,18 @@ The config/ system claims to be the source of truth for settings.json (via Build
 
 These won't crash but will confuse both the AI and users.
 
-## 2.1 Version String Sprawl
+## 2.1 Version String Sprawl — ✅ FIXED
 
-Multiple version strings across the repo are inconsistent:
-- `settings.json:pai.version` → 4.4.0
-- `config/preferences.jsonc:pai.version` → 4.3.1 (STALE)
-- `install.sh` banner → "PAI v4.0.3 / Algo v3.7.0" (VERY STALE)
-- `settings.json` spinner tip line 1028 → "PAI v4.0.3 with Algorithm v3.7.0" (STALE)
-- `manifest.json:version` → 4.4.0 (correct)
+Updated all stale version strings to 4.4.0:
+- `config/preferences.jsonc:pai.version` → 4.4.0
+- `install.sh` banner → v4.4.0 / Algo v3.9.0
+- `config/spinner-tips.json` → v4.4.0
 
-**Fix:** Centralize version to ONE location (preferences.jsonc `pai.version`), template all other references. Update install.sh banner and spinner tips to use dynamic version injection or at minimum update to current.
+Future: centralize to ONE source with dynamic injection.
 
-## 2.2 DOCUMENTATIONINDEX.md References 5 Missing Files
+## 2.2 DOCUMENTATIONINDEX.md References 5 Missing Files — ✅ FIXED
 
-These docs are referenced but don't exist in PAI/:
-- `FEEDSYSTEM.md` — "Feed System: intelligence aggregation..."
-- `ARBOLSYSTEM.md` — "Arbol: unified overview of Cloudflare Workers..."
-- `DEPLOYMENT.md` — "End-to-end Cloudflare Workers deployment guide"
-- `TERMINALTABS.md` — "Terminal tab state system"
-- `BROWSERAUTOMATION.md` — "Browser automation and visual verification"
-
-**Fix:** Either create these docs or remove their references from DOCUMENTATIONINDEX.md. If the content exists elsewhere, add redirects.
+Removed all 5 missing doc references from DOCUMENTATIONINDEX.md. Also removed voice ref from agents description.
 
 ## 2.3 hooks/README.md Documents Non-Existent Hooks
 
@@ -89,19 +74,15 @@ Meanwhile, hooks that DO exist are undocumented:
 
 **Fix:** Rewrite hooks/README.md to match the actual 23 hook files that exist.
 
-## 2.4 Incorrect Counts in Documentation
+## 2.4 Incorrect Counts in Documentation — ✅ FIXED
 
-- PAI/README.md claims "12 categories, 49 skills" → actual: **11 categories, 47 SKILL.md files**
-- PAI/README.md claims "21+ hooks" → actual: **23 hook files**
-- settings.json `counts` section has all zeros → never populated
+PAI/README.md updated to 11 categories, 47 skills, 23 hooks. spinner-tips.json hook count updated (21→23).
 
-**Fix:** Update documentation counts. Fix or remove the counts auto-population system.
+Remaining: settings.json `counts` section still has all zeros (populated at runtime by UpdateCounts.hook.ts).
 
-## 2.5 config/README.md References Voice Section
+## 2.5 config/README.md References Voice Section — ✅ FIXED
 
-Line 20 of config/README.md lists `voice` as a section in preferences.jsonc. Voice was removed in v4.4.1.
-
-**Fix:** Remove `voice` from the config/README.md table.
+Removed `voices`, `voice clone`, and `voice` references from config/README.md.
 
 ---
 
@@ -272,16 +253,16 @@ Contains `BackupRestore.ts`, `validate-protected.ts`, `README.md`, and a PNG. Th
 # SUMMARY — Action Priority Matrix
 
 **Immediate (P1 — fix now):**
-- [ ] Remove 10 phantom hook registrations from settings.json
-- [ ] Reconcile config/hooks.jsonc with actual hook files
-- [ ] Remove VOICE/ from MEMORY/README.md
+- [x] Remove 10 phantom hook registrations from settings.json
+- [x] Reconcile config/hooks.jsonc with actual hook files
+- [x] Remove VOICE/ from MEMORY/README.md
 
 **Next session (P2 — fix soon):**
-- [ ] Update all version strings to 4.4.0
-- [ ] Remove 5 missing doc references from DOCUMENTATIONINDEX.md
+- [x] Update all version strings to 4.4.0
+- [x] Remove 5 missing doc references from DOCUMENTATIONINDEX.md
 - [ ] Rewrite hooks/README.md to match reality
-- [ ] Fix documentation counts
-- [ ] Remove voice ref from config/README.md
+- [x] Fix documentation counts
+- [x] Remove voice ref from config/README.md
 
 **Planned work (P3 — reduce bloat):**
 - [ ] Delete old releases (save ~316MB)

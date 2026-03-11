@@ -13,11 +13,11 @@ bun ~/.claude/hooks/handlers/BuildSettings.ts
 
 | File | Contents |
 |------|----------|
-| `identity.jsonc` | `daidentity` (name, color, voices, personality) + `principal` (name, timezone, voice clone) |
+| `identity.jsonc` | `daidentity` (name, color, personality) + `principal` (name, timezone) |
 | `hooks.jsonc` | `hooks` (all lifecycle registrations) + `statusLine` |
 | `permissions.jsonc` | `permissions` (allow / deny / ask lists) |
 | `notifications.jsonc` | `notifications` (ntfy, Discord, Twilio routing) |
-| `preferences.jsonc` | `env`, `voice`, `memory`, `techStack`, `mcpServers`, and all other settings |
+| `preferences.jsonc` | `env`, `memory`, `techStack`, `mcpServers`, and all other settings |
 
 ## Spinner Data Files (Plain JSON arrays)
 

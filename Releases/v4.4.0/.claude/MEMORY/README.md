@@ -7,6 +7,6 @@ PAI's memory system stores learnings, relationship context, and session data.
 - `LEARNING/` — Captured insights and patterns
 - `RELATIONSHIP/` — Interaction preferences and history
 - `STATE/` — Runtime state (auto-managed)
-- `VOICE/` — Voice interaction logs
+- `WISDOM/` — Domain knowledge frames
 
 These directories are created automatically as needed.
