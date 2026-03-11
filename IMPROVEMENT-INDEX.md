@@ -56,23 +56,9 @@ Future: centralize to ONE source with dynamic injection.
 
 Removed all 5 missing doc references from DOCUMENTATIONINDEX.md. Also removed voice ref from agents description.
 
-## 2.3 hooks/README.md Documents Non-Existent Hooks
+## 2.3 hooks/README.md Documents Non-Existent Hooks — ✅ FIXED
 
-The README architecture diagram and registry tables reference hooks that don't exist:
-- `KittyEnvPersist.hook.ts` — listed as SessionStart hook
-- `SetQuestionTab.hook.ts` — listed as PreToolUse hook
-- `ResponseTabReset.hook.ts` — listed as Stop hook
-- `AlgorithmTab.hook.ts` — listed as Stop hook
-
-Meanwhile, hooks that DO exist are undocumented:
-- `AlgorithmTracker.hook.ts`
-- `ConfigChange.hook.ts`
-- `GitHubWriteGuard.hook.ts`
-- `ModeClassifier.hook.ts`
-- `StopOrchestrator.hook.ts`
-- `PostCompactRecovery.hook.ts`
-
-**Fix:** Rewrite hooks/README.md to match the actual 23 hook files that exist.
+Rewrote architecture diagram, hook registry, lifecycle events, configuration section, and tab state flow. Removed 4 phantom hooks, added all missing real hooks. README now matches the actual 23 .ts files + 2 handlers.
 
 ## 2.4 Incorrect Counts in Documentation — ✅ FIXED
 
@@ -260,7 +246,7 @@ Contains `BackupRestore.ts`, `validate-protected.ts`, `README.md`, and a PNG. Th
 **Next session (P2 — fix soon):**
 - [x] Update all version strings to 4.4.0
 - [x] Remove 5 missing doc references from DOCUMENTATIONINDEX.md
-- [ ] Rewrite hooks/README.md to match reality
+- [x] Rewrite hooks/README.md to match reality
 - [x] Fix documentation counts
 - [x] Remove voice ref from config/README.md
 
