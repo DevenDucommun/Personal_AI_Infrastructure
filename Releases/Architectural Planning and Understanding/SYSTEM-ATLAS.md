@@ -8,7 +8,7 @@
 
 ```
 PersonalAI/
-├── Releases/                    # 12 versioned releases (v2.3 → v4.4.0)
+├── Releases/                    # 1 release (v4.4.0) — 11 old releases removed in v4.4.1-dev
 │   └── v4.4.0/.claude/          # Current release — THE system
 ├── Tools/                       # Repo-level utilities (BackupRestore.ts, validate-protected.ts)
 ├── .github/                     # CI/CD workflows
@@ -21,24 +21,13 @@ PersonalAI/
 └── PAI-v4.1.0-summary.md        # Historical summary
 ```
 
-**Release History (all in Releases/):**
+**Release History (in Releases/):**
 
 | Version | Size | Notes |
 |---------|------|-------|
-| v2.3 | 93MB | Earliest release, largest by far |
-| v2.4 | 24MB | |
-| v2.5 | 25MB | |
-| v3.0 | 50MB | Major version jump |
-| v4.0.0 | 20MB | v4 architecture introduced |
-| v4.0.1 | 20MB | |
-| v4.0.2 | 20MB | |
-| v4.0.3 | 20MB | |
-| v4.1.0 | 21MB | |
-| v4.2.0 | 21MB | Voice cleanup done (v4.3.2-dev) |
-| v4.3.1 | 4K | Empty stub from branch work |
-| v4.4.0 | 20MB | **Current release** |
+| v4.4.0 | 20MB | **Current release** — only version kept after cleanup |
 
-**Total Releases size: 336MB**
+**Note:** 11 old releases (v2.3 through v4.3.1, ~314MB) were removed during v4.4.1-dev cleanup. All history preserved in git. See IMPROVEMENT-INDEX.md §3.1.
 
 ---
 
@@ -67,13 +56,13 @@ PersonalAI/
 │   └── migration/    5 files,   48KB — Version migration tools
 ├── MEMORY/           1 file,     4KB — Memory system (dirs created at runtime)
 ├── PAI/             23 files,  1.4MB — System docs, Algorithm, Tools, USER/
-│   ├── Algorithm/    8 files          — Versioned algorithm + support docs
+│   ├── Algorithm/    5 files          — v3.9.0 (current) + support docs (old versions removed)
 │   ├── ACTIONS/     10 files          — Action system (runners, examples)
 │   ├── FLOWS/        1 file           — Flow definitions
 │   ├── PIPELINES/    2 files          — Pipeline definitions
 │   ├── Tools/       40 files,  ~500KB — TypeScript utility tools
 │   ├── USER/        12 dirs           — Personal data templates
-│   └── dev/          2 files          — System reference docs
+│   └── dev/          5 files          — Architecture docs, audit, improvement tracking
 ├── PAI-Install/     25 files,  3.6MB — Installer (CLI + Web UI + Electron)
 │   ├── cli/          3 files          — CLI installer
 │   ├── engine/       8 files          — Install engine
@@ -104,7 +93,7 @@ PersonalAI/
 The 7-phase execution engine: **Observe → Think → Plan → Build → Execute → Verify → Learn**
 
 - **Current version:** v3.9.0 (pointed to by `LATEST` file)
-- **Shipped versions:** v3.5.0, v3.7.0, v3.8.0, v3.9.0
+- **Shipped versions:** v3.9.0 only (v3.5.0, v3.7.0, v3.8.0 removed in v4.4.1-dev cleanup)
 - **Support docs:** CapabilitySelection.md, Examples.md, ISC-Methodology.md, MICRO.md
 - **Concept:** Transition from CURRENT STATE to IDEAL STATE via verifiable criteria (ISC)
 - **ISC = Ideal State Criteria = Verification Criteria** — binary, testable, 4-12 words each
