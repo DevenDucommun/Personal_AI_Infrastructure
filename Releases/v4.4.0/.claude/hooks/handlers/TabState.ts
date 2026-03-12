@@ -21,12 +21,11 @@ import type { ParsedTranscript } from '../../PAI/Tools/TranscriptParser';
  * If first sentence is too short (1 word like "Fixed."), combines with next words.
  * Validates with isValidCompletionTitle. Returns null if invalid.
  */
-function extractTabTitle(voiceLine: string): string | null {
-  if (!voiceLine || voiceLine.length < 3) return null;
+function extractTabTitle(summaryLine: string): string | null {
+  if (!summaryLine || summaryLine.length < 3) return null;
 
-  const cleaned = voiceLine
-    .replace(/^🗣️\s*/, '')
-    .replace(new RegExp(`^${getDAName()}:\\s*`, 'i'), '')
+  const cleaned = summaryLine
+.replace(new RegExp(`^${getDAName()}:\\s*`, 'i'), '')
     .replace(/^(Done\.?\s*)/i, '')
     .replace(/^(I've\s+|I\s+)/i, '')
     .trim();

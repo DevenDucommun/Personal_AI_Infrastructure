@@ -8,7 +8,7 @@ For single bounded changes: 1-3 files, no design decisions, clearly under 30 sec
 [work]
 🔧 CHANGE: [8-word bullets on what changed]
 ✅ VERIFY: [8-word bullets on how we know it's done]
-🗣️ Assistant: [8-16 word summary]
+📋 Assistant: [8-16 word summary]
 ```
 
 **Rules:**

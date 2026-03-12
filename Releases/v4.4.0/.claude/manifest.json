@@ -5572,61 +5572,6 @@
       "path": "tests/Upgrade.test.ts",
       "sha256": "860eb3fde7ba302a8d5cd10d3e6a1f6526d4f530472c477d021c919cd70dabca",
       "size": 13625
-    },
-    {
-      "path": "VoiceServer/install.sh",
-      "sha256": "cd31c2e9a7e3b8afc141ddccdf6d40649774c0203e65dd147b0a0013d719b020",
-      "size": 6342
-    },
-    {
-      "path": "VoiceServer/menubar/install-menubar.sh",
-      "sha256": "7feb9f3838208a83c4890dcdf5b96fa15bf7ec48133500248228479313637234",
-      "size": 3604
-    },
-    {
-      "path": "VoiceServer/menubar/pai-voice.5s.sh",
-      "sha256": "209cc278365555bb6dd12ecc7146e14e19f2a2f945ca625d04788712ca02606a",
-      "size": 1809
-    },
-    {
-      "path": "VoiceServer/pronunciations.json",
-      "sha256": "ab58f840e0671186bb91c23a86853d6926956d02c953a1c0da6fade4074de426",
-      "size": 431
-    },
-    {
-      "path": "VoiceServer/restart.sh",
-      "sha256": "d0d8dcba9ca03b3f4cb8ff3c210e080a24e66abb4ccd5e51b530d80c61f2dea9",
-      "size": 379
-    },
-    {
-      "path": "VoiceServer/server.ts",
-      "sha256": "125f9628b951d3ca6e14c55988f7612e3ae960e02893bfbe7ffd46ca7d38d007",
-      "size": 24789
-    },
-    {
-      "path": "VoiceServer/start.sh",
-      "sha256": "f1f7ba3bfab4e3d9208a272609ccf57f12d20e76e03023022db69cbc360384b9",
-      "size": 1491
-    },
-    {
-      "path": "VoiceServer/status.sh",
-      "sha256": "3a7cfa0417846864b42c4ed9f8ee31b56153412d3b50fb31717ea9c624da675b",
-      "size": 3006
-    },
-    {
-      "path": "VoiceServer/stop.sh",
-      "sha256": "374333465986d27954059eedca8133bc56278ed1096fd787ce3e9abfd894af2a",
-      "size": 920
-    },
-    {
-      "path": "VoiceServer/uninstall.sh",
-      "sha256": "e2bfc9b95808daf2a76eb54cc75daee4c151efe153b4ed31b64802e64e6e96e5",
-      "size": 2336
-    },
-    {
-      "path": "VoiceServer/voices.json",
-      "sha256": "24421b3b27f46ec8e82c6cf24348fc88f54712ed5c9364c9d7a3c4a9aa8ca2e2",
-      "size": 3177
     }
   ]
 }

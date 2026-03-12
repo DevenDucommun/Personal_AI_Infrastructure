@@ -79,8 +79,6 @@ export function needsRebuild(): boolean {
     ? JSON.parse(readFileSync(SETTINGS_PATH, "utf-8"))
     : {};
   const daName = settings.daidentity?.name || "Assistant";
-  if (!outputContent.includes(`🗣️ ${daName}:`)) return true;
-
   return false;
 }
 

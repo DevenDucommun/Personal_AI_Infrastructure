@@ -109,7 +109,7 @@ interface UpdateData {
 // ============================================================================
 
 const PAI_DIR = getPaiDir();
-const CREATE_UPDATE_SCRIPT = join(PAI_DIR, 'skills/_SYSTEM/Tools/CreateUpdate.ts');
+const CREATE_UPDATE_SCRIPT = join(PAI_DIR, 'PAI/Tools/CreateUpdate.ts');
 
 // Words that indicate generic/bad titles - reject these
 const GENERIC_TITLE_PATTERNS = [
@@ -785,6 +785,13 @@ function checkReferences(changes: FileChange[]): IntegrityResult {
 // ============================================================================
 
 async function createUpdateEntry(data: UpdateData): Promise<void> {
+  // Guard: skip if CreateUpdate.ts doesn't exist (tool not yet created)
+  const { existsSync } = await import('fs');
+  if (!existsSync(CREATE_UPDATE_SCRIPT)) {
+    console.error(`[IntegrityMaintenance] Skipping update entry — ${CREATE_UPDATE_SCRIPT} not found`);
+    return;
+  }
+
   // Prepare JSON input for CreateUpdate.ts
   const input = {
     title: data.title,

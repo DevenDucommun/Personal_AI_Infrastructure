@@ -183,9 +183,6 @@ export async function handleSystemIntegrity(
   // Update state before spawning
   updateIntegrityState(systemChanges);
 
-  // Voice notification removed — the "documenting" message from IntegrityMaintenance
-  // already implies the check happened. No need for a separate "checking" announcement.
-
   // Spawn background process
   spawnIntegrityMaintenance(systemChanges, hookInput);
   console.error('[SystemIntegrity] Background integrity check started');

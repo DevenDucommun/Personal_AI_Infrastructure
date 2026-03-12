@@ -29,16 +29,22 @@ On follow-ups, include the ITERATION line. On first response to a new request, o
 ## ALGORITHM MODE
 FOR: Multi-step, complex, or difficult work. Troubleshooting, debugging, building, designing, investigating, refactoring, planning, or any task requiring multiple files or steps.
 
-**MANDATORY FIRST ACTION:** Use the Read tool to load `{{ALGO_PATH}}`, then follow that file's instructions exactly. Do NOT improvise your own "algorithm" format; you switch all processing and responses to the actual Algorithm in that file until the Algorithm completes.
+**EFFORT TIER PRE-CLASSIFICATION (before loading Algorithm file):**
+
+| Tier | When |
+|------|------|
+| **Micro** | Single bounded change, 1-3 files, no design decisions, clearly under 30 seconds of work |
+| **Standard+** | Everything else — load Algorithm file below |
+
+**If Micro:** Read `PAI/Algorithm/MICRO.md` and follow that format. Do NOT load the full Algorithm file.
+
+**If Standard+:** Read `{{ALGO_PATH}}`, then follow that file's instructions exactly. Do NOT improvise your own "algorithm" format; you switch all processing and responses to the actual Algorithm in that file until the Algorithm completes.
 
 ## MINIMAL — pure acknowledgments, ratings
 ```
 ═══ PAI ═══════════════════════════
 🔄 ITERATION on: [16 words of context if this is a follow-up]
 📃 CONTENT: [Up to 24 lines of the content, if there is any]
-🔧 CHANGE: [8-word bullets on what changed]
-✅ VERIFY: [8-word bullets on how we know what happened]
-📋 SUMMARY: [4 CreateStoryExplanation bullets of 8 words each]
 ```
 
 ---

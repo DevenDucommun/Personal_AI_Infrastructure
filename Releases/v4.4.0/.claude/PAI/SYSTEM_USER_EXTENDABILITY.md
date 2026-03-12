@@ -77,7 +77,7 @@ Private skills use the `_ALLCAPS` prefix and are never synced to public PAI.
 ### Identity
 
 ```
-settings.json                         # Base identity (name, voice)
+settings.json                         # Base identity (name, color, personality)
 USER/DAIDENTITY.md                    # Personal identity expansion
 ```
 
