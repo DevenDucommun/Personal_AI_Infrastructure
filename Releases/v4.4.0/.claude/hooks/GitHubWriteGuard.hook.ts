@@ -21,12 +21,14 @@
  *
  * APPROVAL FLOW (when blocked):
  *   1. Hook blocks command, explains what was blocked
- *   2. Claude uses AskUserQuestion to confirm with Deven
- *   3. After approval: Claude runs `bun ~/.claude/hooks/lib/github-approve.ts "command" "user's response"`
- *      — The user's actual response from AskUserQuestion is REQUIRED as the second argument
- *      — github-approve.ts will reject calls without a real user response
- *   4. Claude re-runs the original command
- *   5. Hook sees approval token, allows command, deletes token
+ *   2. Claude uses AskUserQuestion listing EVERY planned GitHub command explicitly
+ *   3. After approval, Claude generates tokens:
+ *      Single:  bun github-approve.ts "command" "user's response"
+ *      Batch:   bun github-approve.ts --batch "user's response" "cmd1" "cmd2" ...
+ *      — User's response from AskUserQuestion is REQUIRED
+ *      — Only commands listed in AskUserQuestion may be approved
+ *   4. Claude runs each approved command
+ *   5. Hook sees approval token, allows command, deletes token (one-shot)
  *
  * Token location: MEMORY/STATE/github-approvals/{hash}.json (TTL: 60s)
  */
@@ -191,14 +193,24 @@ async function main() {
       ``,
       `This operation requires Deven's explicit confirmation (owner access protection).`,
       ``,
-      `TO PROCEED (all 3 steps required):`,
-      `1. Use AskUserQuestion to confirm with Deven: "Confirm GitHub operation: ${shortCmd}?"`,
-      `2. After Deven approves, run: bun ${APPROVE_SCRIPT} "${shortCmd}" "<Deven's exact response from step 1>"`,
-      `3. Re-run the original command (token valid 60s)`,
+      `TO PROCEED (all steps required):`,
       ``,
-      `⚠️  Step 2 REQUIRES the user's actual response text from AskUserQuestion as the second argument.`,
-      `    The approval script will reject calls without a real user response.`,
-      `    Do NOT skip AskUserQuestion or fabricate a response.`,
+      `1. Use AskUserQuestion listing EVERY GitHub command you plan to run.`,
+      `   Each command must be explicitly named — no vague "push and clean up".`,
+      `   Example: "I need to run these GitHub operations:`,
+      `   (a) git push origin main`,
+      `   (b) git push -u origin v4.5.0-dev`,
+      `   (c) git push origin --delete v4.4.0-dev"`,
+      ``,
+      `2. After Deven approves, generate tokens for ALL approved commands:`,
+      `   Single:  bun ${APPROVE_SCRIPT} "${shortCmd}" "<Deven's response>"`,
+      `   Batch:   bun ${APPROVE_SCRIPT} --batch "<Deven's response>" "cmd1" "cmd2" "cmd3"`,
+      ``,
+      `3. Run each command. Tokens are valid 60s (single) or 120s (batch).`,
+      ``,
+      `⚠️  ONLY commands explicitly listed in AskUserQuestion may be approved.`,
+      `    Do NOT add commands after approval. Do NOT skip AskUserQuestion.`,
+      `    Any unlisted command will be blocked.`,
       ``,
       `Token hash: ${hash}`,
     ].join('\n');
