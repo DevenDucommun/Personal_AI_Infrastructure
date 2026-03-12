@@ -65,6 +65,26 @@
       {
         "matcher": "Edit",
         "hooks": [{ "type": "command", "command": "${PAI_DIR}/hooks/PRDSync.hook.ts" }]
+      },
+      {
+        // Algorithm phase detection from notification curls
+        "matcher": "Bash",
+        "hooks": [{ "type": "command", "command": "${PAI_DIR}/hooks/AlgorithmTracker.hook.ts" }]
+      },
+      {
+        // Algorithm criteria tracking from task creation
+        "matcher": "TaskCreate",
+        "hooks": [{ "type": "command", "command": "${PAI_DIR}/hooks/AlgorithmTracker.hook.ts" }]
+      },
+      {
+        // Algorithm criteria status updates
+        "matcher": "TaskUpdate",
+        "hooks": [{ "type": "command", "command": "${PAI_DIR}/hooks/AlgorithmTracker.hook.ts" }]
+      },
+      {
+        // Algorithm agent spawn tracking
+        "matcher": "Task",
+        "hooks": [{ "type": "command", "command": "${PAI_DIR}/hooks/AlgorithmTracker.hook.ts" }]
       }
     ],
 
@@ -92,7 +112,9 @@
           // Track terminal state for proper output rendering
           { "type": "command", "command": "${PAI_DIR}/hooks/TerminalState.hook.ts" },
           // Auto-generate four-word session names
-          { "type": "command", "command": "${PAI_DIR}/hooks/SessionAutoName.hook.ts" }
+          { "type": "command", "command": "${PAI_DIR}/hooks/SessionAutoName.hook.ts" },
+          // Update terminal tab title with prompt summary
+          { "type": "command", "command": "${PAI_DIR}/hooks/UpdateTabTitle.hook.ts" }
         ]
       }
     ],
@@ -128,8 +150,8 @@
           { "type": "command", "command": "${PAI_DIR}/hooks/LastResponseCache.hook.ts" },
           // Update terminal state after response completes
           { "type": "command", "command": "${PAI_DIR}/hooks/TerminalState.hook.ts" },
-          // Validate documentation cross-references
-          { "type": "command", "command": "${PAI_DIR}/hooks/DocIntegrity.hook.ts" }
+          // Orchestrate stop-phase handlers (TabState reset + DocCrossRefIntegrity)
+          { "type": "command", "command": "${PAI_DIR}/hooks/StopOrchestrator.hook.ts" }
         ]
       }
     ]
