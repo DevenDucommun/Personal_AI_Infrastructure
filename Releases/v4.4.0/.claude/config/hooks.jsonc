@@ -37,9 +37,12 @@
         "hooks": [{ "type": "command", "command": "${PAI_DIR}/hooks/SecurityValidator.hook.ts" }]
       },
       {
-        // Terminal state tracking for interactive prompts
+        // Terminal state tracking + teal tab for interactive prompts
         "matcher": "AskUserQuestion",
-        "hooks": [{ "type": "command", "command": "${PAI_DIR}/hooks/TerminalState.hook.ts" }]
+        "hooks": [
+          { "type": "command", "command": "${PAI_DIR}/hooks/TerminalState.hook.ts" },
+          { "type": "command", "command": "${PAI_DIR}/hooks/SetQuestionTab.hook.ts" }
+        ]
       },
       {
         // Agent spawn guard — validates agent parameters before execution
@@ -77,6 +80,7 @@
         "hooks": [
           { "type": "command", "command": "${PAI_DIR}/hooks/WorkCompletionLearning.hook.ts" },
           { "type": "command", "command": "${PAI_DIR}/hooks/SessionCleanup.hook.ts" },
+          { "type": "command", "command": "${PAI_DIR}/hooks/SessionSummary.hook.ts" },
           { "type": "command", "command": "${PAI_DIR}/hooks/RelationshipMemory.hook.ts" },
           { "type": "command", "command": "${PAI_DIR}/hooks/UpdateCounts.hook.ts" },
           { "type": "command", "command": "${PAI_DIR}/hooks/IntegrityCheck.hook.ts" }
@@ -88,9 +92,13 @@
     "UserPromptSubmit": [
       {
         "hooks": [
+          // Batched inference for tab title + session name (runs before UpdateTabTitle/SessionAutoName)
+          { "type": "command", "command": "${PAI_DIR}/hooks/PromptAnalysis.hook.ts" },
           // Classify effort tier and inject context modifications
           { "type": "command", "command": "${PAI_DIR}/hooks/ModeClassifier.hook.ts" },
-          // Capture 1–10 ratings from prompt patterns
+          // Detect PAI output format violations and inject correction hint
+          { "type": "command", "command": "${PAI_DIR}/hooks/FormatReminder.hook.ts" },
+          // Capture 1–10 ratings from prompt patterns + implicit sentiment
           { "type": "command", "command": "${PAI_DIR}/hooks/RatingCapture.hook.ts" },
           // Track terminal state for proper output rendering
           { "type": "command", "command": "${PAI_DIR}/hooks/TerminalState.hook.ts" },
@@ -110,6 +118,10 @@
           { "type": "command", "command": "${PAI_DIR}/hooks/TerminalState.hook.ts" },
           // Inject relationship, learning, and work context
           { "type": "command", "command": "${PAI_DIR}/hooks/LoadContext.hook.ts" },
+          // Check PAI version against repo
+          { "type": "command", "command": "${PAI_DIR}/hooks/CheckVersion.hook.ts" },
+          // Display PAI startup banner
+          { "type": "command", "command": "${PAI_DIR}/hooks/StartupGreeting.hook.ts" },
           // Rebuild CLAUDE.md if algorithm version or DA name changed
           { "type": "command", "command": "bun ${PAI_DIR}/hooks/handlers/BuildCLAUDE.ts" },
           // Rebuild settings.json from config/*.jsonc if any config file is newer
@@ -143,11 +155,56 @@
       }
     ],
 
+    // PreCompact — runs before context window compaction
+    "PreCompact": [
+      {
+        "hooks": [
+          { "type": "command", "command": "${PAI_DIR}/hooks/PreCompact.hook.ts" }
+        ]
+      }
+    ],
+
     // ConfigChange — runs when configuration changes
     "ConfigChange": [
       {
         "hooks": [
           { "type": "command", "command": "${PAI_DIR}/hooks/ConfigChange.hook.ts" }
+        ]
+      }
+    ],
+
+    // WorktreeCreate — runs when a git worktree is created
+    "WorktreeCreate": [
+      {
+        "hooks": [
+          { "type": "command", "command": "${PAI_DIR}/hooks/WorktreeSetup.hook.ts" }
+        ]
+      }
+    ],
+
+    // WorktreeRemove — runs when a git worktree is removed
+    "WorktreeRemove": [
+      {
+        "hooks": [
+          { "type": "command", "command": "${PAI_DIR}/hooks/WorktreeRemove.hook.ts" }
+        ]
+      }
+    ],
+
+    // TaskCompleted — runs when a task finishes
+    "TaskCompleted": [
+      {
+        "hooks": [
+          { "type": "command", "command": "${PAI_DIR}/hooks/TaskCompleted.hook.ts" }
+        ]
+      }
+    ],
+
+    // TeammateIdle — runs when a teammate agent becomes idle
+    "TeammateIdle": [
+      {
+        "hooks": [
+          { "type": "command", "command": "${PAI_DIR}/hooks/TeammateIdle.hook.ts" }
         ]
       }
     ]
