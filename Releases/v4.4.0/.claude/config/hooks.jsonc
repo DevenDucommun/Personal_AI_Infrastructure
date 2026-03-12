@@ -145,9 +145,7 @@
           { "type": "command", "command": "${PAI_DIR}/hooks/LastResponseCache.hook.ts" },
           // Update terminal state after response completes
           { "type": "command", "command": "${PAI_DIR}/hooks/TerminalState.hook.ts" },
-          // Validate documentation cross-references
-          { "type": "command", "command": "${PAI_DIR}/hooks/DocIntegrity.hook.ts" },
-          // Orchestrate stop-phase hooks
+          // Orchestrate stop-phase handlers (TabState + DocCrossRefIntegrity)
           { "type": "command", "command": "${PAI_DIR}/hooks/StopOrchestrator.hook.ts" },
           // Track algorithm phase progress
           { "type": "command", "command": "${PAI_DIR}/hooks/AlgorithmTracker.hook.ts" }
