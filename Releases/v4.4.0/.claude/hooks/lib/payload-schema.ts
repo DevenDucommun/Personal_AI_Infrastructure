@@ -32,7 +32,8 @@ const BASE: FieldSpec[] = [
 export const PAYLOAD_SCHEMAS: Record<HookEventName, FieldSpec[]> = {
   UserPromptSubmit: [
     ...BASE,
-    { field: 'prompt', type: 'string', required: true },
+    { field: 'user_prompt', type: 'string', required: true },
+    { field: 'prompt', type: 'string', required: false },
     { field: 'cwd', type: 'string', required: false },
   ],
   Stop: [

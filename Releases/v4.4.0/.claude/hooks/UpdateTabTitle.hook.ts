@@ -22,8 +22,6 @@
  * 3. Show validated title → ⚙️ orange
  * 4. If validation fails both paths → getWorkingFallback()
  *
- * Tab title updates on prompt receipt.
- * Shows what this session is working on at a glance.
  */
 
 import { inference } from '../skills/PAI/Tools/Inference';

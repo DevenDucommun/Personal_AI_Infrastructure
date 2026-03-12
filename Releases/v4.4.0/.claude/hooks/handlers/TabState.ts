@@ -4,7 +4,7 @@
  * PURPOSE:
  * Updates Kitty terminal tab title and color on response completion.
  * Converts the working title to past tense as primary strategy,
- * falls back to voice line extraction, then generic fallback.
+ * falls back to summary line extraction, then generic fallback.
  *
  * Pure handler: receives pre-parsed transcript data, updates Kitty tab.
  * Called by ResponseTabReset.hook.ts.
@@ -17,7 +17,7 @@ import { getDAName } from '../lib/identity';
 import type { ParsedTranscript } from '../../PAI/Tools/TranscriptParser';
 
 /**
- * Extract tab title from voice line. Takes first sentence, caps at 4 words.
+ * Extract tab title from summary line. Takes first sentence, caps at 4 words.
  * If first sentence is too short (1 word like "Fixed."), combines with next words.
  * Validates with isValidCompletionTitle. Returns null if invalid.
  */
@@ -53,7 +53,7 @@ function extractTabTitle(voiceLine: string): string | null {
 
 /**
  * Extract a completion title from the response content.
- * Tries TASK line, then SUMMARY section as fallback when voice line is absent.
+ * Tries TASK line, then SUMMARY section as fallback when summary line is absent.
  * Returns null if no valid title can be extracted.
  */
 function extractFromResponseContent(responseText: string): string | null {
@@ -133,7 +133,7 @@ export async function handleTabState(parsed: ParsedTranscript, sessionId?: strin
       }
     }
 
-    // FALLBACK 1: Extract from voice line
+    // FALLBACK 1: Extract from summary line
     if (!shortTitle) {
       shortTitle = extractTabTitle(parsed.plainCompletion);
     }

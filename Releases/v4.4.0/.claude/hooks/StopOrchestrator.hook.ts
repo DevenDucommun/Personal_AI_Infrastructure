@@ -83,6 +83,7 @@ async function main() {
       raw: '',
       lastMessage: text,
       currentResponseText: text,
+      voiceCompletion: '', // Deprecated — kept for ParsedTranscript type compatibility
       plainCompletion: extractCompletionPlain(text),
       structured: extractStructuredSections(text),
       responseState: 'completed', // AskUserQuestion state handled by SetQuestionTab PreToolUse hook
