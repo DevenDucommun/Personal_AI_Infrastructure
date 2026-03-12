@@ -22,7 +22,9 @@
  * APPROVAL FLOW (when blocked):
  *   1. Hook blocks command, explains what was blocked
  *   2. Claude uses AskUserQuestion to confirm with Deven
- *   3. After "yes": Claude runs `bun ~/.claude/hooks/lib/github-approve.ts "command"`
+ *   3. After approval: Claude runs `bun ~/.claude/hooks/lib/github-approve.ts "command" "user's response"`
+ *      — The user's actual response from AskUserQuestion is REQUIRED as the second argument
+ *      — github-approve.ts will reject calls without a real user response
  *   4. Claude re-runs the original command
  *   5. Hook sees approval token, allows command, deletes token
  *
@@ -189,10 +191,14 @@ async function main() {
       ``,
       `This operation requires Deven's explicit confirmation (owner access protection).`,
       ``,
-      `TO PROCEED:`,
+      `TO PROCEED (all 3 steps required):`,
       `1. Use AskUserQuestion to confirm with Deven: "Confirm GitHub operation: ${shortCmd}?"`,
-      `2. After Deven approves, run: bun ${APPROVE_SCRIPT} "${shortCmd}"`,
+      `2. After Deven approves, run: bun ${APPROVE_SCRIPT} "${shortCmd}" "<Deven's exact response from step 1>"`,
       `3. Re-run the original command (token valid 60s)`,
+      ``,
+      `⚠️  Step 2 REQUIRES the user's actual response text from AskUserQuestion as the second argument.`,
+      `    The approval script will reject calls without a real user response.`,
+      `    Do NOT skip AskUserQuestion or fabricate a response.`,
       ``,
       `Token hash: ${hash}`,
     ].join('\n');
