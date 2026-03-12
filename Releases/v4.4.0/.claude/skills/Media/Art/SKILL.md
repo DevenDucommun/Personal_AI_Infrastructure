@@ -19,16 +19,6 @@ If this directory exists, load and apply:
 
 These override default behavior. If the directory does not exist, proceed with skill defaults.
 
-
-## 🚨 MANDATORY: Voice Notification (REQUIRED BEFORE ANY ACTION)
-
-**You MUST send this notification BEFORE doing anything else when this skill is invoked.**
-
-1. **Send voice notification**:
-   ```bash
-        > /dev/null 2>&1 &
-   ```
-
 2. **Output text notification**:
    ```
    Running the **WorkflowName** workflow in the **Art** skill to ACTION...
@@ -47,7 +37,6 @@ These override default behavior. If the directory does not exist, proceed with s
 ```
 
 **This applies to ALL workflows in this skill.**
-
 
 ## Workflow Routing
 

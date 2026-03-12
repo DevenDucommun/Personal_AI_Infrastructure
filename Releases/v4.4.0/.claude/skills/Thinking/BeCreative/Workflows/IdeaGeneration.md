@@ -1,15 +1,5 @@
 # IdeaGeneration Workflow
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running **IdeaGeneration** in **BeCreative**...
-
----
-
 **When to use:** Brainstorming, problem-solving, innovation
 
 ---

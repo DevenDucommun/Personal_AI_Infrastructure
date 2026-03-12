@@ -2,16 +2,6 @@
 
 Create a new evaluation use case with test cases and scoring criteria.
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running the **CreateUseCase** workflow in the **Evals** skill to create eval use case...
-
----
-
 ## Prerequisites
 
 - Clear understanding of what you're evaluating

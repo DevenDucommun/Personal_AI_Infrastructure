@@ -2,16 +2,6 @@
 
 **Clean Excalidraw-style technical diagrams with custom typography aesthetic.**
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running **TechnicalDiagrams** in **Art**...
-
----
-
 ## Purpose
 
 Technical diagrams for system architectures, process flows, and board presentations.
@@ -31,7 +21,6 @@ Technical diagrams for system architectures, process flows, and board presentati
 3. **Custom fonts** — Specific typography hierarchy (see below)
 4. **Strategic color** — Purple #4A148C for key elements, Teal #00796B for flows
 5. **White primary** — 80% of elements in grey/black colors, color is accent only
-
 
 # Example image
 # Ignore for now

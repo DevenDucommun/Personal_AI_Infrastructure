@@ -36,10 +36,7 @@ If any missing: "World models incomplete. Run 'update world models' first."
 If models older than 30 days: warn user but proceed.
 ```
 
-### Step 1: Voice Notification
-
-```bash
-```
+### Step 1: Notification
 
 ### Step 2: Extract and Decompose the Idea
 
@@ -100,9 +97,6 @@ Use the template in `OutputFormat.md` (loaded from skill root). Ensure:
 - Adversarial findings attribute to specific horizon contexts
 
 ### Step 5: Voice Summary
-
-```bash
-```
 
 ## Output Format
 

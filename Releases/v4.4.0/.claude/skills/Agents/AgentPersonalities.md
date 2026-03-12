@@ -16,7 +16,7 @@ PAI uses a **hybrid agent system** that combines:
 | Scenario | Use | Why |
 |----------|-----|-----|
 | Recurring research | Named Agent (Remy, Ava) | Relationship continuity, known behavior |
-| Recurring specialized task | Named Agent | Relationship continuity, known behavior |
+| Voice output needed | Named Agent | Pre-mapped to ElevenLabs voices |
 | Deep character interaction | Named Agent | Rich backstory, personality depth |
 | One-off specialized task | Dynamic Agent | Perfect task-fit, no bloat |
 | Novel trait combination | Dynamic Agent | Compose exactly what's needed |
@@ -74,14 +74,14 @@ PAI uses a **hybrid agent system** that combines:
 
 **What happens:**
 1. Run `bun run ~/.claude/skills/Agents/Tools/ComposeAgent.ts` for EACH agent
-2. Use DIFFERENT trait combinations to get unique personalities AND colors
-3. Each agent gets a personality-matched color and unique expertise profile
+2. Use DIFFERENT trait combinations to get unique voices AND colors
+3. Each agent gets a personality-matched ElevenLabs voice and unique color
 4. Launch with `subagent_type: "general-purpose"` - NEVER use static types
 
 **Why this matters:**
 - Custom agents have unique identities - NOT static types (Architect, Engineer, etc.)
-- ComposeAgent provides: prompt, color, and trait-specific expertise
-- Varied traits → different personalities AND different colors
+- ComposeAgent provides: prompt, voice, voice_id, color
+- Varied traits → different voice mappings AND different colors
 
 **Example - CORRECT:**
 ```bash
@@ -136,7 +136,7 @@ Task(prompt="You are Dr. Nova...", subagent_type="general-purpose")
 ```
 
 **CORRECT: Custom agents flow:**
-1. ComposeAgent with traits → get prompt, color, expertise profile
+1. ComposeAgent with traits → get prompt, voice_id, color
 2. Task with that prompt + `subagent_type: "general-purpose"`
 3. Describe as "custom agents" not "intern agents"
 

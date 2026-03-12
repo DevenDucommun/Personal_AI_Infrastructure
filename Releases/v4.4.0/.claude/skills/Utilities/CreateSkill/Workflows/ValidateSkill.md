@@ -2,16 +2,6 @@
 
 **Purpose:** Check if an existing skill follows the canonical structure with proper TitleCase naming.
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running the **ValidateSkill** workflow in the **CreateSkill** skill to validate skill structure...
-
----
-
 ## Step 1: Read the Authoritative Source
 
 **REQUIRED FIRST:** Read the canonical structure:

@@ -2,16 +2,6 @@
 
 **Intelligent multi-modal visualization combining optimal approaches based on content analysis.**
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running **Visualize** in **Art**...
-
----
-
 Creates **ADAPTIVE VISUALIZATIONS** — analyzes content to select and orchestrate the best combination of visualization techniques, from pure data viz to mixed-media infographics to multi-panel compositions.
 
 ---

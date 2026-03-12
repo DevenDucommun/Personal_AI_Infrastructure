@@ -867,11 +867,7 @@ export async function handleDocCrossRefIntegrity(
   console.error(`${TAG} Wall time: ${totalElapsed}ms`);
   console.error(`${TAG} === Check complete ===`);
 
-  // Step 10: Voice notification — ONLY when actual documentation edits were applied
-  // No voice for "queued for review" or "in sync" — that's noise
   if (updatesApplied.length > 0) {
-    // Delay 3s so the main 🗣️ {DAIDENTITY.NAME} voice line plays first
-    await new Promise(resolve => setTimeout(resolve, 3000));
 
     const affectedDocs = new Set<string>();
     for (const update of updatesApplied) {

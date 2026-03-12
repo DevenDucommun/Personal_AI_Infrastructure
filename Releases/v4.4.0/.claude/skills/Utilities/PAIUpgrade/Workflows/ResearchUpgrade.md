@@ -1,19 +1,5 @@
 # Research Upgrade Workflow
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running the **ResearchUpgrade** workflow in the **PAIUpgrade** skill to research upgrades...
-
-Deep dive on a specific upgrade opportunity to understand implementation details and create an actionable plan.
-
-**Trigger:** "research this upgrade", "deep dive on [feature]", "dig deeper", "further research"
-
----
-
 ## Overview
 
 When the Upgrade workflow discovers something interesting, use this workflow to:

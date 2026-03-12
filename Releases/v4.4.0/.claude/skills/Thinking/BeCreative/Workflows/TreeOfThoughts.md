@@ -1,15 +1,5 @@
 # TreeOfThoughts Workflow
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running **TreeOfThoughts** in **BeCreative**...
-
----
-
 **When to use:** Complex creative problem-solving requiring exploration of multiple paths
 
 ---

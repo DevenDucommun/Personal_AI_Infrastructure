@@ -2,16 +2,6 @@
 
 **Purpose:** Analyze newsletter or article content to recommend the perfect thematically-aligned aphorism from the database.
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running **FindAphorism** in **Aphorisms**...
-
----
-
 **When to Use:**
 - User provides newsletter draft or URL and requests aphorism
 - User describes newsletter theme and wants quote recommendation

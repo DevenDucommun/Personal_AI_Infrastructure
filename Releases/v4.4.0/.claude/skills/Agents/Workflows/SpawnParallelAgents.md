@@ -2,16 +2,6 @@
 
 **Launches multiple parallel agents for grunt work - same task, different inputs.**
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running **SpawnParallelAgents** in **Agents**...
-
----
-
 ## When to Use
 
 {PRINCIPAL.NAME} says:

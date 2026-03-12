@@ -2,16 +2,6 @@
 
 **Single striking statistics illustrated as visual data points using brand aesthetic.**
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running **Stats** in **Art**...
-
----
-
 Creates **ILLUSTRATED STAT CARDS** — one number/statistic made visual with simple illustration and editorial style.
 
 ---

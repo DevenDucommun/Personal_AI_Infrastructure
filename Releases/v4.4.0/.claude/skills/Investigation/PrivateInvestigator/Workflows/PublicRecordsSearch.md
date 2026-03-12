@@ -1,28 +1,5 @@
 # Public Records Search Workflow
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running the **PublicRecordsSearch** workflow in the **PrivateInvestigator** skill to search records...
-
-**Purpose:** Search government and official records databases for person information
-
-**When to Use:**
-- User needs official/verified information about a person
-- Social media and people search haven't yielded results
-- User needs to verify identity through official records
-- Property, court, or business records are specifically needed
-
-**Prerequisites:**
-- Subject's full name
-- Location (state at minimum)
-- Approximate age or DOB (helpful for filtering)
-
----
-
 ## Workflow Steps
 
 ### Step 1: Property Records Search

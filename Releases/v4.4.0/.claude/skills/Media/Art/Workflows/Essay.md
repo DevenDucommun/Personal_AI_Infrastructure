@@ -2,16 +2,6 @@
 
 **Charcoal Architectural Sketch TECHNIQUE — Applied to CONTENT-RELEVANT subjects.**
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running **Essay** in **Art**...
-
----
-
 Uses architectural sketching STYLE (gestural lines, hatching, charcoal) to depict whatever the content is actually ABOUT — NOT defaulting to buildings.
 
 ---

@@ -1,19 +1,5 @@
 # Newsletter Extraction Workflow
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running the **ExtractNewsletter** workflow in the **Parser** skill to parse newsletters...
-
-**Purpose:** Extract structured content from newsletter HTML (Substack, Beehiiv, ConvertKit, etc.)
-
-**When to Use:** Content type detected as "newsletter" from known newsletter domains
-
----
-
 ## Extraction Steps
 
 ### 1. Newsletter Platform Detection

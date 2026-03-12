@@ -1,19 +1,5 @@
 # PDF Document Extraction Workflow
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running the **ExtractPdf** workflow in the **Parser** skill to parse PDFs...
-
-**Purpose:** Extract text, metadata, and entities from PDF documents (research papers, reports, ebooks)
-
-**When to Use:** Content type detected as "pdf" from URL extension or Content-Type header
-
----
-
 ## Extraction Steps
 
 ### 1. PDF Download and Text Extraction

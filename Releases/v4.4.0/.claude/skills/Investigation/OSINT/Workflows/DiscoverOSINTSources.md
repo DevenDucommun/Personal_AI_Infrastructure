@@ -1,17 +1,5 @@
 # Discover New OSINT Sources Workflow
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running the **DiscoverOSINTSources** workflow in the **OSINT** skill to discover and catalog new OSINT sources...
-
-**Purpose:** Discover, evaluate, and integrate new OSINT sources into the skill's SOURCES.JSON and SOURCES.md collection using parallel research agents.
-
----
-
 ## Phase 1: Load Current Source Inventory
 
 **Read existing sources:**

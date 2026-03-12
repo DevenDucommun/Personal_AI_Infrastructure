@@ -2,16 +2,6 @@
 
 **Hand-drawn classification systems, taxonomies, and reference grids using brand aesthetic.**
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running **Taxonomies** in **Art**...
-
----
-
 Creates **VISUAL TAXONOMIES** — organized classification systems like periodic tables, capability matrices, or framework grids with editorial hand-drawn style.
 
 ---

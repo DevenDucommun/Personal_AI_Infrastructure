@@ -2,16 +2,6 @@
 
 Create a custom LLM-as-Judge using templates.
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running the **CreateJudge** workflow in the **Evals** skill to create LLM judge...
-
----
-
 ## Prerequisites
 
 - Use case exists or being created

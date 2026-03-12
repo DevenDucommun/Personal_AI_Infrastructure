@@ -10,16 +10,6 @@ description: Multi-agent debate with visible transcripts where agents respond to
 
 If this directory exists, load and apply any PREFERENCES.md, configurations, or resources found there. These override default behavior. If the directory does not exist, proceed with skill defaults.
 
-
-## 🚨 MANDATORY: Voice Notification (REQUIRED BEFORE ANY ACTION)
-
-**You MUST send this notification BEFORE doing anything else when this skill is invoked.**
-
-1. **Send voice notification**:
-   ```bash
-        > /dev/null 2>&1 &
-   ```
-
 2. **Output text notification**:
    ```
    Running the **WorkflowName** workflow in the **Council** skill to ACTION...
@@ -32,7 +22,6 @@ If this directory exists, load and apply any PREFERENCES.md, configurations, or 
 Multi-agent debate system where specialized agents discuss topics in rounds, respond to each other's points, and surface insights through intellectual friction.
 
 **Key Differentiator from RedTeam:** Council is collaborative-adversarial (debate to find best path), while RedTeam is purely adversarial (attack the idea). Council produces visible conversation transcripts; RedTeam produces steelman + counter-argument.
-
 
 ## Workflow Routing
 

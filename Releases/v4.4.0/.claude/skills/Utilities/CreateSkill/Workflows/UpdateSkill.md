@@ -2,16 +2,6 @@
 
 **Purpose:** Add workflows or modify an existing skill while maintaining canonical structure and TitleCase naming.
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running the **UpdateSkill** workflow in the **CreateSkill** skill to modify existing skill...
-
----
-
 ## Step 1: Read the Authoritative Source
 
 **REQUIRED FIRST:** Read the canonical structure:

@@ -102,7 +102,7 @@ For skills that handle requests directly (no `Workflows/` directory), simply des
 
 ## External Notifications (Push, Discord)
 
-**Beyond voice notifications, PAI supports external notification channels:**
+**PAI supports external notification channels:**
 
 ### Available Channels
 
@@ -118,11 +118,11 @@ Notifications are automatically routed based on event type:
 
 | Event | Default Channels | Trigger |
 |-------|------------------|---------|
-| `taskComplete` | Voice only | Normal task completion |
-| `longTask` | Voice + ntfy | Task duration > 5 minutes |
+| `taskComplete` | (none) | Normal task completion |
+| `longTask` | ntfy | Task duration > 5 minutes |
 | `backgroundAgent` | ntfy | Background agent completes |
-| `error` | Voice + ntfy | Error in response |
-| `security` | Voice + ntfy + Discord | Security alert |
+| `error` | ntfy | Error in response |
+| `security` | ntfy + Discord | Security alert |
 
 ### Configuration
 
@@ -213,7 +213,7 @@ await sendDiscord("Message", { title: "Title", color: 0x00ff00 });
 
 ## Event Log Channel (events.jsonl)
 
-In addition to the voice, push, and Discord channels above, PAI hooks emit structured events to `${PAI_DIR}/MEMORY/STATE/events.jsonl`. This is an append-only JSONL file where each line is a typed event (e.g., `algorithm.phase`, `work.created`, `rating.captured`, `voice.sent`). It serves as a unified observability channel that any process can consume by tailing or watching the file.
+In addition to the push and Discord channels above, PAI hooks emit structured events to `${PAI_DIR}/MEMORY/STATE/events.jsonl`. This is an append-only JSONL file where each line is a typed event (e.g., `algorithm.phase`, `work.created`, `rating.captured`). It serves as a unified observability channel that any process can consume by tailing or watching the file.
 
 Events are emitted via `appendEvent()` from `${PAI_DIR}/hooks/lib/event-emitter.ts`, which is synchronous and fire-and-forget. The event type system is defined in `${PAI_DIR}/hooks/lib/event-types.ts` as a TypeScript discriminated union covering 22 event interfaces. This channel is additive -- it does not replace any of the notification channels above, and hooks emit events alongside their existing state writes and notifications.
 

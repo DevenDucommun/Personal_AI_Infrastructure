@@ -2,16 +2,6 @@
 
 **Remove backgrounds from existing images using remove.bg API.**
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running **RemoveBackground** in **Art**...
-
----
-
 ## Purpose
 
 Remove backgrounds from existing images to create transparent PNGs. Useful for:

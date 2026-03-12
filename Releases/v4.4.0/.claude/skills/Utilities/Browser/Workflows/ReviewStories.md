@@ -1,15 +1,5 @@
 # ReviewStories Workflow — Parallel User Story Validation
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running **ReviewStories** in **Browser**...
-
----
-
 Fan out YAML user stories to parallel UIReviewer agents and aggregate results.
 
 ## When to Use

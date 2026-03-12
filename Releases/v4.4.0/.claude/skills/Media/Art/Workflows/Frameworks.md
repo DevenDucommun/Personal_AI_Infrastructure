@@ -2,16 +2,6 @@
 
 **Hand-drawn frameworks, mental models, and conceptual diagrams using brand aesthetic.**
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running **Frameworks** in **Art**...
-
----
-
 Creates **VISUAL FRAMEWORKS** — signature mental models illustrated as memorable diagrams with editorial hand-drawn style.
 
 ---

@@ -173,7 +173,6 @@ Claude Code supports the following hook events:
 ### 4. **Stop**
 **When:** Main agent ({DAIDENTITY.NAME}) completes a response
 **Use Cases:**
-- Voice notifications for task completion
 - Capture work summaries and learnings
 - **Update terminal tab with final state** (color + suffix based on outcome)
 
@@ -185,7 +184,6 @@ Claude Code supports the following hook events:
       "hooks": [
         { "type": "command", "command": "${PAI_DIR}/hooks/LastResponseCache.hook.ts" },
         { "type": "command", "command": "${PAI_DIR}/hooks/ResponseTabReset.hook.ts" },
-        { "type": "command", "command": "${PAI_DIR}/hooks/VoiceCompletion.hook.ts" },
         { "type": "command", "command": "${PAI_DIR}/hooks/DocIntegrity.hook.ts" },
         { "type": "command", "command": "${PAI_DIR}/hooks/AlgorithmTab.hook.ts" }
       ]
@@ -206,11 +204,6 @@ Each Stop hook is a self-contained `.hook.ts` file that reads stdin via shared `
 - Calls `handlers/TabState.ts` to set completed state
 - Converts working gerund title to past tense
 
-**`VoiceCompletion.hook.ts`** — Send 🗣️ voice line to TTS server
-- Calls `handlers/VoiceNotification.ts` for voice delivery
-- Voice gate: only main sessions (checks `kitty-sessions/{sessionId}.json`)
-- Subagents have no kitty-sessions file → voice blocked
-
 **`AlgorithmTab.hook.ts`** — Show Algorithm phase + progress in Kitty tab title
 - Reads `work.json`, finds most recently updated active session, sets tab title
 
@@ -225,7 +218,6 @@ Each Stop hook is a self-contained `.hook.ts` file that reads stdin via shared `
 ### 5. **PreToolUse**
 **When:** Before Claude executes any tool
 **Use Cases:**
-- Voice curl gating (prevent background agents from speaking)
 - Security validation across file operations (Bash, Edit, Write, Read)
 - Tab state updates on questions
 - Agent execution guardrails
@@ -388,16 +380,15 @@ Hooks have access to all environment variables from `~/.claude/settings.json` `"
 
 **Using the Identity Module:**
 ```typescript
-import { getIdentity, getPrincipal, getDAName, getPrincipalName, getVoiceId } from './lib/identity';
+import { getIdentity, getPrincipal, getDAName, getPrincipalName } from './lib/identity';
 
 // Get full identity objects
-const identity = getIdentity();    // { name, fullName, displayName, voiceId, color }
+const identity = getIdentity();    // { name, fullName, displayName, color }
 const principal = getPrincipal();  // { name, pronunciation, timezone }
 
 // Convenience functions
 const DA_NAME = getDAName();        // "PAI"
 const USER_NAME = getPrincipalName(); // "{YourName}"
-const VOICE_ID = getVoiceId();        // from settings.json daidentity.voiceId
 ```
 
 **Why settings.json?**
@@ -493,7 +484,7 @@ if (isLearning) {
 - `✅ RESULTS:` - Outcomes
 - `📊 STATUS:` - Current state
 - `➡️ NEXT:` - Follow-up actions
-- `🎯 COMPLETED:` - **Voice notification line**
+- `🎯 COMPLETED:` - **Completion summary line**
 
 ---
 
@@ -818,7 +809,7 @@ tail ~/.claude/MEMORY/RAW/$(date +%Y-%m)/$(date +%Y-%m-%d)_all-events.jsonl
 
 ### Stop Event Not Firing (RESOLVED)
 
-**Original Issue:** Stop events were not firing consistently in earlier Claude Code versions, causing voice notifications and work capture to fail silently.
+**Original Issue:** Stop events were not firing consistently in earlier Claude Code versions, causing notifications and work capture to fail silently.
 
 **Resolution:** Fixed in Claude Code updates. The Stop hooks now fires reliably. The unified orchestrator pattern (`Stop hooks.hook.ts` delegating to `handlers/`) was implemented in part to work around this — and remains the production architecture.
 
@@ -1011,7 +1002,6 @@ Hooks in same event execute **sequentially** in order defined in settings.json:
 
 ## Related Documentation
 
-- **Voice System:** `~/.claude/VoiceServer/SKILL.md`
 - **Agent System:** `~/.claude/skills/Agents/SKILL.md`
 - **History/Memory:** `~/.claude/PAI/MEMORYSYSTEM.md`
 
@@ -1025,7 +1015,7 @@ HOOK LIFECYCLE:
 2. Claude Code writes hook data to stdin
 3. Hook script executes
 4. Hook reads stdin (with timeout)
-5. Hook performs actions (voice, capture, etc.)
+5. Hook performs actions (capture, etc.)
 6. Hook exits 0 (always succeeds)
 7. Claude Code continues
 
@@ -1050,7 +1040,6 @@ USER PROMPT SUBMIT (3 hooks):
 STOP (5 hooks):
   LastResponseCache.hook.ts      Cache response for RatingCapture bridge
   ResponseTabReset.hook.ts       Tab title/color reset after response
-  VoiceCompletion.hook.ts        Voice TTS (main sessions only)
   DocIntegrity.hook.ts           Cross-ref + semantic drift checks
   AlgorithmTab.hook.ts           Algorithm phase + progress in tab
 
@@ -1136,13 +1125,13 @@ import {
 Identity and principal configuration from settings.json.
 
 ```typescript
-import { getIdentity, getPrincipal, getDAName, getPrincipalName, getVoiceId } from './lib/identity';
+import { getIdentity, getPrincipal, getDAName, getPrincipalName } from './lib/identity';
 
-const identity = getIdentity();    // { name, fullName, displayName, voiceId, color }
+const identity = getIdentity();    // { name, fullName, displayName, color }
 const principal = getPrincipal();  // { name, pronunciation, timezone }
 ```
 
-**Used by:** handlers/VoiceNotification.ts, RatingCapture, handlers/TabState.ts
+**Used by:** RatingCapture, handlers/TabState.ts
 
 ### `PAI/Tools/Inference.ts`
 Unified AI inference with three run levels.
@@ -1195,7 +1184,7 @@ Alongside existing filesystem state writes (algorithm-state JSON, PRDs, session-
 
 | File | Purpose |
 |------|---------|
-| `${PAI_DIR}/hooks/lib/event-types.ts` | TypeScript discriminated union of all PAI event types (22 interfaces covering algorithm, work, session, rating, learning, voice, PRD, doc, build, system, tab, hook error, and custom events) |
+| `${PAI_DIR}/hooks/lib/event-types.ts` | TypeScript discriminated union of all PAI event types (22 interfaces covering algorithm, work, session, rating, learning, PRD, doc, build, system, tab, hook error, and custom events) |
 | `${PAI_DIR}/hooks/lib/event-emitter.ts` | `appendEvent()` utility that writes typed events to `${PAI_DIR}/MEMORY/STATE/events.jsonl` |
 
 ### Usage in Hooks
@@ -1215,7 +1204,7 @@ Every event has a common base shape plus type-specific fields:
 - `timestamp` (ISO 8601) -- auto-injected by `appendEvent()`
 - `session_id` -- auto-injected from `CLAUDE_SESSION_ID` env
 - `source` -- the hook or handler name that emitted the event
-- `type` -- dot-separated topic (e.g., `algorithm.phase`, `work.created`, `voice.sent`, `rating.captured`)
+- `type` -- dot-separated topic (e.g., `algorithm.phase`, `work.created`, `rating.captured`)
 
 Events use a dot-separated topic hierarchy for filtering. A `custom.*` escape hatch allows arbitrary extension without modifying the type system.
 
@@ -1227,7 +1216,6 @@ Events use a dot-separated topic hierarchy for filtering. A `custom.*` escape ha
 | `session.*` | named, completed | SessionCleanup |
 | `rating.*` | captured | RatingCapture |
 | `learning.*` | captured | WorkCompletionLearning |
-| `voice.*` | sent | VoiceNotification |
 | `prd.*` | synced | PRDSync |
 | `doc.*` | integrity | DocIntegrity |
 | `build.*` | rebuild | BuildCLAUDE (SessionStart handler) |

@@ -320,7 +320,6 @@ brew install trufflehog
 ### Research Skill
 - YouTube transcripts: `GetTranscript.ts`
 - Audio/video transcription: `extract-transcript.py`
-- Voice narration: Voice server API
 
 ### Metrics Skill
 - YouTube analytics: `YouTubeApi.ts`
@@ -358,7 +357,6 @@ The following skills have been consolidated into this Tools system:
 
 - **Images** → `Tools/RemoveBg.ts`, `Tools/AddBg.ts` (2024-12-22)
 - **VideoTranscript** → `Tools/GetTranscript.ts` (2024-12-22)
-- **VoiceNarration** → Voice server API (2024-12-22)
 - **ExtractTranscript** → `Tools/extract-transcript.py`, `Tools/ExtractTranscript.ts` (2024-12-22)
 - **YouTube** → `Tools/YouTubeApi.ts` (2024-12-22)
 - **Sensitive** → `trufflehog` system tool (2024-12-22)

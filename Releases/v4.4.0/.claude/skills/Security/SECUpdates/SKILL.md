@@ -10,16 +10,6 @@ description: Security news from tldrsec, no.security, Krebs, Schneier, and other
 
 If this directory exists, load and apply any PREFERENCES.md, configurations, or resources found there. These override default behavior. If the directory does not exist, proceed with skill defaults.
 
-## Voice Notification (REQUIRED)
-
-**Send this notification BEFORE doing anything else:**
-
-```bash
-  > /dev/null 2>&1 &
-```
-
----
-
 # SECUpdates Skill
 
 **Purpose:** Aggregate security news from multiple sources into crisp, ranked updates across three categories.

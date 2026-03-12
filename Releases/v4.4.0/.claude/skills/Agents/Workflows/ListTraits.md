@@ -2,16 +2,6 @@
 
 **Shows all available traits that can be composed into custom agents.**
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running **ListTraits** in **Agents**...
-
----
-
 ## When to Use
 
 User says:

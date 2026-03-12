@@ -1,15 +1,5 @@
 # Technical Creativity with Gemini 3 Pro
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running **TechnicalCreativityGemini3** in **BeCreative**...
-
----
-
 ## Overview
 
 **Complementary workflow to be-creative skill for TECHNICAL creativity.**

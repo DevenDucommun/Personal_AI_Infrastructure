@@ -8,7 +8,7 @@
  *   config/hooks.jsonc         → hooks, statusLine
  *   config/permissions.jsonc   → permissions
  *   config/notifications.jsonc → notifications
- *   config/preferences.jsonc   → env, voice, memory, preferences, techStack, etc.
+ *   config/preferences.jsonc   → env, memory, preferences, techStack, etc.
  *   config/spinner-verbs.json  → spinnerVerbs.verbs
  *   config/spinner-tips.json   → spinnerTipsOverride.tips
  *

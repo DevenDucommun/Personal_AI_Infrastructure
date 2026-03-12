@@ -2,16 +2,6 @@
 
 **Creates custom agents with unique personalities, colors, and voices using ComposeAgent.**
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running **CreateCustomAgent** in **Agents**...
-
----
-
 ## When to Use
 
 {PRINCIPAL.NAME} says:
@@ -57,12 +47,14 @@ bun run ~/.claude/skills/Agents/Tools/ComposeAgent.ts \
   --output json
 ```
 
-### Step 3: Extract Prompt and Color from Each
+### Step 3: Extract Prompt, Voice ID, and Color from Each
 
 ComposeAgent returns JSON with:
 ```json
 {
   "name": "Research Enthusiastic Explorer",
+  "voice": "Jeremy",
+  "voice_id": "bVMeCyTHy58xNoL34h3p",
   "color": "#FF6B35",
   "traits": ["research", "enthusiastic", "exploratory"],
   "prompt": "# Dynamic Agent: Research Enthusiastic Explorer\n\nYou are a specialized agent..."
@@ -161,24 +153,29 @@ If `--timing` is omitted, agents get no scope section (backward compatible).
 ```bash
 # Agent 1 - Climate Science Enthusiast
 bun run ComposeAgent.ts --traits "research,enthusiastic,thorough" --task "Analyze climate data patterns" --output json
+# Returns: voice="Jeremy", voice_id="bVMeCyTHy58xNoL34h3p"
 
 # Agent 2 - Skeptical Data Analyst
 bun run ComposeAgent.ts --traits "data,skeptical,systematic" --task "Analyze climate data patterns" --output json
+# Returns: voice="{PRINCIPAL.NAME}", voice_id="onwK4e9ZLuTAKqWW03F9"
 
 # Agent 3 - Creative Pattern Finder
 bun run ComposeAgent.ts --traits "data,creative,exploratory" --task "Analyze climate data patterns" --output json
+# Returns: voice="Freya", voice_id="jsCqWAovK2LkecY7zXl4"
 
 # Agent 4 - Meticulous Validator
 bun run ComposeAgent.ts --traits "research,meticulous,comparative" --task "Analyze climate data patterns" --output json
+# Returns: voice="Charlotte", voice_id="XB0fDUnXU5powFXDhCwa"
 
 # Agent 5 - Synthesizing Strategist
 bun run ComposeAgent.ts --traits "research,analytical,synthesizing" --task "Analyze climate data patterns" --output json
+# Returns: voice="Charlotte", voice_id="XB0fDUnXU5powFXDhCwa"
 
 # Launch all 5 in parallel (single message, 5 Task calls)
-# Each agent has unique personality and color
+# Each agent has unique personality and voice
 ```
 
-**Result:** 5 distinct agents with different analytical approaches and unique personalities analyzing the data from different perspectives.
+**Result:** 5 distinct agents with different analytical approaches and unique voices analyzing the data from different perspectives.
 
 ## Common Mistakes to Avoid
 

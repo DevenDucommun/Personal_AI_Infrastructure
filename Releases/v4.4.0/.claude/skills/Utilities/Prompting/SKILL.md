@@ -10,16 +10,6 @@ description: Meta-prompting system that generates optimized prompts using templa
 
 If this directory exists, load and apply any PREFERENCES.md, configurations, or resources found there. These override default behavior. If the directory does not exist, proceed with skill defaults.
 
-
-## 🚨 MANDATORY: Voice Notification (REQUIRED BEFORE ANY ACTION)
-
-**You MUST send this notification BEFORE doing anything else when this skill is invoked.**
-
-1. **Send voice notification**:
-   ```bash
-        > /dev/null 2>&1 &
-   ```
-
 2. **Output text notification**:
    ```
    Running the **WorkflowName** workflow in the **Prompting** skill to ACTION...
@@ -52,7 +42,6 @@ Complete prompt engineering documentation based on:
 
 **Key Topics:**
 - Markdown-first design (NO XML tags)
-
 
 ## Usage Examples
 
@@ -126,7 +115,7 @@ The templating system eliminated **~35,000 tokens (65% reduction)** across PAI:
 |------|--------|-------|---------|
 | SKILL.md Frontmatter | 20,750 | 8,300 | 60% |
 | Agent Briefings | 6,400 | 1,900 | 70% |
-| Voice Notifications | 6,225 | 725 | 88% |
+| Notifications | 6,225 | 725 | 88% |
 | Workflow Steps | 7,500 | 3,000 | 60% |
 | **TOTAL** | ~53,000 | ~18,000 | **65%** |
 

@@ -60,8 +60,6 @@ source: "ComposeAgent"      # Creation method
 
 **Real Name**: {persona.name}
 **Character Archetype**: "{persona.title}"
-**Voice Settings**: Stability {voice.stability}, Similarity Boost {voice.similarity_boost}, Speed {voice.speed}
-
 ## Backstory
 
 [Rich narrative backstory — 200-400 words. Cover: origin, formative experiences,
@@ -106,11 +104,6 @@ Preferences that color their work. Written as bullet points.]
 [Brief description of how they communicate — speed, formality, verbal tics,
 characteristic expressions, emotional range.]
 
-## Voice Profile Rationale
-
-[Why these specific voice parameters match this personality.
-Explain stability level, speed, similarity boost choices.
-How the voice embodies the character.]
 ```
 
 ### Section 2: Operational Context
@@ -122,18 +115,8 @@ How the voice embodies the character.]
 
 ## Startup Sequence
 
-1. Send voice notification:
-\`\`\`bash
-\`\`\`
-
-2. Load knowledge base:
+1. Load knowledge base:
    - Read: [relevant context files]
-
-## Voice Notification Format
-
-Every response must include a voice curl:
-\`\`\`bash
-\`\`\`
 
 ## Output Format
 
@@ -158,10 +141,9 @@ SUMMARY, ANALYSIS, ACTIONS, RESULTS, STATUS, CAPTURE, NEXT, STORY EXPLANATION, C
 
 ### Voice Selection Principles
 
-1. **Match personality first** — voice parameters should embody the character
-2. **Unique per agent** — no two agents should share the same voiceId
-3. **Gender alignment** — voice should match character gender identity
-4. **Consistency** — same agent always sounds the same (high similarity_boost for authority, lower for creativity)
+1. **Match personality first** — parameters should embody the character
+2. **Unique per agent** — no two agents should share the same color
+3. **Consistency** — same agent always has the same visual identity
 
 ---
 

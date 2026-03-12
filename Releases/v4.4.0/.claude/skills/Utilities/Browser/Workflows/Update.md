@@ -1,15 +1,5 @@
 # Update Workflow
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running **Update** in **Browser**...
-
----
-
 Verify browser tools are current and working.
 
 ## When to Use

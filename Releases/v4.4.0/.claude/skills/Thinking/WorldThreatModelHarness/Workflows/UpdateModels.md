@@ -29,10 +29,7 @@ Inventory which models exist and their last_updated dates
 Determine: full creation vs. targeted update
 ```
 
-### Step 1: Voice Notification
-
-```bash
-```
+### Step 1: Notification
 
 ### Step 2: Determine Update Scope
 
@@ -99,9 +96,6 @@ Last full update: {date}
 ```
 
 ### Step 6: Voice Completion
-
-```bash
-```
 
 ## Agent Prompt Template (for parallel model creation)
 

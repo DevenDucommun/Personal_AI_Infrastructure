@@ -17,11 +17,7 @@ go install github.com/danielmiessler/fabric@latest
 
 ## Workflow Steps
 
-### Step 1: Send Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
+### Step 1: Send Notification
 
 ### Step 2: Check Current Pattern Count
 

@@ -1251,7 +1251,7 @@ The templating system reduces duplication by ~65% across the skill system:
 | Area | Before | After | Savings |
 |------|--------|-------|---------|
 | Agent Briefings | 6,400 tokens | 1,900 tokens | 70% |
-| Voice Notifications | 6,225 tokens | 725 tokens | 88% |
+| Notifications | 6,225 tokens | 725 tokens | 88% |
 | SKILL.md Files | 20,750 tokens | 8,300 tokens | 60% |
 | Workflow Steps | 7,500 tokens | 3,000 tokens | 60% |
 

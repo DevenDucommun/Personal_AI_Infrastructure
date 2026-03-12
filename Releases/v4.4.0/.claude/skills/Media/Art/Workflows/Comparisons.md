@@ -2,16 +2,6 @@
 
 **Hand-drawn side-by-side visual comparisons using brand aesthetic.**
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running **Comparisons** in **Art**...
-
----
-
 Creates **VISUAL COMPARISONS** — "X vs Y" split compositions, before/after transformations, and illustrated contrasts with editorial style.
 
 ---

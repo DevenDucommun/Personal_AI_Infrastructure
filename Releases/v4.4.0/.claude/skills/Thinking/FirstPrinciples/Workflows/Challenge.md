@@ -2,16 +2,6 @@
 
 **Purpose**: Systematically challenge every assumption and constraint, classifying each as hard constraint (physics), soft constraint (choice), or unvalidated assumption.
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running the **Challenge** workflow in the **FirstPrinciples** skill to test assumptions...
-
----
-
 **When to Use**:
 - After Deconstruct, to evaluate what's actually fixed
 - When requirements feel overly restrictive

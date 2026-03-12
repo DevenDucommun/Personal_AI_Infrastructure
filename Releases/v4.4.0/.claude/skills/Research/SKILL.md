@@ -23,16 +23,6 @@ description: Comprehensive research and content extraction — quick/standard/ex
 
 If this directory exists, load and apply any PREFERENCES.md, configurations, or resources found there. These override default behavior. If the directory does not exist, proceed with skill defaults.
 
-
-## 🚨 MANDATORY: Voice Notification (REQUIRED BEFORE ANY ACTION)
-
-**You MUST send this notification BEFORE doing anything else when this skill is invoked.**
-
-1. **Send voice notification**:
-   ```bash
-        > /dev/null 2>&1 &
-   ```
-
 2. **Output text notification**:
    ```
    Running the **WorkflowName** workflow in the **Research** skill to ACTION...
@@ -51,7 +41,6 @@ Comprehensive research, analysis, and content extraction system.
 Research agents hallucinate URLs. A single broken link is a catastrophic failure.
 
 ---
-
 
 ## Workflow Routing
 

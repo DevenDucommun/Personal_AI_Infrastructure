@@ -179,7 +179,7 @@ git checkout v2.5.0 -- PAI/Prompting.md
 | Agent Personalities | 3,000 | 1,200 | 60% |
 | Workflow Steps | 7,500 | 3,000 | 60% |
 | Agent Briefings | 6,400 | 1,900 | 70% |
-| Voice Notifications | 6,225 | 725 | 88% |
+| Notifications | 6,225 | 725 | 88% |
 | **TOTAL** | ~53,000 | ~18,000 | **65%** |
 
 ## Available Helpers

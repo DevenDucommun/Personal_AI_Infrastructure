@@ -10,16 +10,6 @@ description: 68 US economic indicators from FRED, EIA, Treasury, BLS, Census API
 
 If this directory exists, load and apply any PREFERENCES.md, configurations, or resources found there. These override default behavior. If the directory does not exist, proceed with skill defaults.
 
-
-## 🚨 MANDATORY: Voice Notification (REQUIRED BEFORE ANY ACTION)
-
-**You MUST send this notification BEFORE doing anything else when this skill is invoked.**
-
-1. **Send voice notification**:
-   ```bash
-        > /dev/null 2>&1 &
-   ```
-
 2. **Output text notification**:
    ```
    Running the **WorkflowName** workflow in the **USMetrics** skill to ACTION...
@@ -38,7 +28,6 @@ All metrics sourced from:
 - **Master Document:** `US-Common-Metrics.md` (68 metrics across 10 categories)
 - **Source Documentation:** `source.md` (full methodology)
 - **Underlying APIs:** FRED, EIA, Treasury FiscalData, BLS, Census, CDC, EPA
-
 
 ## Workflow Routing
 

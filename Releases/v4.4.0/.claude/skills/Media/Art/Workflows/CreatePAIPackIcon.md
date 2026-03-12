@@ -2,16 +2,6 @@
 
 **Generate 256x256 transparent PNG icons for PAI packs.**
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running **CreatePAIPackIcon** in **Art**...
-
----
-
 ## Purpose
 
 Create consistent, professional icons for PAI packs following the established visual identity.

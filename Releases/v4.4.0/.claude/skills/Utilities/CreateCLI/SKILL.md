@@ -10,16 +10,6 @@ description: Generate production-ready TypeScript CLIs with 3-tier template syst
 
 If this directory exists, load and apply any PREFERENCES.md, configurations, or resources found there. These override default behavior. If the directory does not exist, proceed with skill defaults.
 
-
-## 🚨 MANDATORY: Voice Notification (REQUIRED BEFORE ANY ACTION)
-
-**You MUST send this notification BEFORE doing anything else when this skill is invoked.**
-
-1. **Send voice notification**:
-   ```bash
-        > /dev/null 2>&1 &
-   ```
-
 2. **Output text notification**:
    ```
    Running the **WorkflowName** workflow in the **CreateCLI** skill to ACTION...
@@ -34,7 +24,6 @@ If this directory exists, load and apply any PREFERENCES.md, configurations, or 
 Generate production-ready TypeScript CLIs with comprehensive documentation, type safety, error handling, and CLI-First Architecture principles.
 
 ---
-
 
 ## Workflow Routing
 

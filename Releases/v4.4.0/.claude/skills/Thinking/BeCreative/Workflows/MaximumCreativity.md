@@ -1,15 +1,5 @@
 # MaximumCreativity Workflow
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running **MaximumCreativity** in **BeCreative**...
-
----
-
 **When to use:** Need maximum creative diversity and unconventional thinking
 
 ---

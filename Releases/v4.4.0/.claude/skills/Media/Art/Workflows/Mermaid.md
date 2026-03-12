@@ -2,16 +2,6 @@
 
 **Hand-drawn technical diagrams combining Mermaid structure with Excalidraw sketchy aesthetic and brand color scheme.**
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running **Mermaid** in **Art**...
-
----
-
 Creates **EXCALIDRAW-STYLE MERMAID DIAGRAMS** — flowcharts, sequence diagrams, state machines, and other technical diagrams with whiteboard hand-drawn feel, derived from content via story explanation.
 
 ---

@@ -2,16 +2,6 @@
 
 **Hand-drawn conceptual maps showing idea territories and domain landscapes using brand aesthetic.**
 
-## Voice Notification
-
-```bash
-  > /dev/null 2>&1 &
-```
-
-Running **Maps** in **Art**...
-
----
-
 Creates **CONCEPTUAL MAPS** — illustrated maps of idea territories, not geographic locations, with editorial hand-drawn style.
 
 ---

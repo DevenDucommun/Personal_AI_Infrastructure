@@ -41,7 +41,7 @@ describe('ModeClassifier', () => {
     test('refactor component → ALGORITHM',
       () => expect(classify('refactor the login component')).toBe('ALGORITHM'));
     test('deploy server → ALGORITHM',
-      () => expect(classify('deploy the voice server update')).toBe('ALGORITHM'));
+      () => expect(classify('deploy the notification server update')).toBe('ALGORITHM'));
     test('debug pipeline → ALGORITHM',
       () => expect(classify('debug the build pipeline error')).toBe('ALGORITHM'));
     test('set config → ALGORITHM',
