@@ -31,9 +31,41 @@
  * ============================================================================
  */
 
-import { spawn } from "child_process";
+import { spawn, execSync } from "child_process";
+import { existsSync } from "fs";
+import { join } from "path";
+import { homedir } from "os";
 
 export type InferenceLevel = 'fast' | 'standard' | 'smart';
+
+/**
+ * Resolve the absolute path to the `claude` binary.
+ * Hook subprocesses often have a stripped PATH that doesn't include
+ * ~/.local/bin where claude is installed. We check known locations
+ * and fall back to `which` if available.
+ */
+function resolveClaudeBinary(): string {
+  // Check known install locations first (fastest)
+  const knownPaths = [
+    join(homedir(), '.local', 'bin', 'claude'),
+    '/usr/local/bin/claude',
+    '/opt/homebrew/bin/claude',
+    join(homedir(), '.npm-global', 'bin', 'claude'),
+  ];
+  for (const p of knownPaths) {
+    if (existsSync(p)) return p;
+  }
+
+  // Fall back to which (works when PATH is intact)
+  try {
+    return execSync('which claude', { encoding: 'utf-8' }).trim();
+  } catch {
+    // Last resort — let spawn try 'claude' and fail with a clear error
+    return 'claude';
+  }
+}
+
+const CLAUDE_BIN = resolveClaudeBinary();
 
 export interface InferenceOptions {
   systemPrompt: string;
@@ -88,7 +120,7 @@ export async function inference(options: InferenceOptions): Promise<InferenceRes
     let stdout = '';
     let stderr = '';
 
-    const proc = spawn('claude', args, {
+    const proc = spawn(CLAUDE_BIN, args, {
       env,
       stdio: ['pipe', 'pipe', 'pipe'],
     });
