@@ -109,7 +109,8 @@ interface UpdateData {
 // ============================================================================
 
 const PAI_DIR = getPaiDir();
-const CREATE_UPDATE_SCRIPT = join(PAI_DIR, 'skills/_SYSTEM/Tools/CreateUpdate.ts');
+// NOTE: _SYSTEM skill category was removed in a prior version. CreateUpdate.ts no longer exists.
+// const CREATE_UPDATE_SCRIPT = join(PAI_DIR, 'skills/_SYSTEM/Tools/CreateUpdate.ts');
 
 // Words that indicate generic/bad titles - reject these
 const GENERIC_TITLE_PATTERNS = [
@@ -719,7 +720,7 @@ async function generateVerboseNarrative(
         future_impact: aiNarrative.future_impact,
         future_bullets: aiNarrative.future_bullets,
         verification_steps: aiNarrative.verification_steps,
-        verification_commands: [`bun ~/.claude/skills/_SYSTEM/Tools/UpdateSearch.ts recent 5`],
+        verification_commands: [],
         confidence: 'high',
       },
       aiTitle: aiNarrative.title,
@@ -749,7 +750,7 @@ async function generateVerboseNarrative(
       future_impact: `The ${changeType.replace('_', ' ')} will use updated behavior.`,
       future_bullets: ['Changes are active for future sessions'],
       verification_steps: ['Changes applied via automatic detection'],
-      verification_commands: [`bun ~/.claude/skills/_SYSTEM/Tools/UpdateSearch.ts recent 5`],
+      verification_commands: [],
       confidence: 'medium',
     },
   };
@@ -802,20 +803,9 @@ async function createUpdateEntry(data: UpdateData): Promise<void> {
   console.error(`[IntegrityMaintenance] Significance: ${data.significance}`);
   console.error(`[IntegrityMaintenance] Change type: ${data.change_type}`);
 
-  // Call CreateUpdate.ts with --stdin
-  const child = spawn('bun', [CREATE_UPDATE_SCRIPT, '--stdin'], {
-    stdio: ['pipe', 'inherit', 'inherit'],
-  });
-
-  child.stdin?.write(JSON.stringify(input));
-  child.stdin?.end();
-
-  await new Promise<void>((resolve, reject) => {
-    child.on('close', (code) => {
-      if (code === 0) resolve();
-      else reject(new Error(`CreateUpdate exited with code ${code}`));
-    });
-  });
+  // NOTE: CreateUpdate.ts (skills/_SYSTEM/Tools/) was removed in a prior version.
+  // Logging the update data instead until a replacement is implemented.
+  console.error(`[IntegrityMaintenance] Update entry: ${JSON.stringify({ title: data.title, significance: data.significance, change_type: data.change_type }, null, 2)}`);
 }
 
 // ============================================================================

@@ -12,7 +12,7 @@
 Discovered during architecture review 2026-03-11. These bugs existed before our cleanup work.
 See `HOOK-SYSTEM-AUDIT.md` for full evidence and `ARCHITECTURE-REVIEW-v4.4.1.md` for context.
 
-## 0.1 StopOrchestrator Phantom Imports — 🔴 OPEN (Critical)
+## 0.1 StopOrchestrator Phantom Imports — ✅ FIXED
 
 `hooks/StopOrchestrator.hook.ts` imports two handler files that don't exist:
 - `./handlers/AlgorithmEnrichment` — never created
@@ -22,7 +22,7 @@ The orchestrator crashes silently on every Stop event. The other 4 Stop hooks co
 
 **Fix:** Remove phantom imports. Decide whether to create the handlers or remove the orchestrator concept.
 
-## 0.2 StopOrchestrator Wrong TranscriptParser Path — 🔴 OPEN (Critical)
+## 0.2 StopOrchestrator Wrong TranscriptParser Path — ✅ FIXED
 
 `StopOrchestrator.hook.ts:23` imports from `../skills/PAI/Tools/TranscriptParser` — wrong path.
 Correct path: `../PAI/Tools/TranscriptParser`
@@ -31,7 +31,7 @@ This is a second fatal import error in the same file.
 
 **Fix:** Change `../skills/PAI/Tools/` to `../PAI/Tools/`.
 
-## 0.3 DocCrossRefIntegrity Double Registration — 🟡 OPEN (High)
+## 0.3 DocCrossRefIntegrity Double Registration — ✅ FIXED
 
 `handleDocCrossRefIntegrity` is called by both:
 - `DocIntegrity.hook.ts` (thin wrapper, works)
@@ -41,13 +41,13 @@ Currently masked by Bug 0.1 — if the orchestrator is fixed without deduplicati
 
 **Fix:** Choose one owner. Recommendation: let StopOrchestrator own it (Option A in HOOK-SYSTEM-AUDIT.md).
 
-## 0.4 IntegrityMaintenance Missing Tool Reference — 🟡 OPEN (Medium)
+## 0.4 IntegrityMaintenance Missing Tool Reference — ✅ FIXED
 
 `PAI/Tools/IntegrityMaintenance.ts:112` references `skills/_SYSTEM/Tools/CreateUpdate.ts` which doesn't exist. No `_SYSTEM` directory exists under skills/.
 
 **Fix:** Remove or update the reference.
 
-## 0.5 Voice Remnants in DocCrossRefIntegrity — 🟢 OPEN (Low)
+## 0.5 Voice Remnants in DocCrossRefIntegrity — ✅ FIXED
 
 `hooks/handlers/DocCrossRefIntegrity.ts` lines 870-885 contain a 3-second delay + voice notification code. Voice system was removed in v4.3.2-dev cleanup.
 
@@ -269,12 +269,12 @@ Contains `BackupRestore.ts`, `validate-protected.ts`, `README.md`, and a PNG. Th
 
 # SUMMARY — Action Priority Matrix
 
-**Urgent (P0 — runtime bugs, need decision):**
-- [ ] Fix StopOrchestrator phantom imports (AlgorithmEnrichment, RebuildSkill)
-- [ ] Fix StopOrchestrator TranscriptParser path
-- [ ] Resolve DocCrossRefIntegrity double registration
-- [ ] Fix IntegrityMaintenance missing tool reference
-- [ ] Remove voice remnants from DocCrossRefIntegrity
+**Urgent (P0 — runtime bugs):**
+- [x] Fix StopOrchestrator phantom imports (AlgorithmEnrichment, RebuildSkill)
+- [x] Fix StopOrchestrator TranscriptParser path
+- [x] Resolve DocCrossRefIntegrity double registration
+- [x] Fix IntegrityMaintenance missing tool reference
+- [x] Remove voice remnants from DocCrossRefIntegrity
 
 **Immediate (P1 — fix now):**
 - [x] Remove 10 phantom hook registrations from settings.json

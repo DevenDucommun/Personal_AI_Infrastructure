@@ -10,8 +10,10 @@
  *
  * HANDLERS (in hooks/handlers/):
  * - TabState.ts: Resets Kitty tab to default UL blue
- * - RebuildSkill.ts: Auto-rebuilds SKILL.md from Components/ if modified
- * - DocCrossRefIntegrity.ts: Checks if system docs/hooks were modified, updates cross-refs if so
+ *
+ * NOTE: DocCrossRefIntegrity is handled by standalone DocIntegrity.hook.ts.
+ * AlgorithmEnrichment and RebuildSkill handlers were planned but never created.
+ * They were removed in v4.4.1-dev to fix silent crash on import.
  *
  * ERROR HANDLING:
  * - Handler failures: Isolated via Promise.allSettled
@@ -20,12 +22,9 @@
  * - Non-blocking, typical execution: <100ms
  */
 
-import { parseTranscript, extractCompletionPlain, extractStructuredSections } from '../skills/PAI/Tools/TranscriptParser';
-import type { ParsedTranscript } from '../skills/PAI/Tools/TranscriptParser';
+import { parseTranscript, extractCompletionPlain, extractStructuredSections } from '../PAI/Tools/TranscriptParser';
+import type { ParsedTranscript } from '../PAI/Tools/TranscriptParser';
 import { handleTabState } from './handlers/TabState';
-import { handleRebuildSkill } from './handlers/RebuildSkill';
-import { handleAlgorithmEnrichment } from './handlers/AlgorithmEnrichment';
-import { handleDocCrossRefIntegrity } from './handlers/DocCrossRefIntegrity';
 
 interface HookInput {
   session_id: string;
@@ -97,13 +96,12 @@ async function main() {
   }
 
   // Run handlers
+  // NOTE: DocCrossRefIntegrity is owned by standalone DocIntegrity.hook.ts
+  // Future: consolidate LastResponseCache, AlgorithmTracker, TerminalState into this orchestrator
   const handlers: Promise<void>[] = [
     handleTabState(parsed, hookInput.session_id),
-    handleRebuildSkill(),
-    handleAlgorithmEnrichment(parsed, hookInput.session_id),
-    handleDocCrossRefIntegrity(parsed, hookInput),
   ];
-  const handlerNames = ['TabState', 'RebuildSkill', 'AlgorithmEnrichment', 'DocCrossRefIntegrity'];
+  const handlerNames = ['TabState'];
 
   const results = await Promise.allSettled(handlers);
 
