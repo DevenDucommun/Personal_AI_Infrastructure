@@ -12,6 +12,7 @@
 | `HOOK-SYSTEM-AUDIT.md` | Deep audit of the hook system — registration map, execution flow, bugs |
 | `THEHOOKSYSTEM-Reference.md` | Hook system reference documentation |
 | `SKILLSYSTEM-Reference.md` | Skill system reference documentation |
+| `ARCHITECTURAL-UNDERSTANDING.md` | Original comprehensive reference (architecture, decomposition blueprints, future vision) |
 
 ## How to Use
 
