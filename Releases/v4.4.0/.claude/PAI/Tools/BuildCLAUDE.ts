@@ -68,6 +68,11 @@ export function needsRebuild(): boolean {
     if (outputContent.includes(key)) return true;
   }
 
+  // Check if PAI version in output matches settings
+  const paiVersionPattern = /# PAI ([\d.]+)/;
+  const versionMatch = outputContent.match(paiVersionPattern);
+  if (versionMatch && versionMatch[1] !== variables["{{PAI_VERSION}}"]) return true;
+
   // Check if algorithm version in output matches LATEST
   const algoVersion = getAlgorithmVersion();
   const algoPathPattern = /PAI\/Algorithm\/(.+?)\.md/;

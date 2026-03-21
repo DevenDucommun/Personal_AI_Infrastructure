@@ -223,17 +223,15 @@ Future consideration: split runtime state into separate `state.json`.
 
 Added inline justification: `faster-whisper` is a Python-only library (CTranslate2 bindings for Whisper). No equivalent Bun/Node binding with comparable performance exists. Kept as Python with PEP 723 uv script.
 
-## 4.9 CLAUDE.md Version String is Wrong
+## 4.9 CLAUDE.md Version String is Wrong — ✅ FIXED
 
-`CLAUDE.md` line 1 says `# PAI 4.3.0` but we're on v4.4.0 release / v4.4.1-dev branch. The most important file in the system has a stale version. Note: version strings in config files were fixed in §2.1, but CLAUDE.md itself was missed because it's generated from `CLAUDE.md.template` by `BuildCLAUDE.ts`.
+`CLAUDE.md` line 1 said `# PAI 4.3.0` — stale because the template had diverged from CLAUDE.md and needsRebuild() didn't detect version drift.
 
-**Fix:** Either update the template's version placeholder or make BuildCLAUDE.ts inject the version dynamically from `config/preferences.jsonc:pai.version`.
+**Fixed:** Synced CLAUDE.md.template with actual CLAUDE.md content (added effort tier pre-classification, Micro mode, simplified MINIMAL). Rebuilt CLAUDE.md (now shows 4.4.0). Added PAI version drift detection to needsRebuild() so future version bumps trigger automatic rebuild.
 
-## 4.10 BuildCLAUDE.ts Exists in Two Places
+## 4.10 BuildCLAUDE.ts Exists in Two Places — ✅ NOT AN ISSUE
 
-The same tool exists at both `hooks/handlers/BuildCLAUDE.ts` and `PAI/Tools/BuildCLAUDE.ts`. Unclear if they're in sync.
-
-**Fix:** Audit both files. Keep one canonical version, make the other import from it or remove it.
+`hooks/handlers/BuildCLAUDE.ts` is a 22-line thin wrapper that imports `needsRebuild()` and `build()` from `PAI/Tools/BuildCLAUDE.ts`. This is the correct handler extraction pattern (same as DocIntegrity → DocCrossRefIntegrity). No duplication.
 
 ## 4.11 No Memory TTL or Archival Strategy
 
