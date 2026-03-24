@@ -13,6 +13,7 @@
 | `THEHOOKSYSTEM-Reference.md` | Hook system reference documentation |
 | `SKILLSYSTEM-Reference.md` | Skill system reference documentation |
 | `ARCHITECTURAL-UNDERSTANDING.md` | Original comprehensive reference (architecture, decomposition blueprints, future vision) |
+| `AUDIT-STATUS.md` | Current audit progress and next steps |
 
 ## How to Use
 

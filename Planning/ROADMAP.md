@@ -1,6 +1,6 @@
 # PAI Roadmap
 
-> **For AI context:** This file maps what PAI is building toward. If you're onboarding to the project or helping plan new features, start here. The [IMPROVEMENT-INDEX.md](IMPROVEMENT-INDEX.md) tracks internal cleanup and architectural work; this file tracks user-facing product direction.
+> **For AI context:** This file maps what PAI is building toward. If you're onboarding to the project or helping plan new features, start here. The [IMPROVEMENT-INDEX.md](../Architecture/IMPROVEMENT-INDEX.md) tracks internal cleanup and architectural work; this file tracks user-facing product direction.
 >
 > **For humans:** Items are grouped by theme. No dates — these ship when they're ready and right.
 
@@ -14,7 +14,7 @@
 | **v4.4.0** (2026-03-10) | Voice TTS fully removed, BuildSettings env-var expansion, hook execute-bit fixes, algorithm v3.9.0 |
 | **v4.1.0** (2026-03-06) | Atomic writes, payload schema validation, settings split from monolith, `pai upgrade` CLI |
 
-[Full release history →](Releases/)
+[Full release history →](../Releases/)
 
 ---
 
@@ -42,7 +42,7 @@ Push notifications to Email, Discord, Telegram, or Slack when long-running tasks
 
 ## Internal / Developer Backlog
 
-These are architectural improvements tracked in [IMPROVEMENT-INDEX.md](IMPROVEMENT-INDEX.md). Listed here for completeness so AI assistants can see the full picture:
+These are architectural improvements tracked in [IMPROVEMENT-INDEX.md](../Architecture/IMPROVEMENT-INDEX.md). Listed here for completeness so AI assistants can see the full picture:
 
 - **Memory TTL/archival** — WISDOM/, LEARNING/, RELATIONSHIP/ grow unbounded; need pruning strategy
 - **Action Runner v1→v2 migration** — two versions of the runner are both actively imported

@@ -2,7 +2,7 @@
 
 > Branch: `v4.5.0-dev`
 > Started: 2026-03-12
-> Previous: v4.4.0 merged to main (`e2fa45b`)
+> Previous: v4.4.1 merged to main (2026-03-23) — P0–P4 bug fixes, phantom hooks, doc accuracy, CLAUDE.md drift detection
 
 ---
 
@@ -80,5 +80,5 @@
 | Item | Value |
 |------|-------|
 | Branch | `v4.5.0-dev` on `DevenDucommun/Personal_AI_Infrastructure` |
-| Base | `main` at `e2fa45b` (v4.4.0 merged) |
-| v4.4.0 branch | `v4.4.0-dev` — kept for reference, no longer active |
+| Base | `main` at `20d6d21` (v4.4.1 merged 2026-03-23) |
+| v4.4.1 branch | `v4.4.1-dev` — merged, no longer active |
