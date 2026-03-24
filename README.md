@@ -49,9 +49,9 @@
 
 **Get Started:** [Installation](#-installation) · [Releases](Releases/) · [Packs](Packs/)
 
-**Resources:** [FAQ](#-faq) · [Roadmap](#-roadmap) · [Community](#-community) · [Contributing](#-contributing)
+**Resources:** [FAQ](#-faq) · [Roadmap](ROADMAP.md) · [Community](#-community) · [Contributing](#-contributing)
 
-**Developers:** [System Atlas](SYSTEM-ATLAS.md) · [Improvement Index](IMPROVEMENT-INDEX.md)
+**Developers:** [System Atlas](SYSTEM-ATLAS.md) · [Improvement Index](IMPROVEMENT-INDEX.md) · [Roadmap](ROADMAP.md)
 
 <br/>
 
@@ -460,12 +460,9 @@ Recovery is straightforward:
 
 ## 🎯 Roadmap
 
-| Feature | Description |
-|---------|-------------|
-| **Local Model Support** | Run PAI with local models (Ollama, llama.cpp) for privacy and cost control |
-| **Granular Model Routing** | Route different tasks to different models based on complexity |
-| **Remote Access** | Access your PAI from anywhere—mobile, web, other devices |
-| **External Notifications** | Robust notification system for Email, Discord, Telegram, Slack |
+See **[ROADMAP.md](ROADMAP.md)** for the full roadmap with context, priorities, and recently shipped items.
+
+**Upcoming highlights:** Local model support (Ollama/llama.cpp), granular model routing, remote access, and external notifications (Discord, Telegram, Slack).
 
 ---
 
