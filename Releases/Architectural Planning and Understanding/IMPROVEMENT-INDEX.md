@@ -20,17 +20,15 @@ See `HOOK-SYSTEM-AUDIT.md` for full evidence and `ARCHITECTURE-REVIEW-v4.4.1.md`
 
 Fixed `../skills/PAI/Tools/TranscriptParser` to `../PAI/Tools/TranscriptParser`.
 
-## 0.3 DocCrossRefIntegrity Double Registration — 🟡 OPEN (Now exposed)
+## 0.3 DocCrossRefIntegrity Double Registration — ✅ FIXED
 
-StopOrchestrator is fixed (0.1, 0.2) but both it AND DocIntegrity.hook.ts are registered on Stop in hooks.jsonc. DocCrossRefIntegrity now runs twice per Stop event.
-
-**Fix:** Remove DocIntegrity.hook.ts from hooks.jsonc Stop registration. StopOrchestrator owns it. Then delete the orphaned file. See AUDIT-STATUS.md P0.
+DocIntegrity.hook.ts deleted. StopOrchestrator now owns DocCrossRefIntegrity as sole caller. No more duplicate execution on Stop.
 
 ## 0.4 IntegrityMaintenance Missing Tool Reference — ✅ FIXED
 
-Fixed stale `skills/_SYSTEM/Tools/CreateUpdate.ts` path to `PAI/Tools/CreateUpdate.ts`. Added existence guard to skip gracefully if file not found.
+Fixed stale `skills/_SYSTEM/Tools/CreateUpdate.ts` path. Added existence guard to skip gracefully if file not found.
 
-## 0.5 Voice Remnants in DocCrossRefIntegrity — 🟢 OPEN (Low)
+## 0.5 Voice Remnants in DocCrossRefIntegrity — ✅ FIXED
 
 `hooks/handlers/DocCrossRefIntegrity.ts` lines 870-885 contain a 3-second delay + voice notification code. Voice system was removed in v4.3.2-dev cleanup.
 
@@ -208,13 +206,11 @@ Added inline justification: `faster-whisper` is a Python-only library (CTranslat
 
 ## 4.9 CLAUDE.md Version String is Wrong — ✅ FIXED
 
-CLAUDE.md updated to 4.4.0. CLAUDE.md.template updated with effort tier table, Micro/Standard+ routing, and `{{ALGO_PATH}}` variable. preferences.jsonc version corrected to 4.4.0.
+Synced CLAUDE.md.template with actual CLAUDE.md content (effort tier pre-classification, Micro mode, simplified MINIMAL). Rebuilt CLAUDE.md (now shows 4.4.0). Added PAI version drift detection to needsRebuild() so future version bumps trigger automatic rebuild.
 
-## 4.10 BuildCLAUDE.ts Exists in Two Places
+## 4.10 BuildCLAUDE.ts Exists in Two Places — ✅ NOT AN ISSUE
 
-The same tool exists at both `hooks/handlers/BuildCLAUDE.ts` and `PAI/Tools/BuildCLAUDE.ts`. Unclear if they're in sync.
-
-**Fix:** Audit both files. Keep one canonical version, make the other import from it or remove it.
+`hooks/handlers/BuildCLAUDE.ts` is a 22-line thin wrapper that imports `needsRebuild()` and `build()` from `PAI/Tools/BuildCLAUDE.ts`. This is the correct handler extraction pattern (same as DocIntegrity → DocCrossRefIntegrity). No duplication.
 
 ## 4.11 No Memory TTL or Archival Strategy
 
@@ -250,12 +246,12 @@ Contains `BackupRestore.ts`, `validate-protected.ts`, `README.md`, and a PNG. Th
 
 # SUMMARY — Action Priority Matrix
 
-**Urgent (P0 — runtime bugs, need decision):**
+**Urgent (P0 — runtime bugs):**
 - [x] Fix StopOrchestrator phantom imports (AlgorithmEnrichment, RebuildSkill)
 - [x] Fix StopOrchestrator TranscriptParser path
-- [ ] Resolve DocCrossRefIntegrity double registration (exposed now that StopOrchestrator works)
+- [x] Resolve DocCrossRefIntegrity double registration (DocIntegrity.hook.ts deleted, StopOrchestrator owns it)
 - [x] Fix IntegrityMaintenance missing tool reference
-- [ ] Remove voice remnants from DocCrossRefIntegrity
+- [x] Remove voice remnants from DocCrossRefIntegrity
 
 **Immediate (P1 — fix now):**
 - [x] Remove 10 phantom hook registrations from settings.json

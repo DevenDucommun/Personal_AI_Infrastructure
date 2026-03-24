@@ -42,7 +42,7 @@ FOR: Multi-step, complex, or difficult work. Troubleshooting, debugging, buildin
 
 ## MINIMAL — pure acknowledgments, ratings
 ```
-═══ PAI ═══════════════════════════
+═══ PAI ═════════════════════════════════
 🔄 ITERATION on: [16 words of context if this is a follow-up]
 📃 CONTENT: [Up to 24 lines of the content, if there is any]
 ```
