@@ -22,15 +22,12 @@
  * 3. Show validated title → ⚙️ orange
  * 4. If validation fails both paths → getWorkingFallback()
  *
- * Tab title updates on prompt receipt.
- * Shows what this session is working on at a glance.
  */
 
-import { inference } from '../skills/PAI/Tools/Inference';
+import { inference } from '../PAI/Tools/Inference';
 import { isValidWorkingTitle, getWorkingFallback } from './lib/output-validators';
 import { setTabState, getSessionOneWord } from './lib/tab-setter';
 import { getIdentity } from './lib/identity';
-import { readCache } from './PromptAnalysis.hook';
 
 interface HookInput {
   session_id: string;
@@ -205,15 +202,8 @@ async function main() {
     const thinkingTitle = quickTitle || getWorkingFallback();
     setTabState({ title: `🧠 ${prefix}${thinkingTitle}`, state: 'thinking', sessionId: data.session_id });
 
-    // Phase 2: Use batched PromptAnalysis cache if available, else run own inference
-    const cache = readCache(data.session_id);
-    let inferredTitle: string | null = null;
-    if (cache?.tabTitle && isValidWorkingTitle(cache.tabTitle) && isTitleRelevantToPrompt(cache.tabTitle, prompt)) {
-      inferredTitle = cache.tabTitle;
-      console.error(`[UpdateTabTitle] Using PromptAnalysis cache: "${inferredTitle}"`);
-    } else {
-      inferredTitle = await summarizePrompt(prompt);
-    }
+    // Phase 2: Run inference for better title
+    const inferredTitle = await summarizePrompt(prompt);
     const finalTitle = inferredTitle || (quickTitle && isValidWorkingTitle(quickTitle) ? quickTitle : getWorkingFallback());
     setTabState({ title: `⚙️ ${prefix}${finalTitle}`, state: 'working', sessionId: data.session_id });
 

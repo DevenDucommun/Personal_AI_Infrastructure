@@ -14,6 +14,8 @@ export interface HookInput {
   transcript_path: string;
   hook_event_name: string;
   last_assistant_message?: string;
+  prompt?: string;
+  user_prompt?: string;
 }
 
 /**
@@ -54,7 +56,13 @@ export async function readHookInput(): Promise<HookInput | null> {
       return null;
     }
 
-    return parsed as HookInput;
+    // Normalize: Claude Code sends user_prompt, hooks expect prompt
+    const obj = parsed as any;
+    if (obj.user_prompt && !obj.prompt) {
+      obj.prompt = obj.user_prompt;
+    }
+
+    return obj as HookInput;
   } catch (error) {
     console.error('[hook-io] Error reading stdin:', error);
   }

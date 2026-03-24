@@ -3,7 +3,7 @@
  * AlgorithmTracker.hook.ts — Consolidated Algorithm State Tracker (PostToolUse)
  *
  * Single hook replaces CriteriaTracker + SessionReactivator. Four responsibilities:
- * 1. Phase tracking:    Detects voice curls in Bash tool_input → phaseTransition()
+ * 1. Phase tracking:    Detects phase notification curls in Bash tool_input → phaseTransition()
  * 2. Criteria tracking: Intercepts TaskCreate for ISC criteria → criteriaAdd()
  * 3. Criteria updates:  Intercepts TaskUpdate status changes → criteriaUpdate()
  * 4. Agent tracking:    Intercepts Task tool for agent spawns → agentAdd()
@@ -25,7 +25,7 @@ import { existsSync, readFileSync } from 'fs';
 import { join } from 'path';
 import { setPhaseTab } from './lib/tab-setter';
 
-// ── Phase Detection from Voice Curls ──
+// ── Phase Detection from Notification Curls ──
 
 const PHASE_MAP: Record<string, AlgorithmPhase> = {
   'entering the observe phase': 'OBSERVE',
@@ -42,7 +42,7 @@ const PHASE_MAP: Record<string, AlgorithmPhase> = {
 const ALGORITHM_ENTRY = 'entering the pai algorithm';
 
 function detectPhaseFromBash(command: string): { phase: AlgorithmPhase | null; isAlgorithmEntry: boolean } {
-  // Only match voice notification curls to localhost:8888
+  // Only match notification curls to localhost:8888
   if (!command.includes('localhost:8888') || !command.includes('/notify')) {
     return { phase: null, isAlgorithmEntry: false };
   }
@@ -160,7 +160,7 @@ async function main() {
   const { tool_name, tool_input, tool_result, session_id } = input;
   if (!session_id) return;
 
-  // ── 1. Bash → Phase detection from voice curls ──
+  // ── 1. Bash → Phase detection from notification curls ──
   if (tool_name === 'Bash' && tool_input?.command) {
     const { phase, isAlgorithmEntry } = detectPhaseFromBash(tool_input.command);
 
@@ -181,7 +181,7 @@ async function main() {
       ensureSessionActive(session_id);
       phaseTransition(session_id, phase);
 
-      // Fire rework voice notification if this is a rework cycle
+      // Log rework cycle detection
       if (isReworkTransition) {
         const postState = readState(session_id);
         const reworkNum = postState?.reworkCount ?? 1;

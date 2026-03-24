@@ -76,7 +76,6 @@ describe('validateConfig', () => {
       daidentity: {
         name: 'Aria',
         color: '#3B82F6',
-        voices: { main: {} },
         personality: { enthusiasm: 75 },
       },
       principal: { name: 'Deven' },

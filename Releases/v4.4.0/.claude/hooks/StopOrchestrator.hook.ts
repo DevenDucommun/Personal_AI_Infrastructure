@@ -10,8 +10,9 @@
  *
  * HANDLERS (in hooks/handlers/):
  * - TabState.ts: Resets Kitty tab to default UL blue
+ * - DocCrossRefIntegrity.ts: Checks if system docs/hooks were modified, updates cross-refs
  *
- * NOTE: DocCrossRefIntegrity is handled by standalone DocIntegrity.hook.ts.
+ * NOTE: DocIntegrity.hook.ts was deleted — this orchestrator is the sole owner of DocCrossRefIntegrity.
  * AlgorithmEnrichment and RebuildSkill handlers were planned but never created.
  * They were removed in v4.4.1-dev to fix silent crash on import.
  *
@@ -25,6 +26,7 @@
 import { parseTranscript, extractCompletionPlain, extractStructuredSections } from '../PAI/Tools/TranscriptParser';
 import type { ParsedTranscript } from '../PAI/Tools/TranscriptParser';
 import { handleTabState } from './handlers/TabState';
+import { handleDocCrossRefIntegrity } from './handlers/DocCrossRefIntegrity';
 
 interface HookInput {
   session_id: string;
@@ -82,6 +84,7 @@ async function main() {
       raw: '',
       lastMessage: text,
       currentResponseText: text,
+      voiceCompletion: '', // Deprecated — kept for ParsedTranscript type compatibility
       plainCompletion: extractCompletionPlain(text),
       structured: extractStructuredSections(text),
       responseState: 'completed', // AskUserQuestion state handled by SetQuestionTab PreToolUse hook
@@ -96,12 +99,12 @@ async function main() {
   }
 
   // Run handlers
-  // NOTE: DocCrossRefIntegrity is owned by standalone DocIntegrity.hook.ts
   // Future: consolidate LastResponseCache, AlgorithmTracker, TerminalState into this orchestrator
   const handlers: Promise<void>[] = [
     handleTabState(parsed, hookInput.session_id),
+    handleDocCrossRefIntegrity(parsed, hookInput),
   ];
-  const handlerNames = ['TabState'];
+  const handlerNames = ['TabState', 'DocCrossRefIntegrity'];
 
   const results = await Promise.allSettled(handlers);
 

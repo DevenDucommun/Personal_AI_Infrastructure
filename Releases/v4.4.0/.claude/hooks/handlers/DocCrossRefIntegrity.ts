@@ -867,4 +867,16 @@ export async function handleDocCrossRefIntegrity(
   console.error(`${TAG} Wall time: ${totalElapsed}ms`);
   console.error(`${TAG} === Check complete ===`);
 
+  // Step 10: Log when actual documentation edits were applied
+  if (updatesApplied.length > 0) {
+    const affectedDocs = new Set<string>();
+    for (const update of updatesApplied) {
+      const docMatch = update.match(/(?:in |] )(\w+\.md)/);
+      if (docMatch) affectedDocs.add(docMatch[1].replace('.md', ''));
+    }
+
+    const docNames = Array.from(affectedDocs).slice(0, 3).join(', ') || 'system';
+    const reason = hasHookChanges ? 'hook system changes' : hasDocChanges ? 'system documentation changes' : 'system file changes';
+    console.error(`[DocCrossRef] Updated ${docNames} documentation after detecting ${reason}.`);
+  }
 }

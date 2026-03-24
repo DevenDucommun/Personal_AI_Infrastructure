@@ -14,38 +14,19 @@ See `HOOK-SYSTEM-AUDIT.md` for full evidence and `ARCHITECTURE-REVIEW-v4.4.1.md`
 
 ## 0.1 StopOrchestrator Phantom Imports — ✅ FIXED
 
-`hooks/StopOrchestrator.hook.ts` imports two handler files that don't exist:
-- `./handlers/AlgorithmEnrichment` — never created
-- `./handlers/RebuildSkill` — never created
-
-The orchestrator crashes silently on every Stop event. The other 4 Stop hooks compensate, so the system appears functional, but the orchestrator pattern is completely broken.
-
-**Fix:** Remove phantom imports. Decide whether to create the handlers or remove the orchestrator concept.
+`hooks/StopOrchestrator.hook.ts` imported two handler files that didn't exist (`AlgorithmEnrichment`, `RebuildSkill`). Removed phantom imports, reduced handler array to TabState + DocCrossRefIntegrity. Orchestrator now compiles and runs cleanly.
 
 ## 0.2 StopOrchestrator Wrong TranscriptParser Path — ✅ FIXED
 
-`StopOrchestrator.hook.ts:23` imports from `../skills/PAI/Tools/TranscriptParser` — wrong path.
-Correct path: `../PAI/Tools/TranscriptParser`
-
-This is a second fatal import error in the same file.
-
-**Fix:** Change `../skills/PAI/Tools/` to `../PAI/Tools/`.
+Fixed `../skills/PAI/Tools/TranscriptParser` to `../PAI/Tools/TranscriptParser`.
 
 ## 0.3 DocCrossRefIntegrity Double Registration — ✅ FIXED
 
-`handleDocCrossRefIntegrity` is called by both:
-- `DocIntegrity.hook.ts` (thin wrapper, works)
-- `StopOrchestrator.hook.ts` (crashes before reaching it)
-
-Currently masked by Bug 0.1 — if the orchestrator is fixed without deduplication, DocCrossRefIntegrity runs twice per Stop event, creating race conditions on shared state files.
-
-**Fix:** Choose one owner. Recommendation: let StopOrchestrator own it (Option A in HOOK-SYSTEM-AUDIT.md).
+DocIntegrity.hook.ts deleted. StopOrchestrator now owns DocCrossRefIntegrity as sole caller. No more duplicate execution on Stop.
 
 ## 0.4 IntegrityMaintenance Missing Tool Reference — ✅ FIXED
 
-`PAI/Tools/IntegrityMaintenance.ts:112` references `skills/_SYSTEM/Tools/CreateUpdate.ts` which doesn't exist. No `_SYSTEM` directory exists under skills/.
-
-**Fix:** Remove or update the reference.
+Fixed stale `skills/_SYSTEM/Tools/CreateUpdate.ts` path. Added existence guard to skip gracefully if file not found.
 
 ## 0.5 Voice Remnants in DocCrossRefIntegrity — ✅ FIXED
 
@@ -225,9 +206,7 @@ Added inline justification: `faster-whisper` is a Python-only library (CTranslat
 
 ## 4.9 CLAUDE.md Version String is Wrong — ✅ FIXED
 
-`CLAUDE.md` line 1 said `# PAI 4.3.0` — stale because the template had diverged from CLAUDE.md and needsRebuild() didn't detect version drift.
-
-**Fixed:** Synced CLAUDE.md.template with actual CLAUDE.md content (added effort tier pre-classification, Micro mode, simplified MINIMAL). Rebuilt CLAUDE.md (now shows 4.4.0). Added PAI version drift detection to needsRebuild() so future version bumps trigger automatic rebuild.
+Synced CLAUDE.md.template with actual CLAUDE.md content (effort tier pre-classification, Micro mode, simplified MINIMAL). Rebuilt CLAUDE.md (now shows 4.4.0). Added PAI version drift detection to needsRebuild() so future version bumps trigger automatic rebuild.
 
 ## 4.10 BuildCLAUDE.ts Exists in Two Places — ✅ NOT AN ISSUE
 
@@ -270,7 +249,7 @@ Contains `BackupRestore.ts`, `validate-protected.ts`, `README.md`, and a PNG. Th
 **Urgent (P0 — runtime bugs):**
 - [x] Fix StopOrchestrator phantom imports (AlgorithmEnrichment, RebuildSkill)
 - [x] Fix StopOrchestrator TranscriptParser path
-- [x] Resolve DocCrossRefIntegrity double registration
+- [x] Resolve DocCrossRefIntegrity double registration (DocIntegrity.hook.ts deleted, StopOrchestrator owns it)
 - [x] Fix IntegrityMaintenance missing tool reference
 - [x] Remove voice remnants from DocCrossRefIntegrity
 
